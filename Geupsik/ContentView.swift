@@ -9,29 +9,62 @@
 import SwiftUI
 
 struct ContentView: View {
-    @State private var selection = 0
- 
+    @State private var showDatePicker = false
+    @State var selectedDate = Date()
+    
+    init() {
+        UITableView.appearance().separatorStyle = .none
+    }
+    
     var body: some View {
-        TabView(selection: $selection){
-            Text("First View")
-                .font(.title)
-                .tabItem {
-                    VStack {
-                        Image("first")
-                        Text("First")
-                    }
+        NavigationView {
+            List {
+                TopNavigator(date: self.$selectedDate)
+                if showDatePicker {
+                    DatePicker("Enter a Date", selection: $selectedDate, displayedComponents: .date)
+                        .labelsHidden()
+                        .environment(\.locale, Locale(identifier: "ko"))
                 }
-                .tag(0)
-            Text("Second View")
-                .font(.title)
-                .tabItem {
-                    VStack {
-                        Image("second")
-                        Text("Second")
-                    }
+                ForEach(selectedDate.autoWeekday(date: selectedDate), id: \.self) { date in
+                    MealCell(date: date)
                 }
-                .tag(1)
+            }
+            .listStyle(PlainListStyle())
+            .navigationBarTitle("급식 보기")
+            .navigationBarItems(leading: Button(action: {
+                self.selectedDate = Date()
+            }) {
+                Text("오늘")
+            },
+            trailing: Button(action: {
+                self.showDatePicker.toggle()
+            }) {
+                Image(systemName: "calendar")
+            })
         }
+    }
+}
+
+struct TopNavigator: View {
+    @Binding var date: Date
+    let f = DateFormatter().koreanShortLocale()
+    var body: some View {
+        HStack(alignment: .center) {
+            Button(action: {
+                self.date = self.date.addingTimeInterval(-86400*7)
+            }) {
+                Text("저번 주")
+            }
+            Spacer()
+            Text("\(DateFormatter().formatKR(date: date.autoWeekday(date: date).first!)) ~ \(f.string(from: date.autoWeekday(date: date).last!))")
+            Spacer()
+            Button(action: {
+                self.date = self.date.addingTimeInterval(86400*7)
+            }) {
+                Text("다음 주")
+            }
+        }
+        .buttonStyle(BorderlessButtonStyle())
     }
 }
 
@@ -40,3 +73,4 @@ struct ContentView_Previews: PreviewProvider {
         ContentView()
     }
 }
+

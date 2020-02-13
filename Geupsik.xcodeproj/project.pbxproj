@@ -3,20 +3,29 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B21593B423E8EBBD00390832 /* ImageWithActivityIndicator in Frameworks */ = {isa = PBXBuildFile; productRef = B21593B323E8EBBD00390832 /* ImageWithActivityIndicator */; };
+		B21B0CFB23E9499200B71444 /* ActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B21B0CFA23E9499200B71444 /* ActivityIndicator.swift */; };
 		B24E5CBD23A638380087B2F1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B24E5CBC23A638380087B2F1 /* AppDelegate.swift */; };
 		B24E5CBF23A638380087B2F1 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B24E5CBE23A638380087B2F1 /* SceneDelegate.swift */; };
 		B24E5CC123A638380087B2F1 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B24E5CC023A638380087B2F1 /* ContentView.swift */; };
 		B24E5CC323A638380087B2F1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B24E5CC223A638380087B2F1 /* Assets.xcassets */; };
 		B24E5CC623A638380087B2F1 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B24E5CC523A638380087B2F1 /* Preview Assets.xcassets */; };
 		B24E5CC923A638380087B2F1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B24E5CC723A638380087B2F1 /* LaunchScreen.storyboard */; };
+		B29187F323A66F4A0067D259 /* SwiftSoup in Frameworks */ = {isa = PBXBuildFile; productRef = B29187F223A66F4A0067D259 /* SwiftSoup */; };
+		B292537923E6F2D900B9A3EB /* MealCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B292537823E6F2D900B9A3EB /* MealCell.swift */; };
+		B2B897DC23E84F46007FE601 /* DateFormatterExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2B897DB23E84F46007FE601 /* DateFormatterExtension.swift */; };
+		B2D10B9223E848EC00F9577E /* ShowDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2D10B9123E848EC00F9577E /* ShowDetailsView.swift */; };
+		B2E94DC023E8238600538034 /* WeekdayControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2E94DBF23E8238600538034 /* WeekdayControl.swift */; };
+		B2F7B57323B2327F001F3263 /* GetData.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2F7B57223B2327F001F3263 /* GetData.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		B24E5CB923A638380087B2F1 /* Geupsik.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Geupsik.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		B21B0CFA23E9499200B71444 /* ActivityIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityIndicator.swift; sourceTree = "<group>"; };
+		B24E5CB923A638380087B2F1 /* MHGeupsik.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MHGeupsik.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B24E5CBC23A638380087B2F1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B24E5CBE23A638380087B2F1 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		B24E5CC023A638380087B2F1 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -24,6 +33,11 @@
 		B24E5CC523A638380087B2F1 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		B24E5CC823A638380087B2F1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B24E5CCA23A638380087B2F1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B292537823E6F2D900B9A3EB /* MealCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealCell.swift; sourceTree = "<group>"; };
+		B2B897DB23E84F46007FE601 /* DateFormatterExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateFormatterExtension.swift; sourceTree = "<group>"; };
+		B2D10B9123E848EC00F9577E /* ShowDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowDetailsView.swift; sourceTree = "<group>"; };
+		B2E94DBF23E8238600538034 /* WeekdayControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeekdayControl.swift; sourceTree = "<group>"; };
+		B2F7B57223B2327F001F3263 /* GetData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetData.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -31,6 +45,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B29187F323A66F4A0067D259 /* SwiftSoup in Frameworks */,
+				B21593B423E8EBBD00390832 /* ImageWithActivityIndicator in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -48,7 +64,7 @@
 		B24E5CBA23A638380087B2F1 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				B24E5CB923A638380087B2F1 /* Geupsik.app */,
+				B24E5CB923A638380087B2F1 /* MHGeupsik.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -59,6 +75,12 @@
 				B24E5CBC23A638380087B2F1 /* AppDelegate.swift */,
 				B24E5CBE23A638380087B2F1 /* SceneDelegate.swift */,
 				B24E5CC023A638380087B2F1 /* ContentView.swift */,
+				B292537823E6F2D900B9A3EB /* MealCell.swift */,
+				B2D10B9123E848EC00F9577E /* ShowDetailsView.swift */,
+				B21B0CFA23E9499200B71444 /* ActivityIndicator.swift */,
+				B2F7B57223B2327F001F3263 /* GetData.swift */,
+				B2E94DBF23E8238600538034 /* WeekdayControl.swift */,
+				B2B897DB23E84F46007FE601 /* DateFormatterExtension.swift */,
 				B24E5CC223A638380087B2F1 /* Assets.xcassets */,
 				B24E5CC723A638380087B2F1 /* LaunchScreen.storyboard */,
 				B24E5CCA23A638380087B2F1 /* Info.plist */,
@@ -91,8 +113,12 @@
 			dependencies = (
 			);
 			name = Geupsik;
+			packageProductDependencies = (
+				B29187F223A66F4A0067D259 /* SwiftSoup */,
+				B21593B323E8EBBD00390832 /* ImageWithActivityIndicator */,
+			);
 			productName = Geupsik;
-			productReference = B24E5CB923A638380087B2F1 /* Geupsik.app */;
+			productReference = B24E5CB923A638380087B2F1 /* MHGeupsik.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -119,6 +145,10 @@
 				Base,
 			);
 			mainGroup = B24E5CB023A638380087B2F1;
+			packageReferences = (
+				B29187F123A66F4A0067D259 /* XCRemoteSwiftPackageReference "SwiftSoup" */,
+				B21593B223E8EBBD00390832 /* XCRemoteSwiftPackageReference "ImageWithActivityIndicator" */,
+			);
 			productRefGroup = B24E5CBA23A638380087B2F1 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -146,8 +176,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B2D10B9223E848EC00F9577E /* ShowDetailsView.swift in Sources */,
+				B292537923E6F2D900B9A3EB /* MealCell.swift in Sources */,
 				B24E5CBD23A638380087B2F1 /* AppDelegate.swift in Sources */,
+				B2F7B57323B2327F001F3263 /* GetData.swift in Sources */,
 				B24E5CBF23A638380087B2F1 /* SceneDelegate.swift in Sources */,
+				B2E94DC023E8238600538034 /* WeekdayControl.swift in Sources */,
+				B2B897DC23E84F46007FE601 /* DateFormatterExtension.swift in Sources */,
+				B21B0CFB23E9499200B71444 /* ActivityIndicator.swift in Sources */,
 				B24E5CC123A638380087B2F1 /* ContentView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -286,17 +322,18 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"Geupsik/Preview Content\"";
-				DEVELOPMENT_TEAM = T2N2Q99XZR;
+				DEVELOPMENT_TEAM = YNUMMC3WK3;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = Geupsik/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = kr.n30gu1.Geupsik;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.n30gu1.MHGeupsik;
+				PRODUCT_NAME = MHGeupsik;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -306,17 +343,18 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"Geupsik/Preview Content\"";
-				DEVELOPMENT_TEAM = T2N2Q99XZR;
+				DEVELOPMENT_TEAM = YNUMMC3WK3;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = Geupsik/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = kr.n30gu1.Geupsik;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.n30gu1.MHGeupsik;
+				PRODUCT_NAME = MHGeupsik;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
@@ -342,6 +380,38 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		B21593B223E8EBBD00390832 /* XCRemoteSwiftPackageReference "ImageWithActivityIndicator" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/AliAdam/ImageWithActivityIndicator";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+		B29187F123A66F4A0067D259 /* XCRemoteSwiftPackageReference "SwiftSoup" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/scinfu/SwiftSoup";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.3.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		B21593B323E8EBBD00390832 /* ImageWithActivityIndicator */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B21593B223E8EBBD00390832 /* XCRemoteSwiftPackageReference "ImageWithActivityIndicator" */;
+			productName = ImageWithActivityIndicator;
+		};
+		B29187F223A66F4A0067D259 /* SwiftSoup */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B29187F123A66F4A0067D259 /* XCRemoteSwiftPackageReference "SwiftSoup" */;
+			productName = SwiftSoup;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = B24E5CB123A638380087B2F1 /* Project object */;
 }
