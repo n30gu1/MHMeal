@@ -7,33 +7,32 @@
 //
 
 import SwiftUI
-import ImageWithActivityIndicator
 
 struct ShowDetailsView: View {
     @ObservedObject var data = GetData()
+    var meal: String = ""
+    var kcal: String = ""
     
-    init(date: Date) {
+    init(date: Date, meal: String, kcal: String) {
         data.date = date
-        data.getData(date: date)
+        data.getData(date: date, image: true)
+        self.meal = meal
+        self.kcal = kcal
     }
     
     var body: some View {
         NavigationView {
             VStack(alignment: .leading) {
-                if data.mealIsLoaded {
-                    Text(data.meal!)
-                        .font(.system(size: 21))
+                Text(meal)
+                    .font(.system(size: 21))
+                Spacer()
+                HStack(alignment: .bottom, spacing: 2) {
                     Spacer()
-                    HStack(alignment: .bottom, spacing: 2) {
-                        Spacer()
-                        Text(data.kcal!)
-                            .font(.largeTitle)
-                            .bold()
-                        Text("kcal")
-                            .padding(.bottom, 3)
-                    }
-                } else {
-                    ActivityIndicator(isAnimating: .constant(true), style: .large)
+                    Text(kcal)
+                        .font(.largeTitle)
+                        .bold()
+                    Text("kcal")
+                        .padding(.bottom, 3)
                 }
                 if data.dataIsLoaded {
                     Image(uiImage: data.image!.rotate(radians: .pi * -0.5))
@@ -43,7 +42,7 @@ struct ShowDetailsView: View {
                 }
             }
             .padding()
-            .navigationBarTitle(DateFormatter().formatKR(date: data.date))
+            .navigationBarTitle(data.date.format())
         }
     }
 }
@@ -51,7 +50,7 @@ struct ShowDetailsView: View {
 struct ShowDetailsView_Previews: PreviewProvider {
     static var previews: some View {
         ShowDetailsView(
-            date: Date().addingTimeInterval(-60*60*24*152)
+            date: Date().addingTimeInterval(-60*60*24*152), meal: "급식이 없습니다.", kcal: "1911"
         )
     }
 }

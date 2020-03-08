@@ -7,35 +7,34 @@
 //
 
 import SwiftUI
-import ImageWithActivityIndicator
 
 struct MealCell: View {
     @ObservedObject var data = GetData()
     @State var showDetails = false
-    var isToday = false
+    let selDate: Date
     
-    init(date: Date) {
+    init(date: Date, selectedDate: Date) {
+        self.selDate = selectedDate
         data.date = date
-        self.isToday = date == Date() ? true : false
-        data.getData(date: date)
+        data.getData(date: date, image: false)
     }
     
     var body: some View {
         VStack(alignment: .leading, spacing: 5) {
             HStack(spacing: 0) {
-                Text(DateFormatter().formatKR(date: data.date))
+                Text(data.date.format())
                     .tracking(0.9)
                     .font(.footnote)
                     .bold()
                     .padding(.horizontal, 5)
-                if DateFormatter().formatKR(date: data.date) == DateFormatter().formatKR(date: Date()) {
-                    Text("오늘")
+                if data.date.format() == Date().format() {
+                    Text("Today")
                         .tracking(0.9)
                         .font(.footnote)
                         .foregroundColor(.gray)
                 }
                 Spacer()
-                Text("자세히 보기 ")
+                Text("Show Details ")
                     .tracking(0.9)
                     .font(.footnote)
                     .foregroundColor(.gray)
@@ -76,17 +75,17 @@ struct MealCell: View {
                 }
             }
         }
-        .frame(height: isToday ? 300 : 150)
+        .frame(height: data.date.format() == self.selDate.format() ? 300 : 150)
         .onTapGesture {
             self.showDetails.toggle()
         }
         .sheet(isPresented: self.$showDetails) {
-            ShowDetailsView(date: self.data.date)
+            ShowDetailsView(date: self.data.date, meal: self.data.meal!, kcal: self.data.kcal!)
         }
     }
 }
 struct MealCell_Previews: PreviewProvider {
     static var previews: some View {
-        MealCell(date: Date())
+        MealCell(date: Date(), selectedDate: Date())
     }
 }

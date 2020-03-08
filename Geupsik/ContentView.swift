@@ -9,8 +9,8 @@
 import SwiftUI
 
 struct ContentView: View {
-    @State private var showDatePicker = false
-    @State var selectedDate = Date()
+    @State var date = Date()
+    @State var showCalendar = false
     
     init() {
         UITableView.appearance().separatorStyle = .none
@@ -19,49 +19,53 @@ struct ContentView: View {
     var body: some View {
         NavigationView {
             List {
-                TopNavigator(date: self.$selectedDate)
-                if showDatePicker {
-                    DatePicker("Enter a Date", selection: $selectedDate, displayedComponents: .date)
-                        .labelsHidden()
-                        .environment(\.locale, Locale(identifier: "ko"))
-                }
-                ForEach(selectedDate.autoWeekday(date: selectedDate), id: \.self) { date in
-                    MealCell(date: date)
+                TopNavigator(date: $date)
+                ForEach(date.autoWeekday(), id: \.self) { date in
+                    MealCell(date: date, selectedDate: self.date)
                 }
             }
             .listStyle(PlainListStyle())
-            .navigationBarTitle("급식 보기")
+            .navigationBarTitle("Meals")
             .navigationBarItems(leading: Button(action: {
-                self.selectedDate = Date()
+                self.date = Date()
             }) {
-                Text("오늘")
+                Text("Today")
             },
-            trailing: Button(action: {
-                self.showDatePicker.toggle()
-            }) {
+            trailing: Button(action: { self.showCalendar.toggle() }) {
                 Image(systemName: "calendar")
             })
+            
+        }
+        .sheet(isPresented: $showCalendar) {
+            CalendarView(date: self.$date)
+                .edgesIgnoringSafeArea(.all)
         }
     }
 }
 
 struct TopNavigator: View {
     @Binding var date: Date
-    let f = DateFormatter().koreanShortLocale()
+    
     var body: some View {
         HStack(alignment: .center) {
             Button(action: {
                 self.date = self.date.addingTimeInterval(-86400*7)
             }) {
-                Text("저번 주")
+                Image(systemName: "chevron.left")
+                .padding(12)
+                .background(Color("CellColor"))
+                .clipShape(Circle())
             }
             Spacer()
-            Text("\(DateFormatter().formatKR(date: date.autoWeekday(date: date).first!)) ~ \(f.string(from: date.autoWeekday(date: date).last!))")
+            Text(date.rangeString())
             Spacer()
             Button(action: {
                 self.date = self.date.addingTimeInterval(86400*7)
             }) {
-                Text("다음 주")
+                Image(systemName: "chevron.right")
+                .padding(12)
+                .background(Color("CellColor"))
+                .clipShape(Circle())
             }
         }
         .buttonStyle(BorderlessButtonStyle())
@@ -70,7 +74,11 @@ struct TopNavigator: View {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
+        Group {
+            ContentView()
+                .environment(\.locale, Locale(identifier: "ko"))
+            ContentView()
+                .environment(\.colorScheme, .dark)
+        }
     }
 }
-

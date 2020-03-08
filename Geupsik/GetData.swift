@@ -57,7 +57,13 @@ class GetData: ObservableObject {
         return final
     }
 
-    func getData(date: Date) {
+    func getData(date: Date, image: Bool) {
+        let locale = Locale.current.languageCode
+        let isLcKr = locale == "ko" ? true : false
+        let noInternetConnection = isLcKr ? "인터넷 연결이 없습니다." : "No internet connection."
+        let error = isLcKr ? "오류" : "Error"
+        let noMeal = isLcKr ? "급식이 없습니다." : "No meal today."
+        
         var contents: String = ""
         let dFormatter: DateFormatter = {
             let f = DateFormatter()
@@ -72,47 +78,54 @@ class GetData: ObservableObject {
                     contents = getContents
                 } catch {
                     // contents could not be loaded
-                    self.meal = "인터넷 연결이 없습니다."
+                    self.meal = noInternetConnection
                 }
             } else {
                 // the URL was bad!
-                self.meal = "오류"
+                self.meal = error
             }
             
             do {
                 let doc: Document = try SwiftSoup.parse(contents)
                 
-                let meal: Element = try doc.select("td > div").first()!
-                let mealText = try meal.text()
-                let mealResult = self.clean(text: mealText)
-                
-                if mealResult.count == 1 && mealResult[0] == "" {
-                    self.meal = "급식이 없습니다."
+                if image {
+                    let image: Element? = try doc.select("img[src]").first()
+                    if let imageUnwpd = image {
+                        let imageString = "\(imageUnwpd)"
+                        self.loadImage(url: self.cleanImgLink(text: imageString))
+                    }
                 } else {
-                    self.meal = mealResult.joined(separator: "\n")
+                    let meal: Element? = try doc.select("td > div").first()
+                    if let unwpd = meal {
+                        let mealText = try unwpd.text()
+                        let mealResult = self.clean(text: mealText)
+                        
+                        if mealResult.count == 1 && mealResult[0] == "" {
+                            self.meal = noMeal
+                        } else {
+                            self.meal = mealResult.joined(separator: "\n")
+                        }
+                        
+                        let kcal: Element = try doc.select("tr > td")[1]
+                        let kcalText = try kcal.text()
+                        let kcalResult = self.cleanKcal(text: kcalText)
+                        
+                        if kcalResult == "" {
+                            self.kcal = "???"
+                        } else {
+                            self.kcal = kcalResult
+                        }
+                    } else {
+                        self.meal = noMeal
+                        self.kcal = "???"
+                    }
                 }
-                
-                let kcal: Element = try doc.select("tr > td")[1]
-                let kcalText = try kcal.text()
-                let kcalResult = self.cleanKcal(text: kcalText)
-                
-                if kcalResult == "" {
-                    self.kcal = "???"
-                } else {
-                    self.kcal = kcalResult
-                }
-                
-                let image: Element? = try doc.select("img[src]").first()
-                if let imageUnwpd = image {
-                    let imageString = "\(imageUnwpd)"
-                    self.loadImage(url: self.cleanImgLink(text: imageString))
-                }
-                
             } catch Exception.Error(_, _) {
                 return
             } catch {
                 return
             }
+            
             self.mealIsLoaded = true
         }
     }
