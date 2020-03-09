@@ -1,0 +1,39 @@
+
+/* Class = "UILabel"; text = "T"; ObjectID = "1TX-7k-PDi"; */
+"1TX-7k-PDi.text" = "T";
+
+/* Class = "UILabel"; text = "T"; ObjectID = "9vU-Ss-nvJ"; */
+"9vU-Ss-nvJ.text" = "T";
+
+/* Class = "UILabel"; text = "S"; ObjectID = "CuJ-sF-X9Q"; */
+"CuJ-sF-X9Q.text" = "S";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "EZp-Qo-eZe"; */
+"EZp-Qo-eZe.text" = "Label";
+
+/* Class = "UILabel"; text = "12월"; ObjectID = "Hbf-gv-Bhb"; */
+"Hbf-gv-Bhb.text" = "12월";
+
+/* Class = "UILabel"; text = "F"; ObjectID = "MjR-Iu-yvj"; */
+"MjR-Iu-yvj.text" = "F";
+
+/* Class = "UILabel"; text = "2019년"; ObjectID = "Sh0-6S-Qnx"; */
+"Sh0-6S-Qnx.text" = "2019년";
+
+/* Class = "UILabel"; text = "W"; ObjectID = "Tpy-iH-ZZg"; */
+"Tpy-iH-ZZg.text" = "W";
+
+/* Class = "UILabel"; text = "S"; ObjectID = "TqJ-dV-vPz"; */
+"TqJ-dV-vPz.text" = "S";
+
+/* Class = "UINavigationItem"; title = "날짜 선택"; ObjectID = "awX-Y1-jIp"; */
+"awX-Y1-jIp.title" = "날짜 선택";
+
+/* Class = "UINavigationItem"; title = "Select Date"; ObjectID = "gue-wC-lr8"; */
+"gue-wC-lr8.title" = "Select Date";
+
+/* Class = "UILabel"; text = "M"; ObjectID = "k9a-1j-jTy"; */
+"k9a-1j-jTy.text" = "M";
+
+/* Class = "UIBarButtonItem"; title = "Done"; ObjectID = "sgc-jo-F5i"; */
+"sgc-jo-F5i.title" = "Done";
