@@ -16,7 +16,7 @@ struct ContentView: View {
             }
         }
     .listStyle(CarouselListStyle())
-    .navigationBarTitle("급식")
+    .navigationBarTitle("Meals")
     }
 }
 
