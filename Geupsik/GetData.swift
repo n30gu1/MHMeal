@@ -16,7 +16,9 @@ class GetData: ObservableObject {
     @Published var image: UIImage? = nil
     @Published var meal: String? = nil
     @Published var kcal: String? = nil
+    @Published var imageLink: String? = nil
     @Published var mealIsLoaded: Bool = false
+    @Published var imageExists: Bool = false
     var date: Date = Date()
     
     func loadImage(url: String) {
@@ -71,62 +73,80 @@ class GetData: ObservableObject {
             return f
         }()
         
-        DispatchQueue.main.async {
+        DispatchQueue.global(qos: .userInteractive).async {
             if let url = URL(string: "https://school.gyo6.net/mu-hak/food/\(dFormatter.string(from: date))/lunch") {
                 do {
+                    // print("started loading")
                     let getContents = try String(contentsOf: url)
                     contents = getContents
+                    // print("ended loading")
                 } catch {
                     // contents could not be loaded
                     self.meal = noInternetConnection
+                }
+                
+                do {
+                    let doc: Document = try SwiftSoup.parse(contents)
+                    
+                    if image {
+                        if self.imageExists {
+                            self.loadImage(url: self.imageLink!)
+                        }
+                    } else {
+                        let meal: Element? = try doc.select("td > div").first()
+                        if let unwpd = meal {
+                            let mealText = try unwpd.text()
+                            let mealResult = self.clean(text: mealText)
+                            
+                            DispatchQueue.main.async {
+                                if mealResult.count == 1 && mealResult[0] == "" {
+                                    self.meal = noMeal
+                                } else {
+                                    self.meal = mealResult.joined(separator: "\n")
+                                }
+                            }
+                            
+                            let kcal: Element = try doc.select("tr > td")[1]
+                            let kcalText = try kcal.text()
+                            let kcalResult = self.cleanKcal(text: kcalText)
+                            
+                            DispatchQueue.main.async {
+                                if kcalResult == "" {
+                                    self.kcal = "???"
+                                } else {
+                                    self.kcal = kcalResult
+                                }
+                            }
+                            
+                        } else {
+                            DispatchQueue.main.async {
+                                self.meal = noMeal
+                                self.kcal = "???"
+                            }
+                        }
+                        
+                        let image: Element? = try doc.select("img[src]").first()
+                        if let imageUnwpd = image {
+                            let imageRaw = "\(imageUnwpd)"
+                            DispatchQueue.main.async {
+                                self.imageLink = self.cleanImgLink(text: imageRaw)
+                                self.imageExists = true
+                            }
+                        }
+                    }
+                } catch Exception.Error(_, _) {
+                    return
+                } catch {
+                    return
+                }
+                
+                DispatchQueue.main.async {
+                    self.mealIsLoaded = true
                 }
             } else {
                 // the URL was bad!
                 self.meal = error
             }
-            
-            do {
-                let doc: Document = try SwiftSoup.parse(contents)
-                
-                if image {
-                    let image: Element? = try doc.select("img[src]").first()
-                    if let imageUnwpd = image {
-                        let imageString = "\(imageUnwpd)"
-                        self.loadImage(url: self.cleanImgLink(text: imageString))
-                    }
-                } else {
-                    let meal: Element? = try doc.select("td > div").first()
-                    if let unwpd = meal {
-                        let mealText = try unwpd.text()
-                        let mealResult = self.clean(text: mealText)
-                        
-                        if mealResult.count == 1 && mealResult[0] == "" {
-                            self.meal = noMeal
-                        } else {
-                            self.meal = mealResult.joined(separator: "\n")
-                        }
-                        
-                        let kcal: Element = try doc.select("tr > td")[1]
-                        let kcalText = try kcal.text()
-                        let kcalResult = self.cleanKcal(text: kcalText)
-                        
-                        if kcalResult == "" {
-                            self.kcal = "???"
-                        } else {
-                            self.kcal = kcalResult
-                        }
-                    } else {
-                        self.meal = noMeal
-                        self.kcal = "???"
-                    }
-                }
-            } catch Exception.Error(_, _) {
-                return
-            } catch {
-                return
-            }
-            
-            self.mealIsLoaded = true
         }
     }
 }

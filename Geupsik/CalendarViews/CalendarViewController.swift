@@ -115,7 +115,7 @@ extension CalendarViewController: JTACMonthViewDataSource {
         self.width = (UIScreen.main.bounds.width - 16) / 7
         
         let startDate = formatter.date(from: "2018 03 02")!
-        let endDate = formatter.date(from: "2022 02 22")!
+        let endDate = Date().addingTimeInterval(86400*365)
         return ConfigurationParameters(startDate: startDate, endDate: endDate)
     }
 }

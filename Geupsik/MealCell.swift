@@ -77,15 +77,18 @@ struct MealCell: View {
         }
         .frame(height: data.date.format() == self.selDate.format() ? 300 : 150)
         .onTapGesture {
-            self.showDetails.toggle()
+            if self.data.mealIsLoaded {
+                self.showDetails.toggle()
+            }
         }
         .sheet(isPresented: self.$showDetails) {
-            ShowDetailsView(date: self.data.date, meal: self.data.meal!, kcal: self.data.kcal!)
+            ShowDetailsView(data: self.data)
         }
     }
 }
 struct MealCell_Previews: PreviewProvider {
     static var previews: some View {
         MealCell(date: Date(), selectedDate: Date())
+            .previewLayout(.fixed(width: 375, height: 300))
     }
 }

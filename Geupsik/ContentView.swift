@@ -33,6 +33,7 @@ struct ContentView: View {
             },
             trailing: Button(action: { self.showCalendar.toggle() }) {
                 Image(systemName: "calendar")
+                    .font(.system(size: 20))
             })
             
         }
@@ -45,6 +46,12 @@ struct ContentView: View {
 
 struct TopNavigator: View {
     @Binding var date: Date
+    let formatter: DateFormatter = {
+        let f = DateFormatter()
+        f.dateFormat = "yyyy MM dd"
+        
+        return f
+    }()
     
     var body: some View {
         HStack(alignment: .center) {
@@ -56,6 +63,7 @@ struct TopNavigator: View {
                 .background(Color("CellColor"))
                 .clipShape(Circle())
             }
+            .disabled(formatter.date(from: "2018 03 02")! > self.date)
             Spacer()
             Text(date.rangeString())
             Spacer()
@@ -67,6 +75,7 @@ struct TopNavigator: View {
                 .background(Color("CellColor"))
                 .clipShape(Circle())
             }
+            .disabled(Date().addingTimeInterval(86400*365) < self.date)
         }
         .buttonStyle(BorderlessButtonStyle())
     }

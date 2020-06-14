@@ -6,9 +6,10 @@
   Copyright © 2020 n30gu1. All rights reserved.
 */
 
-"Meals" = "급식 보기";
+"Meals" = "급식";
 
 "Today" = "오늘";
 
 "Show Details " = "자세히 보기 ";
 
+"Calories" = "열량";
