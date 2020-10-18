@@ -12,34 +12,36 @@ struct ContentView: View {
     @State var date = Date()
     @State var showCalendar = false
     
-    init() {
-        UITableView.appearance().separatorStyle = .none
-    }
-    
     var body: some View {
         NavigationView {
             List {
-                TopNavigator(date: $date)
+                if showCalendar {
+                    DatePicker(selection: self.$date, displayedComponents: .date) {}
+                        .labelsHidden()
+                        .datePickerStyle(GraphicalDatePickerStyle())
+                } else {
+                    TopNavigator(date: $date)
+                }
                 ForEach(date.autoWeekday(), id: \.self) { date in
                     MealCell(date: date, selectedDate: self.date)
                 }
             }
-            .listStyle(PlainListStyle())
+            .listStyle(InsetListStyle())
             .navigationBarTitle("Meals")
             .navigationBarItems(leading: Button(action: {
                 self.date = Date()
             }) {
                 Text("Today")
             },
-            trailing: Button(action: { self.showCalendar.toggle() }) {
+            trailing: Button(action: {
+                withAnimation {
+                    self.showCalendar.toggle()
+                }
+            }) {
                 Image(systemName: "calendar")
                     .font(.system(size: 20))
             })
             
-        }
-        .sheet(isPresented: $showCalendar) {
-            CalendarView(date: self.$date)
-                .edgesIgnoringSafeArea(.all)
         }
     }
 }
@@ -66,6 +68,7 @@ struct TopNavigator: View {
             .disabled(formatter.date(from: "2018 03 02")! > self.date)
             Spacer()
             Text(date.rangeString())
+                .font(.footnote)
             Spacer()
             Button(action: {
                 self.date = self.date.addingTimeInterval(86400*7)

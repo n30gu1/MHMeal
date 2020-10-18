@@ -19,11 +19,15 @@ struct MealView: View {
     
     var body: some View {
         List {
-            Text(data.meal!)
-            Text("\(data.kcal!)kcal")
+            if data.mealIsLoaded {
+                Text("\(data.meal!)")
+            }
+            if data.mealIsLoaded {
+                Text("\(data.kcal!)kcal")
+            }
         }
-            .listStyle(CarouselListStyle())
-            .navigationBarTitle(date.formatShort())
+        .listStyle(CarouselListStyle())
+        .navigationTitle(date.formatShort())
     }
 }
 

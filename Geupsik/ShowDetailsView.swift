@@ -13,13 +13,6 @@ struct ShowDetailsView: View {
     var meal: String = ""
     var kcal: String = ""
     
-//    init(date: Date, meal: String, kcal: String) {
-//        data.date = date
-//        data.getData(date: date, image: true)
-//        self.meal = meal
-//        self.kcal = kcal
-//    }
-    
     init(data: GetData) {
         self.data = data
         self.meal = data.meal ?? "에러"
@@ -53,7 +46,7 @@ struct ShowDetailsView: View {
                         .padding(.bottom, 4)
                 }
                 if data.dataIsLoaded {
-                    if data.image!.size.width * data.image!.scale > 960 {
+                    if data.image!.size.width * data.image!.scale < 5312 {
                         Image(uiImage: data.image!.rotate(radians: .pi * -0.5))
                             .resizable()
                             .cornerRadius(10)
@@ -69,8 +62,9 @@ struct ShowDetailsView: View {
                 } else if data.imageExists {
                     HStack {
                         Spacer()
-                        ActivityIndicator(isAnimating: .constant(true), style: .medium)
-                        Text("사진 로딩 중...")
+                        ProgressView()
+                            .progressViewStyle(CircularProgressViewStyle())
+                        Text(" 사진 로딩 중...")
                         Spacer()
                     }
                 }

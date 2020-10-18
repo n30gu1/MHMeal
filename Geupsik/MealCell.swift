@@ -47,8 +47,7 @@ struct MealCell: View {
             }
             ZStack {
                 Rectangle()
-                    .foregroundColor(Color("CellColor"))
-                .cornerRadius(8)
+                    .foregroundColor(Color(white: 0, opacity: 0))
                 if data.mealIsLoaded {
                     HStack(alignment: .top) {
                         VStack(alignment: .leading) {
@@ -67,10 +66,12 @@ struct MealCell: View {
                             }
                         }
                     }
-                    .padding()
+                    .padding(5)
                 } else {
                     VStack {
-                        ActivityIndicator(isAnimating: .constant(true), style: .large)
+                        ProgressView() {
+                            Text("Loading")
+                        }
                     }
                 }
             }

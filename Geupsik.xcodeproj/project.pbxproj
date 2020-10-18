@@ -10,6 +10,11 @@
 		B201C1DB24965B6C00FC3EFA /* GetData.swift in Sources */ = {isa = PBXBuildFile; fileRef = B201C1DA24965B6C00FC3EFA /* GetData.swift */; };
 		B201C1DE24965B8400FC3EFA /* SwiftSoup in Frameworks */ = {isa = PBXBuildFile; productRef = B201C1DD24965B8400FC3EFA /* SwiftSoup */; };
 		B21615D42497879200F53167 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = B21615D62497879200F53167 /* Localizable.strings */; };
+		B21870FE253A8C51002F8FD2 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B21870BC253A8BF8002F8FD2 /* WidgetKit.framework */; };
+		B21870FF253A8C51002F8FD2 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B21870BE253A8BF8002F8FD2 /* SwiftUI.framework */; };
+		B2187102253A8C51002F8FD2 /* mealWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2187101253A8C51002F8FD2 /* mealWidget.swift */; };
+		B2187104253A8C53002F8FD2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B2187103253A8C53002F8FD2 /* Assets.xcassets */; };
+		B2187108253A8C53002F8FD2 /* mealWidgetExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = B21870FD253A8C51002F8FD2 /* mealWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		B21B0CFB23E9499200B71444 /* ActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B21B0CFA23E9499200B71444 /* ActivityIndicator.swift */; };
 		B234402F2496574900F08716 /* Interface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B234402D2496574900F08716 /* Interface.storyboard */; };
 		B23440312496574B00F08716 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B23440302496574B00F08716 /* Assets.xcassets */; };
@@ -22,8 +27,6 @@
 		B23440472496574D00F08716 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B23440462496574D00F08716 /* Assets.xcassets */; };
 		B234404A2496574D00F08716 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B23440492496574D00F08716 /* Preview Assets.xcassets */; };
 		B234404F2496574D00F08716 /* watchMeal.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = B234402B2496574900F08716 /* watchMeal.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		B234405C2496595500F08716 /* DateExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B23440592496595500F08716 /* DateExtensions.swift */; };
-		B234405D2496595500F08716 /* WeekdayControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = B234405A2496595500F08716 /* WeekdayControl.swift */; };
 		B2344062249659A600F08716 /* MealView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2344061249659A600F08716 /* MealView.swift */; };
 		B24E5CBD23A638380087B2F1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B24E5CBC23A638380087B2F1 /* AppDelegate.swift */; };
 		B24E5CBF23A638380087B2F1 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B24E5CBE23A638380087B2F1 /* SceneDelegate.swift */; };
@@ -31,22 +34,27 @@
 		B24E5CC323A638380087B2F1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B24E5CC223A638380087B2F1 /* Assets.xcassets */; };
 		B24E5CC623A638380087B2F1 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B24E5CC523A638380087B2F1 /* Preview Assets.xcassets */; };
 		B24E5CC923A638380087B2F1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B24E5CC723A638380087B2F1 /* LaunchScreen.storyboard */; };
-		B2784FB0240F3AA9005E0E81 /* CalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2784FAF240F3AA9005E0E81 /* CalendarView.swift */; };
-		B2784FB6240F3BB3005E0E81 /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2784FB3240F3BB3005E0E81 /* CalendarViewController.swift */; };
-		B2784FB7240F3BB3005E0E81 /* DateCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2784FB4240F3BB3005E0E81 /* DateCell.swift */; };
-		B2784FB8240F3BB3005E0E81 /* Header.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2784FB5240F3BB3005E0E81 /* Header.swift */; };
-		B2784FBB240F3DE7005E0E81 /* JTAppleCalendar in Frameworks */ = {isa = PBXBuildFile; productRef = B2784FBA240F3DE7005E0E81 /* JTAppleCalendar */; };
+		B260300F253ADDF6009C8A11 /* GetData.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2603005253ADD98009C8A11 /* GetData.swift */; };
 		B2784FC0240F3E69005E0E81 /* DateExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2784FBD240F3E69005E0E81 /* DateExtensions.swift */; };
 		B2784FC1240F3E69005E0E81 /* WeekdayControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2784FBE240F3E69005E0E81 /* WeekdayControl.swift */; };
 		B29187F323A66F4A0067D259 /* SwiftSoup in Frameworks */ = {isa = PBXBuildFile; productRef = B29187F223A66F4A0067D259 /* SwiftSoup */; };
 		B292537923E6F2D900B9A3EB /* MealCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B292537823E6F2D900B9A3EB /* MealCell.swift */; };
+		B2946CAD253AA8E8002FBBC5 /* SwiftSoup in Frameworks */ = {isa = PBXBuildFile; productRef = B2946CAC253AA8E8002FBBC5 /* SwiftSoup */; };
+		B2BA58A524A1D988008775C9 /* WeekdayControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2BA58A324A1D988008775C9 /* WeekdayControl.swift */; };
+		B2BA58A624A1D988008775C9 /* DateExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2BA58A424A1D988008775C9 /* DateExtensions.swift */; };
 		B2D10B9223E848EC00F9577E /* ShowDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2D10B9123E848EC00F9577E /* ShowDetailsView.swift */; };
-		B2E65B8B2414A05B000C2D9A /* Calendar.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B2E65B8D2414A05B000C2D9A /* Calendar.storyboard */; };
 		B2E65B922414A10A000C2D9A /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = B2E65B942414A10A000C2D9A /* Localizable.strings */; };
 		B2F7B57323B2327F001F3263 /* GetData.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2F7B57223B2327F001F3263 /* GetData.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		B2187106253A8C53002F8FD2 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B24E5CB123A638380087B2F1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = B21870FC253A8C51002F8FD2;
+			remoteInfo = mealWidgetExtension;
+		};
 		B23440392496574C00F08716 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = B24E5CB123A638380087B2F1 /* Project object */;
@@ -64,6 +72,17 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
+		B21870CC253A8BFA002F8FD2 /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				B2187108253A8C53002F8FD2 /* mealWidgetExtension.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		B23440502496574D00F08716 /* Embed Watch Content */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -90,9 +109,14 @@
 
 /* Begin PBXFileReference section */
 		B201C1DA24965B6C00FC3EFA /* GetData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GetData.swift; path = Geupsik/GetData.swift; sourceTree = SOURCE_ROOT; };
-		B21180312415C9A500D5D146 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Calendar.strings; sourceTree = "<group>"; };
 		B21615D52497879200F53167 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		B21615D72497879800F53167 /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/Localizable.strings; sourceTree = "<group>"; };
+		B21870BC253A8BF8002F8FD2 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
+		B21870BE253A8BF8002F8FD2 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
+		B21870FD253A8C51002F8FD2 /* mealWidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = mealWidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		B2187101253A8C51002F8FD2 /* mealWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = mealWidget.swift; sourceTree = "<group>"; };
+		B2187103253A8C53002F8FD2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		B2187105253A8C53002F8FD2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B21B0CFA23E9499200B71444 /* ActivityIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityIndicator.swift; sourceTree = "<group>"; };
 		B234402B2496574900F08716 /* watchMeal.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = watchMeal.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B234402E2496574900F08716 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Interface.storyboard; sourceTree = "<group>"; };
@@ -108,8 +132,6 @@
 		B23440492496574D00F08716 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		B234404B2496574D00F08716 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B234404C2496574D00F08716 /* PushNotificationPayload.apns */ = {isa = PBXFileReference; lastKnownFileType = text; path = PushNotificationPayload.apns; sourceTree = "<group>"; };
-		B23440592496595500F08716 /* DateExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateExtensions.swift; sourceTree = "<group>"; };
-		B234405A2496595500F08716 /* WeekdayControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeekdayControl.swift; sourceTree = "<group>"; };
 		B2344061249659A600F08716 /* MealView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealView.swift; sourceTree = "<group>"; };
 		B24E5CB923A638380087B2F1 /* MHMeal.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MHMeal.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B24E5CBC23A638380087B2F1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -119,23 +141,29 @@
 		B24E5CC523A638380087B2F1 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		B24E5CC823A638380087B2F1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B24E5CCA23A638380087B2F1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		B2784FAF240F3AA9005E0E81 /* CalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarView.swift; sourceTree = "<group>"; };
-		B2784FB3240F3BB3005E0E81 /* CalendarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; };
-		B2784FB4240F3BB3005E0E81 /* DateCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateCell.swift; sourceTree = "<group>"; };
-		B2784FB5240F3BB3005E0E81 /* Header.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Header.swift; sourceTree = "<group>"; };
+		B2603005253ADD98009C8A11 /* GetData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetData.swift; sourceTree = "<group>"; };
 		B2784FBD240F3E69005E0E81 /* DateExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateExtensions.swift; sourceTree = "<group>"; };
 		B2784FBE240F3E69005E0E81 /* WeekdayControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeekdayControl.swift; sourceTree = "<group>"; };
 		B292537823E6F2D900B9A3EB /* MealCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealCell.swift; sourceTree = "<group>"; };
-		B2BE0D8C241653DD00EE1FAC /* 무학밥.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "무학밥.entitlements"; sourceTree = "<group>"; };
+		B2BA58A324A1D988008775C9 /* WeekdayControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = WeekdayControl.swift; path = Geupsik/DateControl/WeekdayControl.swift; sourceTree = SOURCE_ROOT; };
+		B2BA58A424A1D988008775C9 /* DateExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DateExtensions.swift; path = Geupsik/DateControl/DateExtensions.swift; sourceTree = SOURCE_ROOT; };
 		B2D10B9123E848EC00F9577E /* ShowDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowDetailsView.swift; sourceTree = "<group>"; };
 		B2E65B932414A10A000C2D9A /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/Localizable.strings; sourceTree = "<group>"; };
 		B2E65B952414A10D000C2D9A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
-		B2E65B9B2414A432000C2D9A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Calendar.storyboard; sourceTree = "<group>"; };
-		B2E65B9D2414B135000C2D9A /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/Calendar.strings; sourceTree = "<group>"; };
 		B2F7B57223B2327F001F3263 /* GetData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetData.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		B21870FA253A8C51002F8FD2 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B21870FF253A8C51002F8FD2 /* SwiftUI.framework in Frameworks */,
+				B21870FE253A8C51002F8FD2 /* WidgetKit.framework in Frameworks */,
+				B2946CAD253AA8E8002FBBC5 /* SwiftSoup in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		B23440342496574C00F08716 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -149,7 +177,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				B29187F323A66F4A0067D259 /* SwiftSoup in Frameworks */,
-				B2784FBB240F3DE7005E0E81 /* JTAppleCalendar in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -159,8 +186,21 @@
 		B201C1DC24965B8400FC3EFA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				B21870BC253A8BF8002F8FD2 /* WidgetKit.framework */,
+				B21870BE253A8BF8002F8FD2 /* SwiftUI.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		B2187100253A8C51002F8FD2 /* mealWidget */ = {
+			isa = PBXGroup;
+			children = (
+				B2187101253A8C51002F8FD2 /* mealWidget.swift */,
+				B2603005253ADD98009C8A11 /* GetData.swift */,
+				B2187103253A8C53002F8FD2 /* Assets.xcassets */,
+				B2187105253A8C53002F8FD2 /* Info.plist */,
+			);
+			path = mealWidget;
 			sourceTree = "<group>";
 		};
 		B234402C2496574900F08716 /* watchMeal */ = {
@@ -203,9 +243,9 @@
 		B2344058249658C500F08716 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				B2BA58A424A1D988008775C9 /* DateExtensions.swift */,
+				B2BA58A324A1D988008775C9 /* WeekdayControl.swift */,
 				B201C1DA24965B6C00FC3EFA /* GetData.swift */,
-				B23440592496595500F08716 /* DateExtensions.swift */,
-				B234405A2496595500F08716 /* WeekdayControl.swift */,
 			);
 			path = Modules;
 			sourceTree = "<group>";
@@ -216,6 +256,7 @@
 				B24E5CBB23A638380087B2F1 /* Geupsik */,
 				B234402C2496574900F08716 /* watchMeal */,
 				B234403B2496574C00F08716 /* watchMeal Extension */,
+				B2187100253A8C51002F8FD2 /* mealWidget */,
 				B24E5CBA23A638380087B2F1 /* Products */,
 				B201C1DC24965B8400FC3EFA /* Frameworks */,
 			);
@@ -227,6 +268,7 @@
 				B24E5CB923A638380087B2F1 /* MHMeal.app */,
 				B234402B2496574900F08716 /* watchMeal.app */,
 				B23440372496574C00F08716 /* watchMeal Extension.appex */,
+				B21870FD253A8C51002F8FD2 /* mealWidgetExtension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -234,9 +276,7 @@
 		B24E5CBB23A638380087B2F1 /* Geupsik */ = {
 			isa = PBXGroup;
 			children = (
-				B2BE0D8C241653DD00EE1FAC /* 무학밥.entitlements */,
 				B2784FBC240F3E51005E0E81 /* DateControl */,
-				B2784FAE240F3A85005E0E81 /* CalendarViews */,
 				B24E5CBC23A638380087B2F1 /* AppDelegate.swift */,
 				B24E5CBE23A638380087B2F1 /* SceneDelegate.swift */,
 				B24E5CC023A638380087B2F1 /* ContentView.swift */,
@@ -261,18 +301,6 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
-		B2784FAE240F3A85005E0E81 /* CalendarViews */ = {
-			isa = PBXGroup;
-			children = (
-				B2784FAF240F3AA9005E0E81 /* CalendarView.swift */,
-				B2E65B8D2414A05B000C2D9A /* Calendar.storyboard */,
-				B2784FB3240F3BB3005E0E81 /* CalendarViewController.swift */,
-				B2784FB4240F3BB3005E0E81 /* DateCell.swift */,
-				B2784FB5240F3BB3005E0E81 /* Header.swift */,
-			);
-			path = CalendarViews;
-			sourceTree = "<group>";
-		};
 		B2784FBC240F3E51005E0E81 /* DateControl */ = {
 			isa = PBXGroup;
 			children = (
@@ -285,6 +313,26 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		B21870FC253A8C51002F8FD2 /* mealWidgetExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B2187109253A8C53002F8FD2 /* Build configuration list for PBXNativeTarget "mealWidgetExtension" */;
+			buildPhases = (
+				B21870F9253A8C51002F8FD2 /* Sources */,
+				B21870FA253A8C51002F8FD2 /* Frameworks */,
+				B21870FB253A8C51002F8FD2 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = mealWidgetExtension;
+			packageProductDependencies = (
+				B2946CAC253AA8E8002FBBC5 /* SwiftSoup */,
+			);
+			productName = mealWidgetExtension;
+			productReference = B21870FD253A8C51002F8FD2 /* mealWidgetExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 		B234402A2496574900F08716 /* watchMeal */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = B23440572496574D00F08716 /* Build configuration list for PBXNativeTarget "watchMeal" */;
@@ -330,16 +378,17 @@
 				B24E5CB623A638380087B2F1 /* Frameworks */,
 				B24E5CB723A638380087B2F1 /* Resources */,
 				B23440502496574D00F08716 /* Embed Watch Content */,
+				B21870CC253A8BFA002F8FD2 /* Embed App Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 				B234404E2496574D00F08716 /* PBXTargetDependency */,
+				B2187107253A8C53002F8FD2 /* PBXTargetDependency */,
 			);
 			name = Geupsik;
 			packageProductDependencies = (
 				B29187F223A66F4A0067D259 /* SwiftSoup */,
-				B2784FBA240F3DE7005E0E81 /* JTAppleCalendar */,
 			);
 			productName = Geupsik;
 			productReference = B24E5CB923A638380087B2F1 /* MHMeal.app */;
@@ -351,10 +400,13 @@
 		B24E5CB123A638380087B2F1 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 1150;
-				LastUpgradeCheck = 1130;
+				LastSwiftUpdateCheck = 1220;
+				LastUpgradeCheck = 1200;
 				ORGANIZATIONNAME = n30gu1;
 				TargetAttributes = {
+					B21870FC253A8C51002F8FD2 = {
+						CreatedOnToolsVersion = 12.2;
+					};
 					B234402A2496574900F08716 = {
 						CreatedOnToolsVersion = 11.5;
 					};
@@ -387,11 +439,20 @@
 				B24E5CB823A638380087B2F1 /* Geupsik */,
 				B234402A2496574900F08716 /* watchMeal */,
 				B23440362496574C00F08716 /* watchMeal Extension */,
+				B21870FC253A8C51002F8FD2 /* mealWidgetExtension */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		B21870FB253A8C51002F8FD2 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B2187104253A8C53002F8FD2 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		B23440292496574900F08716 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -419,25 +480,33 @@
 				B24E5CC923A638380087B2F1 /* LaunchScreen.storyboard in Resources */,
 				B24E5CC623A638380087B2F1 /* Preview Assets.xcassets in Resources */,
 				B24E5CC323A638380087B2F1 /* Assets.xcassets in Resources */,
-				B2E65B8B2414A05B000C2D9A /* Calendar.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		B21870F9253A8C51002F8FD2 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B260300F253ADDF6009C8A11 /* GetData.swift in Sources */,
+				B2187102253A8C51002F8FD2 /* mealWidget.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		B23440332496574C00F08716 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				B234403F2496574C00F08716 /* HostingController.swift in Sources */,
 				B234403D2496574C00F08716 /* ContentView.swift in Sources */,
+				B2BA58A524A1D988008775C9 /* WeekdayControl.swift in Sources */,
 				B23440432496574C00F08716 /* NotificationController.swift in Sources */,
-				B234405D2496595500F08716 /* WeekdayControl.swift in Sources */,
 				B2344062249659A600F08716 /* MealView.swift in Sources */,
+				B2BA58A624A1D988008775C9 /* DateExtensions.swift in Sources */,
 				B23440412496574C00F08716 /* ExtensionDelegate.swift in Sources */,
 				B23440452496574C00F08716 /* NotificationView.swift in Sources */,
-				B234405C2496595500F08716 /* DateExtensions.swift in Sources */,
 				B201C1DB24965B6C00FC3EFA /* GetData.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -446,16 +515,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B2784FB0240F3AA9005E0E81 /* CalendarView.swift in Sources */,
-				B2784FB8240F3BB3005E0E81 /* Header.swift in Sources */,
 				B2D10B9223E848EC00F9577E /* ShowDetailsView.swift in Sources */,
 				B292537923E6F2D900B9A3EB /* MealCell.swift in Sources */,
-				B2784FB6240F3BB3005E0E81 /* CalendarViewController.swift in Sources */,
 				B24E5CBD23A638380087B2F1 /* AppDelegate.swift in Sources */,
 				B2F7B57323B2327F001F3263 /* GetData.swift in Sources */,
 				B2784FC0240F3E69005E0E81 /* DateExtensions.swift in Sources */,
 				B24E5CBF23A638380087B2F1 /* SceneDelegate.swift in Sources */,
-				B2784FB7240F3BB3005E0E81 /* DateCell.swift in Sources */,
 				B2784FC1240F3E69005E0E81 /* WeekdayControl.swift in Sources */,
 				B21B0CFB23E9499200B71444 /* ActivityIndicator.swift in Sources */,
 				B24E5CC123A638380087B2F1 /* ContentView.swift in Sources */,
@@ -465,6 +530,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		B2187107253A8C53002F8FD2 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = B21870FC253A8C51002F8FD2 /* mealWidgetExtension */;
+			targetProxy = B2187106253A8C53002F8FD2 /* PBXContainerItemProxy */;
+		};
 		B234403A2496574C00F08716 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = B23440362496574C00F08716 /* watchMeal Extension */;
@@ -503,16 +573,6 @@
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
 		};
-		B2E65B8D2414A05B000C2D9A /* Calendar.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				B2E65B9B2414A432000C2D9A /* Base */,
-				B2E65B9D2414B135000C2D9A /* ko */,
-				B21180312415C9A500D5D146 /* en */,
-			);
-			name = Calendar.storyboard;
-			sourceTree = "<group>";
-		};
 		B2E65B942414A10A000C2D9A /* Localizable.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -525,23 +585,72 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		B218710A253A8C53002F8FD2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 2;
+				DEVELOPMENT_TEAM = 98882K9P37;
+				INFOPLIST_FILE = mealWidget/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.1;
+				PRODUCT_BUNDLE_IDENTIFIER = com.n30gu1.MHMeal.mealWidget;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		B218710B253A8C53002F8FD2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 2;
+				DEVELOPMENT_TEAM = 98882K9P37;
+				INFOPLIST_FILE = mealWidget/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.1;
+				PRODUCT_BUNDLE_IDENTIFIER = com.n30gu1.MHMeal.mealWidget;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 		B23440512496574D00F08716 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 4;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = 98882K9P37;
 				IBSC_MODULE = watchMeal_Extension;
 				INFOPLIST_FILE = watchMeal/Info.plist;
+				MARKETING_VERSION = 1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.n30gu1.MHMeal.watchkitapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 4;
-				WATCHOS_DEPLOYMENT_TARGET = 6.0;
+				WATCHOS_DEPLOYMENT_TARGET = 7.0;
 			};
 			name = Debug;
 		};
@@ -551,17 +660,18 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 4;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = 98882K9P37;
 				IBSC_MODULE = watchMeal_Extension;
 				INFOPLIST_FILE = watchMeal/Info.plist;
+				MARKETING_VERSION = 1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.n30gu1.MHMeal.watchkitapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 4;
-				WATCHOS_DEPLOYMENT_TARGET = 6.0;
+				WATCHOS_DEPLOYMENT_TARGET = 7.0;
 			};
 			name = Release;
 		};
@@ -570,7 +680,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 4;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_ASSET_PATHS = "\"watchMeal Extension/Preview Content\"";
 				DEVELOPMENT_TEAM = 98882K9P37;
 				ENABLE_PREVIEWS = YES;
@@ -580,13 +690,14 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
+				MARKETING_VERSION = 1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.n30gu1.MHMeal.watchkitapp.watchkitextension;
 				PRODUCT_NAME = "${TARGET_NAME}";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 4;
-				WATCHOS_DEPLOYMENT_TARGET = 6.0;
+				WATCHOS_DEPLOYMENT_TARGET = 7.0;
 			};
 			name = Debug;
 		};
@@ -595,7 +706,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 4;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_ASSET_PATHS = "\"watchMeal Extension/Preview Content\"";
 				DEVELOPMENT_TEAM = 98882K9P37;
 				ENABLE_PREVIEWS = YES;
@@ -605,13 +716,14 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
+				MARKETING_VERSION = 1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.n30gu1.MHMeal.watchkitapp.watchkitextension;
 				PRODUCT_NAME = "${TARGET_NAME}";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 4;
-				WATCHOS_DEPLOYMENT_TARGET = 6.0;
+				WATCHOS_DEPLOYMENT_TARGET = 7.0;
 			};
 			name = Release;
 		};
@@ -642,6 +754,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -703,6 +816,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -734,19 +848,21 @@
 		B24E5CCE23A638380087B2F1 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = "Geupsik/무학밥.entitlements";
+				CODE_SIGN_ENTITLEMENTS = "";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 4;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_ASSET_PATHS = "\"Geupsik/Preview Content\"";
 				DEVELOPMENT_TEAM = 98882K9P37;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = Geupsik/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.n30gu1.MHMeal;
 				PRODUCT_NAME = MHMeal;
 				SWIFT_VERSION = 5.0;
@@ -757,19 +873,21 @@
 		B24E5CCF23A638380087B2F1 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = "Geupsik/무학밥.entitlements";
+				CODE_SIGN_ENTITLEMENTS = "";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 4;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_ASSET_PATHS = "\"Geupsik/Preview Content\"";
 				DEVELOPMENT_TEAM = 98882K9P37;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = Geupsik/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.n30gu1.MHMeal;
 				PRODUCT_NAME = MHMeal;
 				SWIFT_VERSION = 5.0;
@@ -780,6 +898,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		B2187109253A8C53002F8FD2 /* Build configuration list for PBXNativeTarget "mealWidgetExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B218710A253A8C53002F8FD2 /* Debug */,
+				B218710B253A8C53002F8FD2 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		B23440562496574D00F08716 /* Build configuration list for PBXNativeTarget "watchMeal Extension" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -843,12 +970,12 @@
 			package = B29187F123A66F4A0067D259 /* XCRemoteSwiftPackageReference "SwiftSoup" */;
 			productName = SwiftSoup;
 		};
-		B2784FBA240F3DE7005E0E81 /* JTAppleCalendar */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = B2784FB9240F3DE7005E0E81 /* XCRemoteSwiftPackageReference "JTAppleCalendar" */;
-			productName = JTAppleCalendar;
-		};
 		B29187F223A66F4A0067D259 /* SwiftSoup */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B29187F123A66F4A0067D259 /* XCRemoteSwiftPackageReference "SwiftSoup" */;
+			productName = SwiftSoup;
+		};
+		B2946CAC253AA8E8002FBBC5 /* SwiftSoup */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = B29187F123A66F4A0067D259 /* XCRemoteSwiftPackageReference "SwiftSoup" */;
 			productName = SwiftSoup;
