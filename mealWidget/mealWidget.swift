@@ -48,7 +48,7 @@ struct mealWidgetEntryView : View {
                 Text(entry.date.formatShort())
                     .bold()
                 Text(entry.meal)
-                    .font(.system(size: 14))
+                    .font(.system(size: 13))
                 Spacer()
             }
             Spacer()
