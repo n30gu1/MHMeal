@@ -430,7 +430,6 @@
 			mainGroup = B24E5CB023A638380087B2F1;
 			packageReferences = (
 				B29187F123A66F4A0067D259 /* XCRemoteSwiftPackageReference "SwiftSoup" */,
-				B2784FB9240F3DE7005E0E81 /* XCRemoteSwiftPackageReference "JTAppleCalendar" */,
 			);
 			productRefGroup = B24E5CBA23A638380087B2F1 /* Products */;
 			projectDirPath = "";
@@ -946,14 +945,6 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		B2784FB9240F3DE7005E0E81 /* XCRemoteSwiftPackageReference "JTAppleCalendar" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/patchthecode/JTAppleCalendar.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 8.0.3;
-			};
-		};
 		B29187F123A66F4A0067D259 /* XCRemoteSwiftPackageReference "SwiftSoup" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/scinfu/SwiftSoup";

@@ -53,7 +53,8 @@ struct mealWidgetEntryView : View {
             }
             Spacer()
         }
-        .padding([.top, .leading, .trailing], 12)
+        .padding(.horizontal)
+        .padding(.top, 12)
     }
 }
 
