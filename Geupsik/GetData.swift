@@ -11,7 +11,7 @@ import UIKit
 import SwiftSoup
 import Combine
 
-class GetData: ObservableObject {
+class GetData {
     @Published var dataIsLoaded: Bool = false
     @Published var image: UIImage? = nil
     @Published var meal: String? = nil
