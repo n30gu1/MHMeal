@@ -28,6 +28,8 @@
 		B234404A2496574D00F08716 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B23440492496574D00F08716 /* Preview Assets.xcassets */; };
 		B234404F2496574D00F08716 /* watchMeal.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = B234402B2496574900F08716 /* watchMeal.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		B2344062249659A600F08716 /* MealView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2344061249659A600F08716 /* MealView.swift */; };
+		B23FC3E7269AF2D200EDF9DC /* SwiftUIRefresh in Frameworks */ = {isa = PBXBuildFile; productRef = B23FC3E6269AF2D200EDF9DC /* SwiftUIRefresh */; };
+		B23FC3E9269AF9E600EDF9DC /* DateSelBoxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B23FC3E8269AF9E600EDF9DC /* DateSelBoxView.swift */; };
 		B24E5CBD23A638380087B2F1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B24E5CBC23A638380087B2F1 /* AppDelegate.swift */; };
 		B24E5CBF23A638380087B2F1 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B24E5CBE23A638380087B2F1 /* SceneDelegate.swift */; };
 		B24E5CC123A638380087B2F1 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B24E5CC023A638380087B2F1 /* ContentView.swift */; };
@@ -131,6 +133,7 @@
 		B234404B2496574D00F08716 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B234404C2496574D00F08716 /* PushNotificationPayload.apns */ = {isa = PBXFileReference; lastKnownFileType = text; path = PushNotificationPayload.apns; sourceTree = "<group>"; };
 		B2344061249659A600F08716 /* MealView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealView.swift; sourceTree = "<group>"; };
+		B23FC3E8269AF9E600EDF9DC /* DateSelBoxView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateSelBoxView.swift; sourceTree = "<group>"; };
 		B24E5CB923A638380087B2F1 /* MHMeal.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MHMeal.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B24E5CBC23A638380087B2F1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B24E5CBE23A638380087B2F1 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -172,6 +175,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B23FC3E7269AF2D200EDF9DC /* SwiftUIRefresh in Frameworks */,
 				B29187F323A66F4A0067D259 /* SwiftSoup in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -283,6 +287,7 @@
 				B24E5CC723A638380087B2F1 /* LaunchScreen.storyboard */,
 				B24E5CCA23A638380087B2F1 /* Info.plist */,
 				B24E5CC423A638380087B2F1 /* Preview Content */,
+				B23FC3E8269AF9E600EDF9DC /* DateSelBoxView.swift */,
 			);
 			path = Geupsik;
 			sourceTree = "<group>";
@@ -383,6 +388,7 @@
 			name = Geupsik;
 			packageProductDependencies = (
 				B29187F223A66F4A0067D259 /* SwiftSoup */,
+				B23FC3E6269AF2D200EDF9DC /* SwiftUIRefresh */,
 			);
 			productName = Geupsik;
 			productReference = B24E5CB923A638380087B2F1 /* MHMeal.app */;
@@ -424,6 +430,7 @@
 			mainGroup = B24E5CB023A638380087B2F1;
 			packageReferences = (
 				B29187F123A66F4A0067D259 /* XCRemoteSwiftPackageReference "SwiftSoup" */,
+				B23FC3E5269AF2D200EDF9DC /* XCRemoteSwiftPackageReference "SwiftUIRefresh" */,
 			);
 			productRefGroup = B24E5CBA23A638380087B2F1 /* Products */;
 			projectDirPath = "";
@@ -513,6 +520,7 @@
 				B2784FC0240F3E69005E0E81 /* DateExtensions.swift in Sources */,
 				B24E5CBF23A638380087B2F1 /* SceneDelegate.swift in Sources */,
 				B2784FC1240F3E69005E0E81 /* WeekdayControl.swift in Sources */,
+				B23FC3E9269AF9E600EDF9DC /* DateSelBoxView.swift in Sources */,
 				B21B0CFB23E9499200B71444 /* ActivityIndicator.swift in Sources */,
 				B24E5CC123A638380087B2F1 /* ContentView.swift in Sources */,
 			);
@@ -848,7 +856,7 @@
 				DEVELOPMENT_TEAM = 98882K9P37;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = Geupsik/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -873,7 +881,7 @@
 				DEVELOPMENT_TEAM = 98882K9P37;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = Geupsik/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -937,6 +945,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		B23FC3E5269AF2D200EDF9DC /* XCRemoteSwiftPackageReference "SwiftUIRefresh" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/timbersoftware/SwiftUIRefresh.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.0.3;
+			};
+		};
 		B29187F123A66F4A0067D259 /* XCRemoteSwiftPackageReference "SwiftSoup" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/scinfu/SwiftSoup";
@@ -952,6 +968,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = B29187F123A66F4A0067D259 /* XCRemoteSwiftPackageReference "SwiftSoup" */;
 			productName = SwiftSoup;
+		};
+		B23FC3E6269AF2D200EDF9DC /* SwiftUIRefresh */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B23FC3E5269AF2D200EDF9DC /* XCRemoteSwiftPackageReference "SwiftUIRefresh" */;
+			productName = SwiftUIRefresh;
 		};
 		B29187F223A66F4A0067D259 /* SwiftSoup */ = {
 			isa = XCSwiftPackageProductDependency;
