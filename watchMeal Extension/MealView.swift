@@ -9,22 +9,22 @@
 import SwiftUI
 
 struct MealView: View {
-    @ObservedObject var data = GetData()
+//    @ObservedObject var data = GetData()
     let date: Date
-    
+//
     init(date: Date) {
         self.date = date
-        data.getData(date: date, image: false)
+//        data.getData(date: date, image: false)
     }
     
     var body: some View {
         List {
-            if data.mealIsLoaded {
-                Text("\(data.meal!)")
-            }
-            if data.mealIsLoaded {
-                Text("\(data.kcal!)kcal")
-            }
+//            if data.mealIsLoaded {
+//                Text("\(data.meal!)")
+//            }
+//            if data.mealIsLoaded {
+//                Text("\(data.kcal!)kcal")
+//            }
         }
         .listStyle(CarouselListStyle())
         .navigationTitle(date.formatShort())

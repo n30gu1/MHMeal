@@ -7,10 +7,12 @@
 //
 
 import SwiftUI
+import Combine
 
 struct ContentView: View {
     @State var date = Date()
     @State var showCalendar = false
+    @ObservedObject var viewModel = ContentViewModel()
     
     var body: some View {
         NavigationView {
@@ -22,8 +24,11 @@ struct ContentView: View {
                 } else {
                     TopNavigator(date: $date)
                 }
-                ForEach(date.autoWeekday(), id: \.self) { date in
-                    MealCell(date: date, selectedDate: self.date)
+//                ForEach(date.autoWeekday(), id: \.self) { date in
+//                    MealCell(date: date, selectedDate: self.date)
+//                }
+                Button(action: {viewModel.fetch()}) {
+                    Text("Refresh!")
                 }
             }
             .listStyle(InsetListStyle())
@@ -43,9 +48,23 @@ struct ContentView: View {
             })
             
         }
+        .onAppear {
+            viewModel.fetch()
+        }
     }
 }
 
+class ContentViewModel: ObservableObject {
+    private let loader = NetManager()
+    
+    var cancellable: AnyCancellable?
+    
+    func fetch() {
+        cancellable = loader.fetch().sink(receiveCompletion: { _ in }, receiveValue: { data in
+            print(data)
+        })
+    }
+}
 struct TopNavigator: View {
     @Binding var date: Date
     let formatter: DateFormatter = {
