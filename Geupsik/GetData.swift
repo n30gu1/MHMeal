@@ -5,11 +5,46 @@
 //  Created by 박성헌 on 2019/12/22.
 //  Copyright © 2019 n30gu1. All rights reserved.
 //
-
 import Foundation
-import UIKit
-import SwiftSoup
-import Combine
+
+class Meal {
+    let date: Date
+    let imageLink: String?
+    let meal: [String]
+    let kcal: String
+    
+    init(date: Date, imageLink: String?, meal: [String], kcal: String) {
+        self.date = date
+        self.imageLink = imageLink
+        self.meal = meal
+        self.kcal = kcal
+    }
+    
+    init(date: Date, meal: [String], kcal: String) {
+        self.date = date
+        self.imageLink = nil
+        self.meal = meal
+        self.kcal = kcal
+    }
+}
+
+extension Meal: Hashable {
+    static func == (lhs: Meal, rhs: Meal) -> Bool {
+        return lhs.date == rhs.date && lhs.imageLink == rhs.imageLink && lhs.meal == rhs.meal && lhs.kcal == rhs.kcal
+    }
+    
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(date)
+        hasher.combine(imageLink)
+        hasher.combine(meal)
+        hasher.combine(kcal)
+    }
+}
+
+extension Meal: Reorderable {
+    typealias OrderElement = Date
+    var orderElement: OrderElement { date }
+}
 
 //class GetData {
 //    @Published var dataIsLoaded: Bool = false
@@ -158,12 +193,4 @@ import Combine
 //    }
 //}
 
-final class NetManager {
-    func fetch() -> AnyPublisher<String, URLError> {
-        return URLSession.shared.dataTaskPublisher(for: URL(string: "https://school.gyo6.net/mu-hak/food/2019/11/21/lunch")!)
-            .receive(on: DispatchQueue.main)
-            .map { String(data: $0.data, encoding: .utf8) ?? "nil" }
-            .eraseToAnyPublisher()
-            
-    }
-}
+
