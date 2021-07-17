@@ -29,8 +29,8 @@ struct MealListCell: View {
                 RoundedRectangle(cornerRadius: 10)
                     .foregroundColor(.gray)
                 VStack(alignment: .leading) {
-                    ForEach(0...4, id: \.self) {
-                        Text(self.meal.meal[$0])
+                    ForEach(0...4, id: \.self) { index in
+                        Text(self.meal.meal[index])
                     }
                     if meal.meal.count > 5 {
                         Text("...")
