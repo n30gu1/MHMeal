@@ -19,12 +19,14 @@ class ContentViewModel: ObservableObject {
     @Published var mealList: [Meal] = []
     @Published var isNotiPhone = UIDevice.current.model != "iPhone"
     
+    var cancellable = Set<AnyCancellable>()
+    
     func fetch() {
         self.mealList = []
         var tempMealList: [Meal] = []
         
         let loader = NetManager()
-        var cancellable = Set<AnyCancellable>()
+        self.cancellable = Set<AnyCancellable>()
         
         func clean(_ text: String) -> [String] {
             let first = text.replacingOccurrences(of: "\n", with: "")
@@ -61,7 +63,8 @@ class ContentViewModel: ObservableObject {
                     
                     let kcalOptional: Element? = try document.select("tr > td")[1]
                     guard let kcalElement = kcalOptional else { return }
-                    let kcal = try kcalElement.text()
+                    let kcalRawText = try kcalElement.text()
+                    let kcal = cleanKcal(text: kcalRawText)
                     tempMealList.append(Meal(date: date, imageLink: nil, meal: meal, kcal: kcal))
                     print(tempMealList)
                 } catch {

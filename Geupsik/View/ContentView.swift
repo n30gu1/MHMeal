@@ -17,8 +17,17 @@ struct ContentView: View {
         ZStack {
             NavigationView {
                 List {
-                    ForEach(viewModel.mealList, id: \.date) { meal in
-                        Text("\(meal.date)")
+                    if viewModel.mealList.count == 5 {
+                        ForEach(viewModel.mealList, id: \.date) { meal in
+                            MealListCell(meal: meal)
+                        }
+                    } else {
+                        HStack {
+                            Spacer()
+                            ProgressView("Loading")
+                                .progressViewStyle(.circular)
+                            Spacer()
+                        }
                     }
                 }
                 .introspectTableView { tableView in
