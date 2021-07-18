@@ -29,6 +29,12 @@ struct ContentView: View {
                             Spacer()
                         }
                     }
+                    
+                    if !viewModel.isNotiPhone {
+                        Rectangle()
+                            .foregroundColor(.clear)
+                            .frame(height: 60)
+                    }
                 }
                 .introspectTableView { tableView in
                     tableView.separatorStyle = .none

@@ -15,22 +15,24 @@ struct MealListCell: View {
         VStack(spacing: 3) {
             HStack {
                 Text(meal.date.format())
-                    .font(.system(size: 14))
-                    .fontWeight(.light)
+                    .font(.system(size: 12))
+                    .fontWeight(.semibold)
                     .kerning(1.2)
+                    .foregroundColor(.gray)
                 Spacer()
                 Text("View Details ▼")
-                    .font(.system(size: 14))
+                    .font(.system(size: 12))
                     .fontWeight(.light)
                     .kerning(1.2)
+                    .foregroundColor(.gray)
             }
             .padding(.horizontal, 6)
             ZStack {
                 RoundedRectangle(cornerRadius: 10)
                     .foregroundColor(.gray)
                 VStack(alignment: .leading) {
-                    ForEach(0...4, id: \.self) { index in
-                        Text(self.meal.meal[index])
+                    ForEach(meal.meal.prefix(5), id: \.self) { meal in
+                        Text(meal)
                     }
                     if meal.meal.count > 5 {
                         Text("...")
@@ -56,5 +58,6 @@ struct MealListCell: View {
 struct MealListCell_Previews: PreviewProvider {
     static var previews: some View {
         MealListCell(meal: Meal(date: Date(), imageLink: nil, meal: ["1", "2", "3", "4", "5", "6", "7", "8"], kcal: "697.4"))
+            .previewLayout(.fixed(width: 350, height: 220))
     }
 }

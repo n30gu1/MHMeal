@@ -38,7 +38,7 @@ struct DateSelBoxView: View {
     var body: some View {
         GeometryReader { geometry in
             let openedState = CGPoint(x: 0, y: geometry.size.height / 2)
-            let closedState = CGPoint(x: 0, y: geometry.size.height * 1.23)
+            let closedState = CGPoint(x: 0, y: geometry.size.height * 1.22)
             ZStack {
                 RoundedRectangle(cornerRadius: 10)
                     .foregroundColor(.init(white: 0.8))
@@ -58,7 +58,7 @@ struct DateSelBoxView: View {
                     }
                 }
             }
-            .frame(width: isOpened ? geometry.size.width * 0.96 : geometry.size.width * 0.9, height: 400)
+            .frame(width: isOpened ? geometry.size.width * 0.96 : geometry.size.width - 32, height: 400)
             .position(x: geometry.size.width / 2, y: location.y)
             .gesture(
                 simpleDrag.simultaneously(with: fingerDrag)
