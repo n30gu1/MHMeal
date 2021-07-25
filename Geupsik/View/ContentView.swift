@@ -17,6 +17,15 @@ struct ContentView: View {
         ZStack {
             NavigationView {
                 List {
+                    Picker("", selection: $viewModel.mealType) {
+                        Text("Breakfast").tag(MealType.breakfast)
+                        Text("Lunch").tag(MealType.lunch)
+                        Text("Dinner").tag(MealType.dinner)
+                    }
+                    .pickerStyle(SegmentedPickerStyle())
+                    .onChange(of: viewModel.mealType) { _ in
+                        viewModel.fetch()
+                    }
                     if viewModel.mealList.count == 5 {
                         ForEach(viewModel.mealList, id: \.date) { meal in
                             MealListCell(meal: meal)

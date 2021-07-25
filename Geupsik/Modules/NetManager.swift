@@ -10,6 +10,11 @@ import Foundation
 import Combine
 
 final class NetManager {
+    let mealType: MealType
+    
+    init(_ mealType: MealType) {
+        self.mealType = mealType
+    }
     func fetch(date: Date) -> AnyPublisher<String, URLError> {
         let dateFormatter: DateFormatter = {
             let f = DateFormatter()
@@ -17,7 +22,7 @@ final class NetManager {
             return f
         }()
 
-        return URLSession.shared.dataTaskPublisher(for: URL(string: "https://school.gyo6.net/muhakgo/food/\(dateFormatter.string(from: date))/lunch")!)
+        return URLSession.shared.dataTaskPublisher(for: URL(string: "https://school.gyo6.net/muhakgo/food/\(dateFormatter.string(from: date))/\(self.mealType.rawValue)")!)
             .receive(on: DispatchQueue.main)
             .map { String(data: $0.data, encoding: .utf8) ?? "nil" }
             .eraseToAnyPublisher()

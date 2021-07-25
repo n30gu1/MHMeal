@@ -18,6 +18,7 @@ class ContentViewModel: ObservableObject {
     @Published var dateList = Date().autoWeekday()
     @Published var mealList: [Meal] = []
     @Published var isNotiPhone = UIDevice.current.model != "iPhone"
+    @Published var mealType = MealType.lunch
     
     var cancellable = Set<AnyCancellable>()
     
@@ -25,7 +26,7 @@ class ContentViewModel: ObservableObject {
         self.mealList = []
         var tempMealList: [Meal] = []
         
-        let loader = NetManager()
+        let loader = NetManager(self.mealType)
         self.cancellable = Set<AnyCancellable>()
         
         func clean(_ text: String) -> [String] {

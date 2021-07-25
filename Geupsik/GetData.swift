@@ -50,6 +50,14 @@ extension Meal: Reorderable {
     var orderElement: OrderElement { date }
 }
 
+enum MealType: String, Identifiable, CaseIterable {
+    case breakfast = "breakfast"
+    case lunch = "lunch"
+    case dinner = "dinner"
+    
+    var id: String { self.rawValue }
+}
+
 //class GetData {
 //    @Published var dataIsLoaded: Bool = false
 //    @Published var image: UIImage? = nil
