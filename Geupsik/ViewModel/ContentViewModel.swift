@@ -53,19 +53,35 @@ class ContentViewModel: ObservableObject {
                 do {
                     let document: Document = try SwiftSoup.parse(data)
                     
-                    let mealOptional: Element? = try document.select("td > div").first()
-                    guard let mealElement = mealOptional else { return }
-                    let mealRawText = try mealElement.html()
-                    var meal = clean(mealRawText)
-                    if meal.count == 1 && meal[0] == "" {
-                        meal = ["No meal today."]
-                    }
+                    let meal: [String] = try {
+                        let mealOptional: Element? = try document.select("td > div").first()
+                        guard let mealElement = mealOptional else { return ["Error"] }
+                        let mealRawText = try mealElement.html()
+                        var meal = clean(mealRawText)
+                        if meal.count == 1 && meal[0] == "" {
+                            meal = ["No meal today."]
+                        }
+                        return meal
+                    }()
                     
-                    let kcalOptional: Element? = try document.select("tr > td")[1]
-                    guard let kcalElement = kcalOptional else { return }
-                    let kcalRawText = try kcalElement.text()
-                    let kcal = cleanKcal(text: kcalRawText)
-                    tempMealList.append(Meal(date: date, imageLink: nil, meal: meal, kcal: kcal))
+                    let origins: [String] = try {
+                        let originsOptional: Element? = try document.select("td > div")[1]
+                        guard let originsElement = originsOptional else { return ["Error"] }
+                        let originsRawText = try originsElement.html()
+                        let origins = clean(originsRawText)
+                        
+                        return origins
+                    }()
+                    
+                    let kcal: String = try {
+                        let kcalOptional: Element? = try document.select("tr > td")[1]
+                        guard let kcalElement = kcalOptional else { return "Error" }
+                        let kcalRawText = try kcalElement.text()
+                        let kcal = cleanKcal(text: kcalRawText)
+                        return kcal
+                    }()
+                    
+                    tempMealList.append(Meal(date: date, imageLink: nil, meal: meal, origins: origins, kcal: kcal))
                     print(tempMealList)
                 } catch {
                     print(error.localizedDescription)

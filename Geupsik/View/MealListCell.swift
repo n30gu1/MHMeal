@@ -10,6 +10,7 @@ import SwiftUI
 
 struct MealListCell: View {
     let meal: Meal
+    @State var presentSheet = false
     
     var body: some View {
         VStack(spacing: 3) {
@@ -29,7 +30,8 @@ struct MealListCell: View {
             .padding(.horizontal, 6)
             ZStack {
                 RoundedRectangle(cornerRadius: 10)
-                    .foregroundColor(.gray)
+                    .shadow(radius: 1)
+                    .foregroundColor(/*@START_MENU_TOKEN@*/Color("CellColor")/*@END_MENU_TOKEN@*/)
                 VStack(alignment: .leading) {
                     ForEach(meal.meal.prefix(5), id: \.self) { meal in
                         Text(meal)
@@ -51,13 +53,19 @@ struct MealListCell: View {
                 .padding()
             }
             .frame(height: 200)
+            .onTapGesture {
+                presentSheet.toggle()
+            }
+        }
+        .sheet(isPresented: $presentSheet) {
+            MealDetailView(meal: meal)
         }
     }
 }
 
 struct MealListCell_Previews: PreviewProvider {
     static var previews: some View {
-        MealListCell(meal: Meal(date: Date(), imageLink: nil, meal: ["1", "2", "3", "4", "5", "6", "7", "8"], kcal: "697.4"))
+        MealListCell(meal: Meal(date: Date(), imageLink: nil, meal: ["1", "2", "3", "4", "5", "6", "7", "8"], origins: ["1", "2", "3", "4", "5", "6", "7", "8"], kcal: "697.4"))
             .previewLayout(.fixed(width: 350, height: 220))
     }
 }
