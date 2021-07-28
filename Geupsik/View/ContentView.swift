@@ -59,7 +59,9 @@ struct ContentView: View {
                     viewModel.refresh()
                 }
                 .navigationBarTitle("Meals")
-                .navigationBarItems(leading: viewModel.isNotiPhone ? AnyView(calendarButton) : AnyView(EmptyView()))
+                .navigationBarItems(
+                    leading: viewModel.isNotiPhone ? AnyView(calendarButton) : AnyView(EmptyView())
+                )
             }
             if !viewModel.isNotiPhone {
                 DateSelBoxView(date: $viewModel.date)

@@ -29,6 +29,7 @@
 		B234404A2496574D00F08716 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B23440492496574D00F08716 /* Preview Assets.xcassets */; };
 		B234404F2496574D00F08716 /* watchMeal.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = B234402B2496574900F08716 /* watchMeal.app */; platformFilter = ios; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		B2344062249659A600F08716 /* MealView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2344061249659A600F08716 /* MealView.swift */; };
+		B2387A8326B1192300F33CA4 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = B2387A8226B1192300F33CA4 /* Settings.bundle */; };
 		B23FC3E7269AF2D200EDF9DC /* SwiftUIRefresh in Frameworks */ = {isa = PBXBuildFile; productRef = B23FC3E6269AF2D200EDF9DC /* SwiftUIRefresh */; };
 		B23FC3E9269AF9E600EDF9DC /* DateSelBoxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B23FC3E8269AF9E600EDF9DC /* DateSelBoxView.swift */; };
 		B24E5CBD23A638380087B2F1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B24E5CBC23A638380087B2F1 /* AppDelegate.swift */; };
@@ -37,7 +38,6 @@
 		B24E5CC323A638380087B2F1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B24E5CC223A638380087B2F1 /* Assets.xcassets */; };
 		B24E5CC623A638380087B2F1 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B24E5CC523A638380087B2F1 /* Preview Assets.xcassets */; };
 		B24E5CC923A638380087B2F1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B24E5CC723A638380087B2F1 /* LaunchScreen.storyboard */; };
-		B260300F253ADDF6009C8A11 /* GetData.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2603005253ADD98009C8A11 /* GetData.swift */; };
 		B271137526A1932E0095DACE /* Reorderable.swift in Sources */ = {isa = PBXBuildFile; fileRef = B271137426A1932E0095DACE /* Reorderable.swift */; };
 		B271137E26A193DC0095DACE /* TopNavigator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B271137D26A193DC0095DACE /* TopNavigator.swift */; };
 		B271138126A194110095DACE /* NetManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B271138026A194110095DACE /* NetManager.swift */; };
@@ -142,6 +142,7 @@
 		B234404B2496574D00F08716 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B234404C2496574D00F08716 /* PushNotificationPayload.apns */ = {isa = PBXFileReference; lastKnownFileType = text; path = PushNotificationPayload.apns; sourceTree = "<group>"; };
 		B2344061249659A600F08716 /* MealView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealView.swift; sourceTree = "<group>"; };
+		B2387A8226B1192300F33CA4 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		B23FC3E8269AF9E600EDF9DC /* DateSelBoxView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateSelBoxView.swift; sourceTree = "<group>"; };
 		B24E5CB923A638380087B2F1 /* MHMeal.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MHMeal.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B24E5CBC23A638380087B2F1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -151,7 +152,6 @@
 		B24E5CC523A638380087B2F1 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		B24E5CC823A638380087B2F1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B24E5CCA23A638380087B2F1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		B2603005253ADD98009C8A11 /* GetData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetData.swift; sourceTree = "<group>"; };
 		B271137426A1932E0095DACE /* Reorderable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reorderable.swift; sourceTree = "<group>"; };
 		B271137D26A193DC0095DACE /* TopNavigator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopNavigator.swift; sourceTree = "<group>"; };
 		B271138026A194110095DACE /* NetManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetManager.swift; sourceTree = "<group>"; };
@@ -209,7 +209,6 @@
 			isa = PBXGroup;
 			children = (
 				B2187101253A8C51002F8FD2 /* mealWidget.swift */,
-				B2603005253ADD98009C8A11 /* GetData.swift */,
 				B2187103253A8C53002F8FD2 /* Assets.xcassets */,
 				B2187105253A8C53002F8FD2 /* Info.plist */,
 			);
@@ -299,6 +298,7 @@
 				B24E5CC723A638380087B2F1 /* LaunchScreen.storyboard */,
 				B24E5CCA23A638380087B2F1 /* Info.plist */,
 				B24E5CC423A638380087B2F1 /* Preview Content */,
+				B2387A8226B1192300F33CA4 /* Settings.bundle */,
 			);
 			path = Geupsik;
 			sourceTree = "<group>";
@@ -520,6 +520,7 @@
 			files = (
 				B2E65B922414A10A000C2D9A /* Localizable.strings in Resources */,
 				B24E5CC923A638380087B2F1 /* LaunchScreen.storyboard in Resources */,
+				B2387A8326B1192300F33CA4 /* Settings.bundle in Resources */,
 				B24E5CC623A638380087B2F1 /* Preview Assets.xcassets in Resources */,
 				B24E5CC323A638380087B2F1 /* Assets.xcassets in Resources */,
 			);
@@ -532,7 +533,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B260300F253ADDF6009C8A11 /* GetData.swift in Sources */,
 				B2187102253A8C51002F8FD2 /* mealWidget.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -656,7 +656,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.n30gu1.MHMeal.mealWidget;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
-				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MACCATALYST = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -682,7 +682,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.n30gu1.MHMeal.mealWidget;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
-				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MACCATALYST = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -920,7 +920,7 @@
 				MARKETING_VERSION = 1.99;
 				PRODUCT_BUNDLE_IDENTIFIER = com.n30gu1.MHMeal;
 				PRODUCT_NAME = MHMeal;
-				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MACCATALYST = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -946,7 +946,7 @@
 				MARKETING_VERSION = 1.99;
 				PRODUCT_BUNDLE_IDENTIFIER = com.n30gu1.MHMeal;
 				PRODUCT_NAME = MHMeal;
-				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MACCATALYST = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
