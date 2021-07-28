@@ -9,10 +9,13 @@
 import SwiftUI
 
 struct ContentView: View {
+    @ObservedObject var viewModel = ContentViewModel()
     var body: some View {
-        List(Date().autoWeekday(), id: \.self) { date in
-            NavigationLink(destination: MealView(date: date)) {
-                Text(date.formatShort())
+        List(viewModel.mealList, id: \.self) { meal in
+            if viewModel.mealList.count == 5 {
+                NavigationLink(destination: MealView(meal: meal)) {
+                    Text(meal.date.formatShort())
+                }
             }
         }
     .listStyle(CarouselListStyle())
@@ -22,6 +25,6 @@ struct ContentView: View {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
+            ContentView()
     }
 }

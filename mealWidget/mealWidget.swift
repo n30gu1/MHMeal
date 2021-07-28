@@ -10,31 +10,50 @@ import WidgetKit
 import SwiftUI
 
 struct Provider: TimelineProvider {
-    func placeholder(in context: Context) -> SimpleEntry {
-        SimpleEntry(date: Date(), meal: "친환경차수수밥\n순댓국\n돈육고추장불고기\n상추겉절이\n메기순살강정\n배추김치")
+    func placeholder(in context: Context) -> MealEntry {
+        MealEntry(date: Date(), meal: "친환경차수수밥\n순댓국\n돈육고추장불고기\n상추겉절이\n메기순살강정\n배추김치")
     }
 
-    func getSnapshot(in context: Context, completion: @escaping (SimpleEntry) -> ()) {
-        let entry = SimpleEntry(date: Date(), meal: "친환경차수수밥\n순댓국\n돈육고추장불고기\n상추겉절이\n메기순살강정\n배추김치")
+    func getSnapshot(in context: Context, completion: @escaping (MealEntry) -> ()) {
+        let entry = MealEntry(date: Date(), meal: "친환경차수수밥\n순댓국\n돈육고추장불고기\n상추겉절이\n메기순살강정\n배추김치")
         completion(entry)
     }
 
     func getTimeline(in context: Context, completion: @escaping (Timeline<Entry>) -> ()) {
-        var entries: [SimpleEntry] = []
+        // TODO: - Make WidgetKit App
+        var entries: [MealEntry] = []
 
         let currentDate = Date()
         
-        let data = GetData(date: currentDate)
+        let mealType: MealType = {
+            let zero = Calendar.current.date(bySettingHour: 0, minute: 0, second: 0, of: Date())!
+            let breakfast = Calendar.current.date(bySettingHour: 7, minute: 00, second: 00, of: Date())!
+            let lunch = Calendar.current.date(bySettingHour: 13, minute: 00, second: 00, of: Date())!
+            let dinner = Calendar.current.date(bySettingHour: 19, minute: 00, second: 00, of: Date())!
+            
+            switch Date() {
+            case zero...breakfast:
+                return MealType.breakfast
+            case breakfast...lunch:
+                return MealType.lunch
+            case lunch...dinner:
+                return MealType.dinner
+            default:
+                return MealType.breakfast
+            }
+        }()
         
-        let entry = SimpleEntry(date: currentDate, meal: data.meal!)
-        entries.append(entry)
-
-        let timeline = Timeline(entries: entries, policy: .atEnd)
-        completion(timeline)
+        
+//        
+//        let entry = SimpleEntry(date: currentDate, meal: data.meal!)
+//        entries.append(entry)
+//
+//        let timeline = Timeline(entries: entries, policy: .atEnd)
+//        completion(timeline)
     }
 }
 
-struct SimpleEntry: TimelineEntry {
+struct MealEntry: TimelineEntry {
     let date: Date
     let meal: String
 }
@@ -74,7 +93,7 @@ struct mealWidget: Widget {
 
 struct mealWidget_Previews: PreviewProvider {
     static var previews: some View {
-        mealWidgetEntryView(entry: SimpleEntry(date: Date(), meal: "친환경차수수밥\n순댓국\n돈육고추장불고기\n상추겉절이\n메기순살강정\n배추김치"))
+        mealWidgetEntryView(entry: MealEntry(date: Date(), meal: "친환경차수수밥\n순댓국\n돈육고추장불고기\n상추겉절이\n메기순살강정\n배추김치"))
             .previewContext(WidgetPreviewContext(family: .systemSmall))
     }
 }

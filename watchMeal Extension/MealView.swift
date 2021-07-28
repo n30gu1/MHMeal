@@ -9,30 +9,30 @@
 import SwiftUI
 
 struct MealView: View {
-//    @ObservedObject var data = GetData()
-    let date: Date
-//
-    init(date: Date) {
-        self.date = date
-//        data.getData(date: date, image: false)
-    }
+    let meal: Meal
     
     var body: some View {
         List {
-//            if data.mealIsLoaded {
-//                Text("\(data.meal!)")
-//            }
-//            if data.mealIsLoaded {
-//                Text("\(data.kcal!)kcal")
-//            }
+            VStack(spacing: 0) {
+                ForEach(meal.meal, id: \.self) {
+                    Text($0)
+                }
+            }
+            HStack(alignment: .bottom, spacing: 0) {
+                Text(meal.kcal)
+                    .font(.system(size: 24))
+                    .bold()
+                Text("kcal")
+                    .padding(.bottom, 1)
+            }
         }
         .listStyle(CarouselListStyle())
-        .navigationTitle(date.formatShort())
+        .navigationTitle(meal.date.formatShort())
     }
 }
 
-struct MealView_Previews: PreviewProvider {
-    static var previews: some View {
-        MealView(date: Date())
-    }
-}
+//struct MealView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        MealView(date: Date())
+//    }
+//}
