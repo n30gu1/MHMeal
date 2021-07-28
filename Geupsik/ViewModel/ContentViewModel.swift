@@ -78,12 +78,22 @@ class ContentViewModel: ObservableObject {
                         let kcalOptional: Element? = try document.select("tr > td")[1]
                         guard let kcalElement = kcalOptional else { return "Error" }
                         let kcalRawText = try kcalElement.text()
-                        let kcal = cleanKcal(text: kcalRawText)
+                        var kcal = cleanKcal(text: kcalRawText)
+                        if kcal == "" {
+                            kcal = "???"
+                        }
                         return kcal
                     }()
                     
-                    tempMealList.append(Meal(date: date, imageLink: nil, meal: meal, origins: origins, kcal: kcal))
-                    print(tempMealList)
+                    let imageLink: String? = try {
+                        let imageOptional: Element? = try document.select("img[src]").first()
+                        if let imageElement = imageOptional {
+                            let imageLink = "\(imageElement)"
+                            return cleanImgLink(text: imageLink)
+                        } else { return nil }
+                    }()
+                    print(imageLink ?? "nil")
+                    tempMealList.append(Meal(date: date, imageLink: imageLink, meal: meal, origins: origins, kcal: kcal))
                 } catch {
                     print(error.localizedDescription)
                 }

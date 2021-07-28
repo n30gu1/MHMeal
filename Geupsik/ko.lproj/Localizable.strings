@@ -8,6 +8,10 @@
 
 "Meals" = "급식";
 
+"Meal" = "급식";
+
+"Origins" = "원산지";
+
 "Today" = "오늘";
 
 "View Details ▼" = "자세히 보기 ▼";
@@ -15,3 +19,11 @@
 "Calories" = "열량";
 
 "Loading" = "로드 중";
+
+"Breakfast" = "조식";
+
+"Lunch" = "중식";
+
+"Dinner" = "석식";
+
+"Image" = "사진";

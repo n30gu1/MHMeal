@@ -48,6 +48,7 @@
 		B29187F323A66F4A0067D259 /* SwiftSoup in Frameworks */ = {isa = PBXBuildFile; productRef = B29187F223A66F4A0067D259 /* SwiftSoup */; };
 		B2946CAD253AA8E8002FBBC5 /* SwiftSoup in Frameworks */ = {isa = PBXBuildFile; productRef = B2946CAC253AA8E8002FBBC5 /* SwiftSoup */; };
 		B2B8EF5426A2804500F1179D /* MealListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2B8EF5326A2804500F1179D /* MealListCell.swift */; };
+		B2BBCA4F26AFAB1F007E687F /* AsyncImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2BBCA4E26AFAB1F007E687F /* AsyncImage.swift */; };
 		B2C123B726A1A12100F4D1E8 /* Reorderable.swift in Sources */ = {isa = PBXBuildFile; fileRef = B271137426A1932E0095DACE /* Reorderable.swift */; };
 		B2DB0D4626A798820056CC08 /* MealDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2DB0D4526A798820056CC08 /* MealDetailView.swift */; };
 		B2E65B922414A10A000C2D9A /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = B2E65B942414A10A000C2D9A /* Localizable.strings */; };
@@ -157,6 +158,7 @@
 		B2784FBD240F3E69005E0E81 /* DateExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateExtensions.swift; sourceTree = "<group>"; };
 		B2784FBE240F3E69005E0E81 /* WeekdayControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeekdayControl.swift; sourceTree = "<group>"; };
 		B2B8EF5326A2804500F1179D /* MealListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealListCell.swift; sourceTree = "<group>"; };
+		B2BBCA4E26AFAB1F007E687F /* AsyncImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsyncImage.swift; sourceTree = "<group>"; };
 		B2DB0D4526A798820056CC08 /* MealDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealDetailView.swift; sourceTree = "<group>"; };
 		B2E65B932414A10A000C2D9A /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/Localizable.strings; sourceTree = "<group>"; };
 		B2E65B952414A10D000C2D9A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -344,6 +346,7 @@
 				B271138026A194110095DACE /* NetManager.swift */,
 				B21B0CFA23E9499200B71444 /* ActivityIndicator.swift */,
 				B271137426A1932E0095DACE /* Reorderable.swift */,
+				B2BBCA4E26AFAB1F007E687F /* AsyncImage.swift */,
 			);
 			path = Modules;
 			sourceTree = "<group>";
@@ -565,6 +568,7 @@
 				B2784FC1240F3E69005E0E81 /* WeekdayControl.swift in Sources */,
 				B271137526A1932E0095DACE /* Reorderable.swift in Sources */,
 				B2305367269E9A7E0095F0CA /* ContentViewModel.swift in Sources */,
+				B2BBCA4F26AFAB1F007E687F /* AsyncImage.swift in Sources */,
 				B23FC3E9269AF9E600EDF9DC /* DateSelBoxView.swift in Sources */,
 				B271137E26A193DC0095DACE /* TopNavigator.swift in Sources */,
 				B21B0CFB23E9499200B71444 /* ActivityIndicator.swift in Sources */,
@@ -639,7 +643,7 @@
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
 				CODE_SIGN_ENTITLEMENTS = mealWidgetExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 6;
+				CURRENT_PROJECT_VERSION = 7;
 				DEVELOPMENT_TEAM = 98882K9P37;
 				INFOPLIST_FILE = mealWidget/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
@@ -665,7 +669,7 @@
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
 				CODE_SIGN_ENTITLEMENTS = mealWidgetExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 6;
+				CURRENT_PROJECT_VERSION = 7;
 				DEVELOPMENT_TEAM = 98882K9P37;
 				INFOPLIST_FILE = mealWidget/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
@@ -690,7 +694,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 6;
+				CURRENT_PROJECT_VERSION = 7;
 				DEVELOPMENT_TEAM = 98882K9P37;
 				IBSC_MODULE = watchMeal_Extension;
 				INFOPLIST_FILE = watchMeal/Info.plist;
@@ -711,7 +715,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 6;
+				CURRENT_PROJECT_VERSION = 7;
 				DEVELOPMENT_TEAM = 98882K9P37;
 				IBSC_MODULE = watchMeal_Extension;
 				INFOPLIST_FILE = watchMeal/Info.plist;
@@ -731,7 +735,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 6;
+				CURRENT_PROJECT_VERSION = 7;
 				DEVELOPMENT_ASSET_PATHS = "\"watchMeal Extension/Preview Content\"";
 				DEVELOPMENT_TEAM = 98882K9P37;
 				ENABLE_PREVIEWS = YES;
@@ -757,7 +761,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 6;
+				CURRENT_PROJECT_VERSION = 7;
 				DEVELOPMENT_ASSET_PATHS = "\"watchMeal Extension/Preview Content\"";
 				DEVELOPMENT_TEAM = 98882K9P37;
 				ENABLE_PREVIEWS = YES;
@@ -903,7 +907,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Geupsik/Geupsik.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 6;
+				CURRENT_PROJECT_VERSION = 7;
 				DEVELOPMENT_ASSET_PATHS = "\"Geupsik/Preview Content\"";
 				DEVELOPMENT_TEAM = 98882K9P37;
 				ENABLE_PREVIEWS = YES;
@@ -929,7 +933,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Geupsik/Geupsik.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 6;
+				CURRENT_PROJECT_VERSION = 7;
 				DEVELOPMENT_ASSET_PATHS = "\"Geupsik/Preview Content\"";
 				DEVELOPMENT_TEAM = 98882K9P37;
 				ENABLE_PREVIEWS = YES;

@@ -28,7 +28,13 @@ struct ContentView: View {
                     }
                     if viewModel.mealList.count == 5 {
                         ForEach(viewModel.mealList, id: \.date) { meal in
-                            MealListCell(meal: meal)
+                            if viewModel.isNotiPhone {
+                                NavigationLink(destination: MealDetailViewiPad(meal: meal)) {
+                                    MealListCelliPad(meal: meal)
+                                }
+                            } else {
+                                MealListCell(meal: meal)
+                            }
                         }
                     } else {
                         HStack {
