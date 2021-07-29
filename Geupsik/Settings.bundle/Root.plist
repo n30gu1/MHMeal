@@ -18,7 +18,7 @@
 			<key>Title</key>
 			<string>Version</string>
 			<key>DefaultValue</key>
-			<string>2.0 Pre-release 1 (build 8)</string>
+			<string>2.0 Pre-release 2 (build 10)</string>
 			<key>Key</key>
 			<string>version</string>
 		</dict>

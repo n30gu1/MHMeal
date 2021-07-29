@@ -8,72 +8,144 @@
 
 import WidgetKit
 import SwiftUI
+import Combine
+import SwiftSoup
+
+class MealGetter: ObservableObject {
+    var meal: [String]? = nil
+    
+    let mealType: MealType = {
+        let zero = Calendar.current.date(bySettingHour: 0, minute: 0, second: 0, of: Date())!
+        let breakfast = Calendar.current.date(bySettingHour: 7, minute: 00, second: 00, of: Date())!
+        let lunch = Calendar.current.date(bySettingHour: 13, minute: 00, second: 00, of: Date())!
+        let dinner = Calendar.current.date(bySettingHour: 19, minute: 00, second: 00, of: Date())!
+        
+        switch Date() {
+        case zero...breakfast:
+            return MealType.breakfast
+        case breakfast...lunch:
+            return MealType.lunch
+        case lunch...dinner:
+            return MealType.dinner
+        default:
+            return MealType.breakfast
+        }
+    }()
+    
+    var cancellable: AnyCancellable? = nil
+    
+    private func fetch() {
+        func clean(_ text: String) -> [String] {
+            let first = text.replacingOccurrences(of: "\n", with: "")
+            return first.components(separatedBy: "<br>")
+        }
+        var contents: String = ""
+        let dFormatter: DateFormatter = {
+            let f = DateFormatter()
+            f.dateFormat = "yyyy/MM/dd"
+            return f
+        }()
+        if let url = URL(string: "https://school.gyo6.net/mu-hak/food/\(dFormatter.string(from: Date()))/\(self.mealType.rawValue)") {
+            do {
+                let getContents = try String(contentsOf: url)
+                contents = getContents
+            } catch {
+                // contents could not be loaded
+                self.meal = ["No internet connection."]
+            }
+        } else {
+            // Bad URL
+            self.meal = ["Error"]
+        }
+        
+        do {
+            let doc: Document = try SwiftSoup.parse(contents)
+            
+            guard let meal: Element = try doc.select("td > div").first() else {
+                self.meal = ["Error"]
+                return
+            }
+            let mealText = try meal.text()
+            let mealResult = clean(mealText)
+            
+            if mealResult.count == 1 && mealResult[0] == "" {
+                self.meal = ["No meal today."]
+            } else {
+                self.meal = mealResult
+            }
+        } catch Exception.Error(_, _) {
+            return
+        } catch {
+            return
+        }
+    }
+
+    init() {
+        fetch()
+    }
+}
 
 struct Provider: TimelineProvider {
     func placeholder(in context: Context) -> MealEntry {
-        MealEntry(date: Date(), meal: "친환경차수수밥\n순댓국\n돈육고추장불고기\n상추겉절이\n메기순살강정\n배추김치")
+        MealEntry(date: Date(), meal: ["친환경차수수밥", "순댓국", "돈육고추장불고기", "상추겉절이", "메기순살강정", "배추김치"], mealType: MealType.lunch)
     }
 
     func getSnapshot(in context: Context, completion: @escaping (MealEntry) -> ()) {
-        let entry = MealEntry(date: Date(), meal: "친환경차수수밥\n순댓국\n돈육고추장불고기\n상추겉절이\n메기순살강정\n배추김치")
+        let entry = MealEntry(date: Date(), meal: ["친환경차수수밥", "순댓국", "돈육고추장불고기", "상추겉절이", "메기순살강정", "배추김치"], mealType: MealType.lunch)
         completion(entry)
     }
 
     func getTimeline(in context: Context, completion: @escaping (Timeline<Entry>) -> ()) {
-        // TODO: - Make WidgetKit App
         var entries: [MealEntry] = []
+        
+        let getter = MealGetter()
+        
+        let entry = MealEntry(date: Date(), meal: getter.meal ?? ["Failed"], mealType: getter.mealType)
+        entries.append(entry)
 
-        let currentDate = Date()
-        
-        let mealType: MealType = {
-            let zero = Calendar.current.date(bySettingHour: 0, minute: 0, second: 0, of: Date())!
-            let breakfast = Calendar.current.date(bySettingHour: 7, minute: 00, second: 00, of: Date())!
-            let lunch = Calendar.current.date(bySettingHour: 13, minute: 00, second: 00, of: Date())!
-            let dinner = Calendar.current.date(bySettingHour: 19, minute: 00, second: 00, of: Date())!
-            
-            switch Date() {
-            case zero...breakfast:
-                return MealType.breakfast
-            case breakfast...lunch:
-                return MealType.lunch
-            case lunch...dinner:
-                return MealType.dinner
-            default:
-                return MealType.breakfast
-            }
-        }()
-        
-        
-//        
-//        let entry = SimpleEntry(date: currentDate, meal: data.meal!)
-//        entries.append(entry)
-//
-//        let timeline = Timeline(entries: entries, policy: .atEnd)
-//        completion(timeline)
+        let timeline = Timeline(entries: entries, policy: .atEnd)
+        completion(timeline)
     }
 }
 
 struct MealEntry: TimelineEntry {
-    let date: Date
-    let meal: String
+    var date: Date
+    let meal: [String]
+    let mealType: MealType
 }
 
 struct mealWidgetEntryView : View {
     var entry: Provider.Entry
 
     var body: some View {
-        HStack {
-            VStack(alignment: .leading) {
-                Text(entry.date.formatShort())
-                    .bold()
-                Text(entry.meal)
-                    .font(.system(size: 13))
+        ZStack {
+            VStack {
+                Rectangle()
+                    .frame(height: 74)
+                    .foregroundColor(Color("BoxColor"))
+                    .shadow(radius: 2)
                 Spacer()
             }
-            Spacer()
+            VStack(alignment: .leading, spacing: 0) {
+                HStack(spacing: 4) {
+                    Text(entry.date.formatShort())
+                        .fontWeight(.light)
+                    Spacer()
+                }
+                Text(entry.mealType.rawValue)
+                    .font(.title)
+                    .fontWeight(.regular)
+                Spacer()
+                VStack(alignment: .leading, spacing: 0) {
+                    ForEach(entry.meal.prefix(3), id: \.self) {
+                        Text($0)
+                            .font(.system(size: 16))
+                    }
+                }
+            }
+            .padding(13)
         }
-        .padding(.horizontal)
-        .padding(.top, 12)
+            .background(Color("WidgetBackground"))
     }
 }
 
@@ -85,24 +157,19 @@ struct mealWidget: Widget {
         StaticConfiguration(kind: kind, provider: Provider()) { entry in
             mealWidgetEntryView(entry: entry)
         }
-        .configurationDisplayName("오늘 급식")
-        .description("오늘의 급식을 알려줍니다.")
+        .configurationDisplayName("Today's meal")
+        .description("Informs today's meal.")
         .supportedFamilies([.systemSmall])
     }
 }
 
 struct mealWidget_Previews: PreviewProvider {
     static var previews: some View {
-        mealWidgetEntryView(entry: MealEntry(date: Date(), meal: "친환경차수수밥\n순댓국\n돈육고추장불고기\n상추겉절이\n메기순살강정\n배추김치"))
+        mealWidgetEntryView(entry: MealEntry(date: Date(), meal: ["친환경차수수밥\n순댓국\n돈육고추장불고기\n상추겉절이\n메기순살강정\n배추김치"], mealType: MealType.lunch))
+            .preferredColorScheme(.light)
             .previewContext(WidgetPreviewContext(family: .systemSmall))
-    }
-}
-
-extension Date {
-    func formatShort() -> String {
-        let f: DateFormatter = DateFormatter()
-        f.dateFormat = "M월 d일"
-        
-        return f.string(from: self)
+        mealWidgetEntryView(entry: MealEntry(date: Date(), meal: ["친환경차수수밥\n순댓국\n돈육고추장불고기\n상추겉절이\n메기순살강정\n배추김치"], mealType: MealType.dinner))
+            .preferredColorScheme(.dark)
+            .previewContext(WidgetPreviewContext(family: .systemSmall))
     }
 }

@@ -33,7 +33,7 @@ class ContentViewModel: ObservableObject {
         }
     }()
     
-    var cancellable = Set<AnyCancellable>()
+    private var cancellable = Set<AnyCancellable>()
     
     init() {
         fetch()
