@@ -11,6 +11,8 @@ import SwiftUI
 import Combine
 import SwiftSoup
 
+// Getter
+
 class MealGetter: ObservableObject {
     var meal: [String]? = nil
     
@@ -35,6 +37,18 @@ class MealGetter: ObservableObject {
     var cancellable: AnyCancellable? = nil
     
     private func fetch() {
+        var noMealString: String?
+        var errorString: String?
+        
+        switch Locale.current.languageCode {
+        case "ko":
+            noMealString = "급식이 없습니다."
+            errorString = "오류"
+        default:
+            noMealString = "No meal today."
+            errorString = "Error"
+        }
+        
         func clean(_ text: String) -> [String] {
             let first = text.replacingOccurrences(of: "\n", with: "")
             return first.components(separatedBy: "<br>")
@@ -51,25 +65,25 @@ class MealGetter: ObservableObject {
                 contents = getContents
             } catch {
                 // contents could not be loaded
-                self.meal = ["No internet connection."]
+                self.meal = [errorString!]
             }
         } else {
             // Bad URL
-            self.meal = ["Error"]
+            self.meal = [errorString!]
         }
         
         do {
             let doc: Document = try SwiftSoup.parse(contents)
             
             guard let meal: Element = try doc.select("td > div").first() else {
-                self.meal = ["Error"]
+                self.meal = [errorString!]
                 return
             }
             let mealText = try meal.text()
             let mealResult = clean(mealText)
             
             if mealResult.count == 1 && mealResult[0] == "" {
-                self.meal = ["No meal today."]
+                self.meal = [noMealString!]
             } else {
                 self.meal = mealResult
             }
@@ -84,6 +98,8 @@ class MealGetter: ObservableObject {
         fetch()
     }
 }
+
+// Timeline Provider
 
 struct Provider: TimelineProvider {
     func placeholder(in context: Context) -> MealEntry {
@@ -103,16 +119,20 @@ struct Provider: TimelineProvider {
         let entry = MealEntry(date: Date(), meal: getter.meal ?? ["Failed"], mealType: getter.mealType)
         entries.append(entry)
 
-        let timeline = Timeline(entries: entries, policy: .atEnd)
+        let timeline = Timeline(entries: entries, policy: .after(Date().addingTimeInterval(3600)))
         completion(timeline)
     }
 }
+
+// Entry
 
 struct MealEntry: TimelineEntry {
     var date: Date
     let meal: [String]
     let mealType: MealType
 }
+
+// Entry View
 
 struct mealWidgetEntryView : View {
     var entry: Provider.Entry
@@ -149,6 +169,8 @@ struct mealWidgetEntryView : View {
     }
 }
 
+// Widget
+
 @main
 struct mealWidget: Widget {
     let kind: String = "mealWidget"
@@ -162,6 +184,8 @@ struct mealWidget: Widget {
         .supportedFamilies([.systemSmall])
     }
 }
+
+// Entry View Preview
 
 struct mealWidget_Previews: PreviewProvider {
     static var previews: some View {

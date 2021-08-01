@@ -53,6 +53,18 @@ class ContentViewModel: ObservableObject {
         
         func cleanKcal(text: String) -> String { return text.replacingOccurrences(of: "Kcal", with: "") }
         
+        var noMealString: String?
+        var errorString: String?
+        
+        switch Locale.current.languageCode {
+        case "ko":
+            noMealString = "급식이 없습니다."
+            errorString = "오류"
+        default:
+            noMealString = "No meal today."
+            errorString = "Error"
+        }
+        
         for date in self.dateList {
             loader.fetch(date: date).sink(receiveCompletion: { _ in
                 if tempMealList.count == 5 {
@@ -65,18 +77,18 @@ class ContentViewModel: ObservableObject {
                     
                     let meal: [String] = try {
                         let mealOptional: Element? = try document.select("td > div").first()
-                        guard let mealElement = mealOptional else { return ["Error"] }
+                        guard let mealElement = mealOptional else { return [errorString!] }
                         let mealRawText = try mealElement.html()
                         var meal = clean(mealRawText)
                         if meal.count == 1 && meal[0] == "" {
-                            meal = ["No meal today."]
+                            meal = [noMealString!]
                         }
                         return meal
                     }()
                     
                     let kcal: String = try {
                         let kcalOptional: Element? = try document.select("tr > td")[1]
-                        guard let kcalElement = kcalOptional else { return "Error" }
+                        guard let kcalElement = kcalOptional else { return errorString! }
                         let kcalRawText = try kcalElement.text()
                         var kcal = cleanKcal(text: kcalRawText)
                         if kcal == "" {
