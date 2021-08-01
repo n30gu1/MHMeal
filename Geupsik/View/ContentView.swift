@@ -60,7 +60,12 @@ struct ContentView: View {
                 }
                 .navigationBarTitle("Meals")
                 .navigationBarItems(
-                    leading: viewModel.isNotiPhone ? AnyView(calendarButton) : AnyView(EmptyView())
+                    leading: viewModel.isNotiPhone ? AnyView(calendarButton) : AnyView(EmptyView()),
+                    trailing: Button(action: {
+                        self.viewModel.showAllergyInfo.toggle()
+                    }) {
+                        Image(systemName: "info.circle")
+                    }
                 )
             }
             if !viewModel.isNotiPhone {
@@ -72,6 +77,9 @@ struct ContentView: View {
         }
         .onAppear {
             viewModel.fetch()
+        }
+        .sheet(isPresented: $viewModel.showAllergyInfo) {
+            AllergyInfoView()
         }
     }
     

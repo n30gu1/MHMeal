@@ -29,3 +29,32 @@
 "Image" = "사진";
 
 "No meal today." = "오늘 급식이 없습니다.";
+
+"Close" = "닫기";
+
+
+"About Allergy Info" = "알레르기 정보";
+
+"According to 'Act of Showing Allergic Food of School Meal', every food that has an allergy info will show numbers after the food name that correspond with the Allergic Ingredient Number." = "'학교급식 알레르기 유발식품 표시제'에 따라 알레르기 정보가 있는 요리는 요리명 우측에 알레르기 정보에 따른 번호가 표기됩니다.";
+
+"Allergic Ingredient Numbers" = "알레르기 유발식품 번호";
+
+"Eggs" = "난류";
+"Milk" = "우유";
+"Buckwheat" = "메밀";
+"Peanut" = "땅콩";
+"Soy Food" = "대두";
+"Wheat" = "밀";
+"Mackerel" = "고등어";
+"Crab" = "게";
+"Shrimp" = "새우";
+"Pork" = "돼지고기";
+"Peach" = "복숭아";
+"Tomato" = "토마토";
+"Sulfurous Acid (H₂SO₃)" = "아황산류";
+"Walnut" = "호두";
+"Chicken" = "닭고기";
+"Meat" = "소고기";
+"Squid" = "오징어";
+"Shells (incl. Oyster, Abalone, Mussel)" = "조개류 (굴, 전복, 홍합 포함)";
+"Pine Nut" = "잣";

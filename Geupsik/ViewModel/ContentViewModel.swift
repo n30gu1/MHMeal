@@ -19,6 +19,7 @@ class ContentViewModel: ObservableObject {
     @Published var mealList: [Meal] = []
     @Published var isNotiPhone = UIDevice.current.model != "iPhone"
     @Published var mealType = MealType.lunch
+    @Published var showAllergyInfo = false
     
     private var cancellable = Set<AnyCancellable>()
     
