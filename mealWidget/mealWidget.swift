@@ -59,7 +59,7 @@ class MealGetter: ObservableObject {
             f.dateFormat = "yyyy/MM/dd"
             return f
         }()
-        if let url = URL(string: "https://school.gyo6.net/mu-hak/food/\(dFormatter.string(from: Date()))/\(self.mealType.rawValue)") {
+        if let url = URL(string: "https://school.gyo6.net/muhakgo/food/\(dFormatter.string(from: Date()))/\(self.mealType.rawValue)") {
             do {
                 let getContents = try String(contentsOf: url)
                 contents = getContents
@@ -79,7 +79,7 @@ class MealGetter: ObservableObject {
                 self.meal = [errorString!]
                 return
             }
-            let mealText = try meal.text()
+            let mealText = try meal.html()
             let mealResult = clean(mealText)
             
             if mealResult.count == 1 && mealResult[0] == "" {
@@ -152,9 +152,20 @@ struct mealWidgetEntryView : View {
                         .fontWeight(.light)
                     Spacer()
                 }
-                Text(entry.mealType.rawValue)
+                switch entry.mealType {
+                case .breakfast:
+                    Text("breakfast")
                     .font(.title)
                     .fontWeight(.regular)
+                case .lunch:
+                    Text("lunch")
+                    .font(.title)
+                    .fontWeight(.regular)
+                case .dinner:
+                    Text("dinner")
+                    .font(.title)
+                    .fontWeight(.regular)
+                }
                 Spacer()
                 VStack(alignment: .leading, spacing: 0) {
                     ForEach(entry.meal.prefix(3), id: \.self) {

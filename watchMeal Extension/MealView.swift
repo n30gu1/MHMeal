@@ -13,7 +13,7 @@ struct MealView: View {
     
     var body: some View {
         List {
-            VStack(spacing: 0) {
+            VStack(alignment: .leading, spacing: 0) {
                 ForEach(meal.meal, id: \.self) {
                     Text($0)
                 }

@@ -15,6 +15,8 @@
 		B2187104253A8C53002F8FD2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B2187103253A8C53002F8FD2 /* Assets.xcassets */; };
 		B2187108253A8C53002F8FD2 /* mealWidgetExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = B21870FD253A8C51002F8FD2 /* mealWidgetExtension.appex */; platformFilter = ios; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		B21B0CFB23E9499200B71444 /* ActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B21B0CFA23E9499200B71444 /* ActivityIndicator.swift */; };
+		B22B21DA26B90C1500607BD8 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = B22B21DC26B90C1500607BD8 /* InfoPlist.strings */; };
+		B22B21E026B90C4B00607BD8 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = B22B21E226B90C4B00607BD8 /* InfoPlist.strings */; };
 		B2305367269E9A7E0095F0CA /* ContentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2305366269E9A7E0095F0CA /* ContentViewModel.swift */; };
 		B234402F2496574900F08716 /* Interface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B234402D2496574900F08716 /* Interface.storyboard */; };
 		B23440312496574B00F08716 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B23440302496574B00F08716 /* Assets.xcassets */; };
@@ -134,11 +136,13 @@
 		B2187103253A8C53002F8FD2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B2187105253A8C53002F8FD2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B21B0CFA23E9499200B71444 /* ActivityIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityIndicator.swift; sourceTree = "<group>"; };
+		B22B21DB26B90C1500607BD8 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		B22B21DD26B90C1800607BD8 /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		B22B21E126B90C4B00607BD8 /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		B2305366269E9A7E0095F0CA /* ContentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentViewModel.swift; sourceTree = "<group>"; };
 		B234402B2496574900F08716 /* watchMeal.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = watchMeal.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B234402E2496574900F08716 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Interface.storyboard; sourceTree = "<group>"; };
 		B23440302496574B00F08716 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		B23440322496574B00F08716 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B23440372496574C00F08716 /* watchMeal Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "watchMeal Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B234403C2496574C00F08716 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		B234403E2496574C00F08716 /* HostingController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HostingController.swift; sourceTree = "<group>"; };
@@ -159,7 +163,8 @@
 		B24E5CC223A638380087B2F1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B24E5CC523A638380087B2F1 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		B24E5CC823A638380087B2F1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		B24E5CCA23A638380087B2F1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B269656526B90B6C00F64A87 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B269656726B90B8B00F64A87 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B270F32426B2B30D00BD7171 /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/Localization.strings; sourceTree = "<group>"; };
 		B271137426A1932E0095DACE /* Reorderable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reorderable.swift; sourceTree = "<group>"; };
 		B271137D26A193DC0095DACE /* TopNavigator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopNavigator.swift; sourceTree = "<group>"; };
@@ -233,7 +238,8 @@
 			children = (
 				B234402D2496574900F08716 /* Interface.storyboard */,
 				B23440302496574B00F08716 /* Assets.xcassets */,
-				B23440322496574B00F08716 /* Info.plist */,
+				B269656726B90B8B00F64A87 /* Info.plist */,
+				B22B21E226B90C4B00607BD8 /* InfoPlist.strings */,
 			);
 			path = watchMeal;
 			sourceTree = "<group>";
@@ -300,9 +306,10 @@
 				B2E65B942414A10A000C2D9A /* Localizable.strings */,
 				B24E5CC223A638380087B2F1 /* Assets.xcassets */,
 				B24E5CC723A638380087B2F1 /* LaunchScreen.storyboard */,
-				B24E5CCA23A638380087B2F1 /* Info.plist */,
+				B269656526B90B6C00F64A87 /* Info.plist */,
 				B24E5CC423A638380087B2F1 /* Preview Content */,
 				B2387A8226B1192300F33CA4 /* Settings.bundle */,
+				B22B21DC26B90C1500607BD8 /* InfoPlist.strings */,
 			);
 			path = Geupsik;
 			sourceTree = "<group>";
@@ -450,7 +457,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 1220;
-				LastUpgradeCheck = 1200;
+				LastUpgradeCheck = 1300;
 				ORGANIZATIONNAME = n30gu1;
 				TargetAttributes = {
 					B21870FC253A8C51002F8FD2 = {
@@ -507,6 +514,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B23440312496574B00F08716 /* Assets.xcassets in Resources */,
+				B22B21E026B90C4B00607BD8 /* InfoPlist.strings in Resources */,
 				B234402F2496574900F08716 /* Interface.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -526,6 +534,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B2E65B922414A10A000C2D9A /* Localizable.strings in Resources */,
+				B22B21DA26B90C1500607BD8 /* InfoPlist.strings in Resources */,
 				B270F32326B2B30D00BD7171 /* Localization.strings in Resources */,
 				B24E5CC923A638380087B2F1 /* LaunchScreen.storyboard in Resources */,
 				B2387A8326B1192300F33CA4 /* Settings.bundle in Resources */,
@@ -624,6 +633,23 @@
 			name = Localizable.strings;
 			sourceTree = "<group>";
 		};
+		B22B21DC26B90C1500607BD8 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				B22B21DB26B90C1500607BD8 /* en */,
+				B22B21DD26B90C1800607BD8 /* ko */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		B22B21E226B90C4B00607BD8 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				B22B21E126B90C4B00607BD8 /* ko */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
 		B234402D2496574900F08716 /* Interface.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -667,7 +693,7 @@
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
 				CODE_SIGN_ENTITLEMENTS = mealWidgetExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = 98882K9P37;
 				INFOPLIST_FILE = mealWidget/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
@@ -693,7 +719,7 @@
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
 				CODE_SIGN_ENTITLEMENTS = mealWidgetExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = 98882K9P37;
 				INFOPLIST_FILE = mealWidget/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
@@ -718,7 +744,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = 98882K9P37;
 				IBSC_MODULE = watchMeal_Extension;
 				INFOPLIST_FILE = watchMeal/Info.plist;
@@ -739,7 +765,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = 98882K9P37;
 				IBSC_MODULE = watchMeal_Extension;
 				INFOPLIST_FILE = watchMeal/Info.plist;
@@ -759,7 +785,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_ASSET_PATHS = "\"watchMeal Extension/Preview Content\"";
 				DEVELOPMENT_TEAM = 98882K9P37;
 				ENABLE_PREVIEWS = YES;
@@ -785,7 +811,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_ASSET_PATHS = "\"watchMeal Extension/Preview Content\"";
 				DEVELOPMENT_TEAM = 98882K9P37;
 				ENABLE_PREVIEWS = YES;
@@ -931,7 +957,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Geupsik/Geupsik.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_ASSET_PATHS = "\"Geupsik/Preview Content\"";
 				DEVELOPMENT_TEAM = 98882K9P37;
 				ENABLE_PREVIEWS = YES;
@@ -957,7 +983,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Geupsik/Geupsik.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_ASSET_PATHS = "\"Geupsik/Preview Content\"";
 				DEVELOPMENT_TEAM = 98882K9P37;
 				ENABLE_PREVIEWS = YES;
