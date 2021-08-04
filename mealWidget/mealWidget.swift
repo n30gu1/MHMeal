@@ -34,6 +34,18 @@ class MealGetter: ObservableObject {
         }
     }()
     
+    let isNextDay: Bool = {
+        let zero = Calendar.current.date(bySettingHour: 0, minute: 0, second: 0, of: Date())!
+        let breakfast = Calendar.current.date(bySettingHour: 7, minute: 00, second: 00, of: Date())!
+        
+        switch Date() {
+        case zero...breakfast:
+            return false
+        default:
+            return true
+        }
+    }()
+    
     var cancellable: AnyCancellable? = nil
     
     private func fetch() {
@@ -59,7 +71,7 @@ class MealGetter: ObservableObject {
             f.dateFormat = "yyyy/MM/dd"
             return f
         }()
-        if let url = URL(string: "https://school.gyo6.net/muhakgo/food/\(dFormatter.string(from: Date()))/\(self.mealType.rawValue)") {
+        if let url = URL(string: "https://school.gyo6.net/muhakgo/food/\(dFormatter.string(from: isNextDay ? Date().addingTimeInterval(86400) : Date()))/\(self.mealType.rawValue)") {
             do {
                 let getContents = try String(contentsOf: url)
                 contents = getContents
@@ -152,20 +164,9 @@ struct mealWidgetEntryView : View {
                         .fontWeight(.light)
                     Spacer()
                 }
-                switch entry.mealType {
-                case .breakfast:
-                    Text("breakfast")
+                Text(LocalizedStringKey(entry.mealType.rawValue))
                     .font(.title)
                     .fontWeight(.regular)
-                case .lunch:
-                    Text("lunch")
-                    .font(.title)
-                    .fontWeight(.regular)
-                case .dinner:
-                    Text("dinner")
-                    .font(.title)
-                    .fontWeight(.regular)
-                }
                 Spacer()
                 VStack(alignment: .leading, spacing: 0) {
                     ForEach(entry.meal.prefix(3), id: \.self) {
@@ -190,8 +191,8 @@ struct mealWidget: Widget {
         StaticConfiguration(kind: kind, provider: Provider()) { entry in
             mealWidgetEntryView(entry: entry)
         }
-        .configurationDisplayName("Today's meal")
-        .description("Informs today's meal.")
+        .configurationDisplayName(LocalizedStringKey("Today's meal"))
+        .description(LocalizedStringKey("Informs today's meal."))
         .supportedFamilies([.systemSmall])
     }
 }
