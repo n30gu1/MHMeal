@@ -12,7 +12,6 @@ import SwiftSoup
 import UIKit
 
 class ContentViewModel: ObservableObject {
-    @Published var dateList = Date().autoWeekday()
     @Published var mealList: [Meal] = []
     
     let mealType: MealType = {
@@ -33,6 +32,18 @@ class ContentViewModel: ObservableObject {
         }
     }()
     
+    let isNextDay: Bool = {
+        let zero = Calendar.current.date(bySettingHour: 0, minute: 0, second: 0, of: Date())!
+        let breakfast = Calendar.current.date(bySettingHour: 7, minute: 00, second: 00, of: Date())!
+        
+        switch Date() {
+        case zero...breakfast:
+            return false
+        default:
+            return true
+        }
+    }()
+    
     private var cancellable = Set<AnyCancellable>()
     
     init() {
@@ -40,6 +51,7 @@ class ContentViewModel: ObservableObject {
     }
     
     func fetch() {
+        let dateList = isNextDay ? Date().addingTimeInterval(86400).autoWeekday() : Date().autoWeekday()
         self.mealList = []
         var tempMealList: [Meal] = []
         
@@ -65,10 +77,10 @@ class ContentViewModel: ObservableObject {
             errorString = "Error"
         }
         
-        for date in self.dateList {
+        for date in dateList {
             loader.fetch(date: date).sink(receiveCompletion: { _ in
                 if tempMealList.count == 5 {
-                    self.mealList = tempMealList.reorder(by: self.dateList)
+                    self.mealList = tempMealList.reorder(by: dateList)
                     print(self.mealList.map { $0.date })
                 }
             }, receiveValue: { data in
