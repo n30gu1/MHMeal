@@ -41,7 +41,7 @@ struct MealDetailView: View {
                     Section(header: Text("Image")) {
                         AsyncImage(url: URL(string: url)!, placeholder: {
                             ProgressView("Loading")
-                                .progressViewStyle(.circular)
+                                .progressViewStyle(CircularProgressViewStyle())
                         }, image: {
                             Image(uiImage: $0)
                                 .resizable()
@@ -52,7 +52,7 @@ struct MealDetailView: View {
                     }
                 }
             }
-            .listStyle(.insetGrouped)
+            .listStyle(InsetGroupedListStyle())
             .navigationBarTitle(meal.date.format())
         }
     }
@@ -96,7 +96,7 @@ struct MealDetailViewiPad: View {
                 Section(header: Text("Image")) {
                     AsyncImage(url: URL(string: url)!, placeholder: {
                         ProgressView("Loading")
-                            .progressViewStyle(.circular)
+                            .progressViewStyle(CircularProgressViewStyle())
                     }, image: {
                         Image(uiImage: $0)
                             .resizable()
@@ -107,7 +107,7 @@ struct MealDetailViewiPad: View {
                 }
             }
         }
-        .listStyle(.insetGrouped)
+        .listStyle(InsetGroupedListStyle())
         .navigationBarTitle(meal.date.format())
     }
 }

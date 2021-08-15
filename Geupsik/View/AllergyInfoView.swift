@@ -40,7 +40,7 @@ struct AllergyInfoView: View {
                         }
                     }
                 }
-                .listStyle(.plain)
+                .listStyle(PlainListStyle())
             }
             .navigationBarTitle("About Allergy Info")
         }

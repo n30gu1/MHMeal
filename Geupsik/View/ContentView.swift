@@ -12,6 +12,7 @@ import SwiftUIRefresh
 
 struct ContentView: View {
     @ObservedObject var viewModel = ContentViewModel()
+    @State var showCalendar = false
     
     var body: some View {
         ZStack {
@@ -25,6 +26,9 @@ struct ContentView: View {
                     .pickerStyle(SegmentedPickerStyle())
                     .onChange(of: viewModel.mealType) { _ in
                         viewModel.fetch()
+                    }
+                    if showCalendar {
+                        calendarSelector
                     }
                     if viewModel.mealList.count == 5 {
                         ForEach(viewModel.mealList, id: \.date) { meal in
@@ -40,7 +44,7 @@ struct ContentView: View {
                         HStack {
                             Spacer()
                             ProgressView("Loading")
-                                .progressViewStyle(.circular)
+                                .progressViewStyle(CircularProgressViewStyle())
                             Spacer()
                         }
                     }
@@ -60,7 +64,7 @@ struct ContentView: View {
                 }
                 .navigationBarTitle("Meals")
                 .navigationBarItems(
-                    leading: viewModel.isNotiPhone ? AnyView(calendarButton) : AnyView(EmptyView()),
+                    leading: viewModel.isNotiPhone ? AnyView(showCalendarButton) : AnyView(EmptyView()),
                     trailing: Button(action: {
                         self.viewModel.showAllergyInfo.toggle()
                     }) {
@@ -83,13 +87,24 @@ struct ContentView: View {
         }
     }
     
-    var calendarButton: some View {
+    var calendarSelector: some View {
         DatePicker("", selection: $viewModel.date, displayedComponents: .date)
+            .datePickerStyle(GraphicalDatePickerStyle())
             .labelsHidden()
             .onChange(of: viewModel.date) { newDate in
                 viewModel.changeDate(newDate)
                 print("onchange")
             }
+    }
+    
+    var showCalendarButton: some View {
+        Button(action: {
+            withAnimation {
+                self.showCalendar.toggle()
+            }
+        }) {
+            Image(systemName: "calendar")
+        }
     }
 }
 
