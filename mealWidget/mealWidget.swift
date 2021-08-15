@@ -36,10 +36,10 @@ class MealGetter: ObservableObject {
     
     let isNextDay: Bool = {
         let zero = Calendar.current.date(bySettingHour: 0, minute: 0, second: 0, of: Date())!
-        let breakfast = Calendar.current.date(bySettingHour: 7, minute: 00, second: 00, of: Date())!
+        let dinner = Calendar.current.date(bySettingHour: 19, minute: 00, second: 00, of: Date())!
         
         switch Date() {
-        case zero...breakfast:
+        case zero...dinner:
             return false
         default:
             return true
@@ -128,7 +128,13 @@ struct Provider: TimelineProvider {
         
         let getter = MealGetter()
         
-        let entry = MealEntry(date: Date(), meal: getter.meal ?? ["Failed"], mealType: getter.mealType)
+        var date = Date()
+        
+        if getter.isNextDay {
+            date = date.addingTimeInterval(86400)
+        }
+            
+        let entry = MealEntry(date: date, meal: getter.meal ?? ["Failed"], mealType: getter.mealType)
         entries.append(entry)
 
         let timeline = Timeline(entries: entries, policy: .after(Date().addingTimeInterval(3600)))

@@ -34,10 +34,10 @@ class ContentViewModel: ObservableObject {
     
     let isNextDay: Bool = {
         let zero = Calendar.current.date(bySettingHour: 0, minute: 0, second: 0, of: Date())!
-        let breakfast = Calendar.current.date(bySettingHour: 7, minute: 00, second: 00, of: Date())!
+        let dinner = Calendar.current.date(bySettingHour: 19, minute: 00, second: 00, of: Date())!
         
         switch Date() {
-        case zero...breakfast:
+        case zero...dinner:
             return false
         default:
             return true
