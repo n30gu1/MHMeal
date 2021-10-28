@@ -143,6 +143,7 @@
 		B22B21DD26B90C1800607BD8 /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		B22B21E126B90C4B00607BD8 /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		B22F84AF272AAE840057B543 /* MealReorderable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealReorderable.swift; sourceTree = "<group>"; };
+		B22F84B2272AB5EF0057B543 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		B2305366269E9A7E0095F0CA /* ContentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentViewModel.swift; sourceTree = "<group>"; };
 		B234402B2496574900F08716 /* watchMeal.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = watchMeal.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B234402E2496574900F08716 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Interface.storyboard; sourceTree = "<group>"; };
@@ -678,6 +679,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				B270F32426B2B30D00BD7171 /* ko */,
+				B22F84B2272AB5EF0057B543 /* en */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";
