@@ -18,6 +18,9 @@
 		B223F7E926BA6E85002215A1 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = B270F32526B2B30D00BD7171 /* Localizable.strings */; };
 		B22B21DA26B90C1500607BD8 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = B22B21DC26B90C1500607BD8 /* InfoPlist.strings */; };
 		B22B21E026B90C4B00607BD8 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = B22B21E226B90C4B00607BD8 /* InfoPlist.strings */; };
+		B22F84AE272AAE300057B543 /* Meal.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2D130EB26B124FC00886429 /* Meal.swift */; };
+		B22F84B0272AAE840057B543 /* MealReorderable.swift in Sources */ = {isa = PBXBuildFile; fileRef = B22F84AF272AAE840057B543 /* MealReorderable.swift */; };
+		B22F84B1272AAE840057B543 /* MealReorderable.swift in Sources */ = {isa = PBXBuildFile; fileRef = B22F84AF272AAE840057B543 /* MealReorderable.swift */; };
 		B2305367269E9A7E0095F0CA /* ContentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2305366269E9A7E0095F0CA /* ContentViewModel.swift */; };
 		B234402F2496574900F08716 /* Interface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B234402D2496574900F08716 /* Interface.storyboard */; };
 		B23440312496574B00F08716 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B23440302496574B00F08716 /* Assets.xcassets */; };
@@ -139,6 +142,7 @@
 		B22B21DB26B90C1500607BD8 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		B22B21DD26B90C1800607BD8 /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		B22B21E126B90C4B00607BD8 /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		B22F84AF272AAE840057B543 /* MealReorderable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealReorderable.swift; sourceTree = "<group>"; };
 		B2305366269E9A7E0095F0CA /* ContentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentViewModel.swift; sourceTree = "<group>"; };
 		B234402B2496574900F08716 /* watchMeal.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = watchMeal.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B234402E2496574900F08716 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Interface.storyboard; sourceTree = "<group>"; };
@@ -334,6 +338,7 @@
 			isa = PBXGroup;
 			children = (
 				B2D130EB26B124FC00886429 /* Meal.swift */,
+				B22F84AF272AAE840057B543 /* MealReorderable.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -550,6 +555,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B22F84AE272AAE300057B543 /* Meal.swift in Sources */,
 				B2187102253A8C51002F8FD2 /* mealWidget.swift in Sources */,
 				B27A2CFA26B288120054E9D0 /* DateExtensions.swift in Sources */,
 				B2D130F526B1359300886429 /* MealType.swift in Sources */,
@@ -573,6 +579,7 @@
 				B23440412496574C00F08716 /* ExtensionDelegate.swift in Sources */,
 				B271138226A195110095DACE /* DateExtensions.swift in Sources */,
 				B23440452496574C00F08716 /* NotificationView.swift in Sources */,
+				B22F84B1272AAE840057B543 /* MealReorderable.swift in Sources */,
 				B2D130F126B1265100886429 /* MealType.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -591,6 +598,7 @@
 				B2784FC1240F3E69005E0E81 /* WeekdayControl.swift in Sources */,
 				B271137526A1932E0095DACE /* Reorderable.swift in Sources */,
 				B2305367269E9A7E0095F0CA /* ContentViewModel.swift in Sources */,
+				B22F84B0272AAE840057B543 /* MealReorderable.swift in Sources */,
 				B2BBCA4F26AFAB1F007E687F /* AsyncImage.swift in Sources */,
 				B23FC3E9269AF9E600EDF9DC /* DateSelBoxView.swift in Sources */,
 				B271137E26A193DC0095DACE /* TopNavigator.swift in Sources */,

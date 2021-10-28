@@ -9,11 +9,11 @@
 import Foundation
 
 class Meal {
-    let date: Date
+    let date: Date?
     let imageLink: String?
     let meal: [String]
-    let origins: [String]
-    let kcal: String
+    let origins: [String]?
+    let kcal: String?
     
     init(date: Date, imageLink: String?, meal: [String], origins: [String], kcal: String) {
         self.date = date
@@ -30,6 +30,14 @@ class Meal {
         self.origins = origins
         self.kcal = kcal
     }
+    
+    init(meal: [String]) {
+        self.date = nil
+        self.meal = meal
+        self.imageLink = nil
+        self.origins = nil
+        self.kcal = nil
+    }
 }
 
 extension Meal: Hashable {
@@ -44,9 +52,4 @@ extension Meal: Hashable {
         hasher.combine(origins)
         hasher.combine(kcal)
     }
-}
-
-extension Meal: Reorderable {
-    typealias OrderElement = Date
-    var orderElement: OrderElement { date }
 }

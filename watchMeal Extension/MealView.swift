@@ -19,7 +19,7 @@ struct MealView: View {
                 }
             }
             HStack(alignment: .bottom, spacing: 0) {
-                Text(meal.kcal)
+                Text(meal.kcal ?? "???")
                     .font(.system(size: 24))
                     .bold()
                 Text("kcal")
@@ -27,7 +27,7 @@ struct MealView: View {
             }
         }
         .listStyle(CarouselListStyle())
-        .navigationTitle(meal.date.formatShort())
+        .navigationTitle(meal.date!.formatShort())
     }
 }
 

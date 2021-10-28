@@ -23,7 +23,7 @@ struct MealDetailView: View {
                 }
                 Section(header: Text("Calories")) {
                     HStack(alignment: .bottom, spacing: 0) {
-                        Text(meal.kcal)
+                        Text(meal.kcal!)
                             .font(.title2)
                             .bold()
                         Text("kcal")
@@ -32,7 +32,7 @@ struct MealDetailView: View {
                 }
                 Section(header: Text("Origins")) {
                     VStack(alignment: .leading) {
-                        ForEach(meal.origins, id: \.self) {
+                        ForEach(meal.origins!, id: \.self) {
                             Text($0)
                         }
                     }
@@ -53,7 +53,7 @@ struct MealDetailView: View {
                 }
             }
             .listStyle(InsetGroupedListStyle())
-            .navigationBarTitle(meal.date.format())
+            .navigationBarTitle(meal.date!.format())
         }
     }
 }
@@ -78,7 +78,7 @@ struct MealDetailViewiPad: View {
             }
             Section(header: Text("Calories")) {
                 HStack(alignment: .bottom, spacing: 0) {
-                    Text(meal.kcal)
+                    Text(meal.kcal!)
                         .font(.title2)
                         .bold()
                     Text("kcal")
@@ -87,7 +87,7 @@ struct MealDetailViewiPad: View {
             }
             Section(header: Text("Origins")) {
                 VStack(alignment: .leading) {
-                    ForEach(meal.origins, id: \.self) {
+                    ForEach(meal.origins!, id: \.self) {
                         Text($0)
                     }
                 }
@@ -108,6 +108,6 @@ struct MealDetailViewiPad: View {
             }
         }
         .listStyle(InsetGroupedListStyle())
-        .navigationBarTitle(meal.date.format())
+        .navigationBarTitle(meal.date!.format())
     }
 }

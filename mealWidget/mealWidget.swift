@@ -14,9 +14,9 @@ import SwiftSoup
 // Getter
 
 class MealGetter: ObservableObject {
-    var meal: [String]? = nil
+    var meals: [Meal] = []
     
-    let mealType: MealType = {
+    let mealType: [MealType] = {
         let zero = Calendar.current.date(bySettingHour: 0, minute: 0, second: 0, of: Date())!
         let breakfast = Calendar.current.date(bySettingHour: 7, minute: 00, second: 00, of: Date())!
         let lunch = Calendar.current.date(bySettingHour: 13, minute: 00, second: 00, of: Date())!
@@ -24,13 +24,13 @@ class MealGetter: ObservableObject {
         
         switch Date() {
         case zero...breakfast:
-            return MealType.breakfast
+            return [MealType.breakfast, MealType.lunch]
         case breakfast...lunch:
-            return MealType.lunch
+            return [MealType.lunch, MealType.dinner]
         case lunch...dinner:
-            return MealType.dinner
+            return [MealType.dinner, MealType.breakfast]
         default:
-            return MealType.breakfast
+            return [MealType.breakfast, MealType.lunch]
         }
     }()
     
@@ -65,44 +65,53 @@ class MealGetter: ObservableObject {
             let first = text.replacingOccurrences(of: "\n", with: "")
             return first.components(separatedBy: "<br>")
         }
-        var contents: String = ""
-        let dFormatter: DateFormatter = {
-            let f = DateFormatter()
-            f.dateFormat = "yyyy/MM/dd"
-            return f
-        }()
-        if let url = URL(string: "https://school.gyo6.net/muhakgo/food/\(dFormatter.string(from: isNextDay ? Date().addingTimeInterval(86400) : Date()))/\(self.mealType.rawValue)") {
-            do {
-                let getContents = try String(contentsOf: url)
-                contents = getContents
-            } catch {
-                // contents could not be loaded
-                self.meal = [errorString!]
-            }
-        } else {
-            // Bad URL
-            self.meal = [errorString!]
-        }
         
-        do {
-            let doc: Document = try SwiftSoup.parse(contents)
+        for i in 0...1 {
+            var contents: String = ""
             
-            guard let meal: Element = try doc.select("td > div").first() else {
-                self.meal = [errorString!]
+            let dFormatter: DateFormatter = {
+                let f = DateFormatter()
+                f.dateFormat = "yyyy/MM/dd"
+                return f
+            }()
+            
+            var mealList: [String] = []
+            
+            if let url = URL(string: "https://school.gyo6.net/muhakgo/food/\(dFormatter.string(from: isNextDay ? Date().addingTimeInterval(86400) : Date()))/\(self.mealType[i].rawValue)") {
+                do {
+                    let getContents = try String(contentsOf: url)
+                    contents = getContents
+                } catch {
+                    // contents could not be loaded
+                    mealList = [errorString!]
+                }
+            } else {
+                // Bad URL
+                mealList = [errorString!]
+            }
+            
+            do {
+                let doc: Document = try SwiftSoup.parse(contents)
+                
+                guard let meal: Element = try doc.select("td > div").first() else {
+                    mealList = [errorString!]
+                    return
+                }
+                let mealText = try meal.html()
+                let mealResult = clean(mealText)
+                
+                if mealResult.count == 1 && mealResult[0] == "" {
+                    mealList = [noMealString!]
+                } else {
+                    mealList = mealResult
+                }
+            } catch Exception.Error(_, _) {
+                return
+            } catch {
                 return
             }
-            let mealText = try meal.html()
-            let mealResult = clean(mealText)
             
-            if mealResult.count == 1 && mealResult[0] == "" {
-                self.meal = [noMealString!]
-            } else {
-                self.meal = mealResult
-            }
-        } catch Exception.Error(_, _) {
-            return
-        } catch {
-            return
+            self.meals.append(Meal(meal: mealList))
         }
     }
 
@@ -115,11 +124,25 @@ class MealGetter: ObservableObject {
 
 struct Provider: TimelineProvider {
     func placeholder(in context: Context) -> MealEntry {
-        MealEntry(date: Date(), meal: ["친환경차수수밥", "순댓국", "돈육고추장불고기", "상추겉절이", "메기순살강정", "배추김치"], mealType: MealType.lunch)
+        MealEntry(
+            date: Date(),
+            meal: [
+                Meal(meal: ["친환경차수수밥", "순댓국", "돈육고추장불고기", "상추겉절이", "메기순살강정", "배추김치"]),
+                Meal(meal: ["친환경차수수밥", "순댓국", "돈육고추장불고기", "상추겉절이", "메기순살강정", "배추김치"])
+            ],
+            mealType: [MealType.lunch, MealType.breakfast]
+        )
     }
 
     func getSnapshot(in context: Context, completion: @escaping (MealEntry) -> ()) {
-        let entry = MealEntry(date: Date(), meal: ["친환경차수수밥", "순댓국", "돈육고추장불고기", "상추겉절이", "메기순살강정", "배추김치"], mealType: MealType.lunch)
+        let entry = MealEntry(
+            date: Date(),
+            meal: [
+                Meal(meal: ["친환경차수수밥", "순댓국", "돈육고추장불고기", "상추겉절이", "메기순살강정", "배추김치"]),
+                Meal(meal: ["친환경차수수밥", "순댓국", "돈육고추장불고기", "상추겉절이", "메기순살강정", "배추김치"])
+            ],
+            mealType: [MealType.lunch, MealType.breakfast]
+        )
         completion(entry)
     }
 
@@ -134,7 +157,7 @@ struct Provider: TimelineProvider {
             date = date.addingTimeInterval(86400)
         }
             
-        let entry = MealEntry(date: date, meal: getter.meal ?? ["Failed"], mealType: getter.mealType)
+        let entry = MealEntry(date: date, meal: getter.meals, mealType: getter.mealType)
         entries.append(entry)
 
         let timeline = Timeline(entries: entries, policy: .after(Date().addingTimeInterval(3600)))
@@ -146,8 +169,8 @@ struct Provider: TimelineProvider {
 
 struct MealEntry: TimelineEntry {
     var date: Date
-    let meal: [String]
-    let mealType: MealType
+    let meal: [Meal]
+    let mealType: [MealType]
 }
 
 // Entry View
@@ -185,12 +208,12 @@ struct SystemSmallWidgetView : View {
                         .fontWeight(.light)
                     Spacer()
                 }
-                Text(LocalizedStringKey(entry.mealType.rawValue))
+                Text(LocalizedStringKey(entry.mealType[0].rawValue))
                     .font(.title)
                     .fontWeight(.regular)
                 Spacer()
                 VStack(alignment: .leading, spacing: 0) {
-                    ForEach(entry.meal.prefix(3), id: \.self) {
+                    ForEach(entry.meal[0].meal.prefix(3), id: \.self) {
                         Text($0)
                             .font(.system(size: 16))
                     }
@@ -205,26 +228,62 @@ struct SystemSmallWidgetView : View {
 struct SystemMediumWidgetView : View {
     var entry: Provider.Entry
     
+    let monthFormatter: DateFormatter = {
+        let f = DateFormatter()
+        f.dateFormat = "MMMM"
+        return f
+    }()
+    let dayFormatter: DateFormatter = {
+        let f = DateFormatter()
+        f.dateFormat = "d"
+        return f
+    }()
+    
     var body: some View {
         ZStack {
-            HStack(spacing: 16) {
-                VStack(alignment: .leading) {
-                    Text(entry.date.formatShort())
-                        .fontWeight(.light)
-                    Text(LocalizedStringKey(entry.mealType.rawValue))
-                        .font(.title)
-                        .fontWeight(.regular)
+            VStack {
+                Rectangle()
+                    .frame(height: 30)
+                    .foregroundColor(Color("BoxColor"))
+                    .shadow(radius: 2)
+                Spacer()
+            }
+            HStack(spacing: 8) {
+                VStack(alignment: .leading, spacing: 0) {
+                    Text(monthFormatter.string(from: entry.date))
+                        .font(.system(size: 14))
+                        .padding(.bottom, 4)
+                    Text(dayFormatter.string(from: entry.date))
+                        .font(.system(size: 50))
+                        .fontWeight(.semibold)
+                    Spacer()
+                }
+                Spacer()
+                VStack(alignment: .leading, spacing: 0) {
+                    Text(LocalizedStringKey(entry.mealType[0].rawValue))
+                        .font(.system(size: 14))
+                        .bold()
+                        .padding(.bottom, 12)
+                    ForEach(entry.meal[0].meal.prefix(6), id: \.self) {
+                        Text($0)
+                            .font(.system(size: 14))
+                    }
                     Spacer()
                 }
                 VStack(alignment: .leading, spacing: 0) {
-                    ForEach(entry.meal, id: \.self) {
+                    Text(LocalizedStringKey(entry.mealType[1].rawValue))
+                        .font(.system(size: 14))
+                        .bold()
+                        .padding(.bottom, 12)
+                    ForEach(entry.meal[1].meal.prefix(6), id: \.self) {
                         Text($0)
-                            .font(.system(size: 16))
+                            .font(.system(size: 14))
                     }
                     Spacer()
                 }
             }
-            .padding(13)
+            .padding(8)
+            .padding(.horizontal, 8)
         }
             .background(Color("WidgetBackground"))
     }
@@ -251,19 +310,47 @@ struct mealWidget: Widget {
 struct mealWidget_Previews: PreviewProvider {
     static var previews: some View {
         Group {
-            mealWidgetEntryView(entry: MealEntry(date: Date(), meal: ["친환경차수수밥\n순댓국\n돈육고추장불고기\n상추겉절이\n메기순살강정\n배추김치"], mealType: MealType.lunch))
+            mealWidgetEntryView(entry: MealEntry(
+                date: Date(),
+                meal: [
+                    Meal(meal: ["친환경차수수밥", "순댓국", "돈육고추장불고기", "상추겉절이", "메기순살강정", "배추김치"]),
+                    Meal(meal: ["친환경차수수밥", "순댓국", "돈육고추장불고기", "상추겉절이", "메기순살강정", "배추김치"])
+                ],
+                mealType: [MealType.lunch, MealType.breakfast]
+            ))
                 .preferredColorScheme(.light)
                 .previewContext(WidgetPreviewContext(family: .systemSmall))
-            mealWidgetEntryView(entry: MealEntry(date: Date(), meal: ["친환경차수수밥\n순댓국\n돈육고추장불고기\n상추겉절이\n메기순살강정\n배추김치"], mealType: MealType.dinner))
+            mealWidgetEntryView(entry: MealEntry(
+                date: Date(),
+                meal: [
+                    Meal(meal: ["친환경차수수밥", "순댓국", "돈육고추장불고기", "상추겉절이", "메기순살강정", "배추김치"]),
+                    Meal(meal: ["친환경차수수밥", "순댓국", "돈육고추장불고기", "상추겉절이", "메기순살강정", "배추김치"])
+                ],
+                mealType: [MealType.lunch, MealType.breakfast]
+            ))
                 .preferredColorScheme(.dark)
                 .previewContext(WidgetPreviewContext(family: .systemSmall))
         }
         
         Group {
-            mealWidgetEntryView(entry: MealEntry(date: Date(), meal: ["친환경차수수밥\n순댓국\n돈육고추장불고기\n상추겉절이\n메기순살강정\n배추김치"], mealType: MealType.lunch))
+            mealWidgetEntryView(entry: MealEntry(
+                date: Date(),
+                meal: [
+                    Meal(meal: ["친환경차수수밥", "순댓국", "돈육고추장불고기", "상추겉절이", "메기순살강정", "배추김치"]),
+                    Meal(meal: ["친환경차수수밥", "순댓국", "돈육고추장불고기", "상추겉절이", "메기순살강정", "배추김치"])
+                ],
+                mealType: [MealType.lunch, MealType.breakfast]
+            ))
                 .preferredColorScheme(.light)
                 .previewContext(WidgetPreviewContext(family: .systemMedium))
-            mealWidgetEntryView(entry: MealEntry(date: Date(), meal: ["친환경차수수밥\n순댓국\n돈육고추장불고기\n상추겉절이\n메기순살강정\n배추김치"], mealType: MealType.dinner))
+            mealWidgetEntryView(entry: MealEntry(
+                date: Date(),
+                meal: [
+                    Meal(meal: ["친환경차수수밥", "순댓국", "돈육고추장불고기", "상추겉절이", "메기순살강정", "배추김치"]),
+                    Meal(meal: ["친환경차수수밥", "순댓국", "돈육고추장불고기", "상추겉절이", "메기순살강정", "배추김치"])
+                ],
+                mealType: [MealType.lunch, MealType.breakfast]
+            ))
                 .preferredColorScheme(.dark)
                 .previewContext(WidgetPreviewContext(family: .systemMedium))
         }

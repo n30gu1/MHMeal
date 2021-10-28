@@ -15,7 +15,7 @@ struct MealListCell: View {
     var body: some View {
         VStack(spacing: 3) {
             HStack {
-                Text(meal.date.format())
+                Text(meal.date!.format())
                     .font(.system(size: 12))
                     .fontWeight(.semibold)
                     .kerning(1.2)
@@ -42,7 +42,7 @@ struct MealListCell: View {
                     Spacer()
                     HStack(alignment: .bottom, spacing: 0) {
                         Spacer()
-                        Text(meal.kcal)
+                        Text(meal.kcal!)
                             .font(.title2)
                             .fontWeight(.semibold)
                             .offset(y: 1)
@@ -76,7 +76,7 @@ struct MealListCelliPad: View {
     var body: some View {
         VStack(spacing: 3) {
             HStack {
-                Text(meal.date.format())
+                Text(meal.date!.format())
                     .font(.system(size: 12))
                     .fontWeight(.semibold)
                     .kerning(1.2)
@@ -103,7 +103,7 @@ struct MealListCelliPad: View {
                     Spacer()
                     HStack(alignment: .bottom, spacing: 0) {
                         Spacer()
-                        Text(meal.kcal)
+                        Text(meal.kcal!)
                             .font(.title2)
                             .fontWeight(.semibold)
                             .offset(y: 1)
