@@ -51,7 +51,17 @@ class ContentViewModel: ObservableObject {
     }
     
     func fetch() {
-        let dateList = isNextDay ? Date().addingTimeInterval(86400).autoWeekday() : Date().autoWeekday()
+        let dateList: [Date] = {
+            if isNextDay {
+                if mealType == .breakfast {
+                    return Date().addingTimeInterval(86400).autoWeekdayInBreakfast()
+                }
+                return Date().addingTimeInterval(86400).autoWeekday()
+            } else {
+                return Date().autoWeekday()
+            }
+        }()
+        
         self.mealList = []
         var tempMealList: [Meal] = []
         
@@ -81,7 +91,6 @@ class ContentViewModel: ObservableObject {
             loader.fetch(date: date).sink(receiveCompletion: { _ in
                 if tempMealList.count == 5 {
                     self.mealList = tempMealList.reorder(by: dateList)
-                    print(self.mealList.map { $0.date })
                 }
             }, receiveValue: { data in
                 do {

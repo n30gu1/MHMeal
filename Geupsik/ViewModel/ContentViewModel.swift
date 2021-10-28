@@ -25,6 +25,9 @@ class ContentViewModel: ObservableObject {
     
     // Fetcher Function
     func fetch() {
+        if mealType == .breakfast {
+            dateList = Date().autoWeekdayInBreakfast()
+        }
         // Reset Meal List and Declare Temporary List
         self.mealList = []
         var tempMealList: [Meal] = []
@@ -63,12 +66,10 @@ class ContentViewModel: ObservableObject {
         
         // Parser
         for date in self.dateList {
-            print("fetching \(date)")
             loader.fetch(date: date).sink(receiveCompletion: { _ in
                 // Reorder by Date List
                 if tempMealList.count == 5 {
                     self.mealList = tempMealList.reorder(by: self.dateList)
-                    print(self.mealList.map { $0.date })
                 }
             }, receiveValue: { data in
                 do {
@@ -112,7 +113,6 @@ class ContentViewModel: ObservableObject {
                             return cleanImgLink(text: imageLink)
                         } else { return nil }
                     }()
-                    print(imageLink ?? "nil")
                     
                     // Add to Meal List
                     tempMealList.append(Meal(date: date, imageLink: imageLink, meal: meal, origins: origins, kcal: kcal))
@@ -122,7 +122,6 @@ class ContentViewModel: ObservableObject {
             }).store(in: &cancellable)
         }
         
-        print("refreshed")
     }
     
     // Refresh Function

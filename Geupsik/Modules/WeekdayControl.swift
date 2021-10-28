@@ -27,34 +27,77 @@ private func rearrange<T>(array: Array<T>, fromIndex: Int, toIndex: Int) -> Arra
 extension Date {
     func autoWeekday() -> [Date] {
         switch Calendar.current.component(.weekday, from: self) {
-        case 1:
+        case 1: // Sunday
             return appendDates(date: self, start: 1, end: 5)
-        case 2:
+        case 2: // Monday
             return appendDates(date: self, start: 0, end: 4)
-        case 3:
+        case 3: // Tuesday
             let dateList: [Date] = appendDates(date: self, start: -1, end: 3)
             var result = rearrange(array: dateList, fromIndex: 1, toIndex: 0)
             result = rearrange(array: result, fromIndex: 1, toIndex: 4)
             return result
-        case 4:
+        case 4: // Wednesday
             let dateList: [Date] = appendDates(date: self, start: -2, end: 2)
             var result = rearrange(array: dateList, fromIndex: 2, toIndex: 0)
-            result = rearrange(array: result, fromIndex: 1, toIndex: 4)
-            result = rearrange(array: result, fromIndex: 1, toIndex: 4)
+            
+            for _ in 0..<2 {
+                result = rearrange(array: result, fromIndex: 1, toIndex: 4)
+            }
             return result
-        case 5:
+        case 5: // Thursday
             let dateList: [Date] = appendDates(date: self, start: -3, end: 1)
             var result = rearrange(array: dateList, fromIndex: 3, toIndex: 0)
-            result = rearrange(array: result, fromIndex: 1, toIndex: 4)
-            result = rearrange(array: result, fromIndex: 1, toIndex: 4)
-            result = rearrange(array: result, fromIndex: 1, toIndex: 4)
+
+            for _ in 0..<3 {
+                result = rearrange(array: result, fromIndex: 1, toIndex: 4)
+            }
             return result
-        case 6:
+        case 6: // Friday
             let dateList: [Date] = appendDates(date: self, start: -4, end: 0)
             let result = rearrange(array: dateList, fromIndex: 4, toIndex: 0)
             return result
-        case 7:
+        case 7: // Saturday
             let dateList: [Date] = appendDates(date: self, start: 2, end: 6)
+            return dateList
+        default:
+            return [Date()]
+        }
+    }
+    
+    func autoWeekdayInBreakfast() -> [Date] {
+        switch Calendar.current.component(.weekday, from: self) {
+        case 1: // Sunday
+            return appendDates(date: self, start: 1, end: 6)
+        case 2: // Monday
+            return appendDates(date: self, start: 0, end: 5)
+        case 3: // Tuesday
+            let dateList: [Date] = appendDates(date: self, start: -1, end: 4)
+            var result = rearrange(array: dateList, fromIndex: 1, toIndex: 0)
+            result = rearrange(array: result, fromIndex: 1, toIndex: 5)
+            return result
+        case 4: // Wednesday
+            let dateList: [Date] = appendDates(date: self, start: -2, end: 3)
+            var result = rearrange(array: dateList, fromIndex: 2, toIndex: 0)
+            
+            for _ in 0..<2 {
+                result = rearrange(array: result, fromIndex: 1, toIndex: 5)
+            }
+            return result
+        case 5: // Thursday
+            let dateList: [Date] = appendDates(date: self, start: -3, end: 2)
+            var result = rearrange(array: dateList, fromIndex: 3, toIndex: 0)
+
+            for _ in 0..<3 {
+                result = rearrange(array: result, fromIndex: 1, toIndex: 5)
+            }
+            return result
+        case 6: // Friday
+            let dateList: [Date] = appendDates(date: self, start: -4, end: 1)
+            let result = rearrange(array: dateList, fromIndex: 4, toIndex: 0)
+            return result
+        case 7: // Saturday
+            var dateList: [Date] = appendDates(date: self, start: 0, end: 6)
+            dateList.remove(at: 2)
             return dateList
         default:
             return [Date()]

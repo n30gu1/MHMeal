@@ -702,11 +702,11 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 2.2;
+				MARKETING_VERSION = 2.3;
 				PRODUCT_BUNDLE_IDENTIFIER = com.n30gu1.MHMeal.mealWidget;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
-				SUPPORTS_MACCATALYST = YES;
+				SUPPORTS_MACCATALYST = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -728,11 +728,11 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 2.2;
+				MARKETING_VERSION = 2.3;
 				PRODUCT_BUNDLE_IDENTIFIER = com.n30gu1.MHMeal.mealWidget;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
-				SUPPORTS_MACCATALYST = YES;
+				SUPPORTS_MACCATALYST = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -748,7 +748,7 @@
 				DEVELOPMENT_TEAM = 98882K9P37;
 				IBSC_MODULE = watchMeal_Extension;
 				INFOPLIST_FILE = watchMeal/Info.plist;
-				MARKETING_VERSION = 2.2;
+				MARKETING_VERSION = 2.3;
 				PRODUCT_BUNDLE_IDENTIFIER = com.n30gu1.MHMeal.watchkitapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = watchos;
@@ -769,7 +769,7 @@
 				DEVELOPMENT_TEAM = 98882K9P37;
 				IBSC_MODULE = watchMeal_Extension;
 				INFOPLIST_FILE = watchMeal/Info.plist;
-				MARKETING_VERSION = 2.2;
+				MARKETING_VERSION = 2.3;
 				PRODUCT_BUNDLE_IDENTIFIER = com.n30gu1.MHMeal.watchkitapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = watchos;
@@ -795,7 +795,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 2.2;
+				MARKETING_VERSION = 2.3;
 				PRODUCT_BUNDLE_IDENTIFIER = com.n30gu1.MHMeal.watchkitapp.watchkitextension;
 				PRODUCT_NAME = "${TARGET_NAME}";
 				SDKROOT = watchos;
@@ -821,7 +821,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 2.2;
+				MARKETING_VERSION = 2.3;
 				PRODUCT_BUNDLE_IDENTIFIER = com.n30gu1.MHMeal.watchkitapp.watchkitextension;
 				PRODUCT_NAME = "${TARGET_NAME}";
 				SDKROOT = watchos;
@@ -967,10 +967,10 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.2;
+				MARKETING_VERSION = 2.3;
 				PRODUCT_BUNDLE_IDENTIFIER = com.n30gu1.MHMeal;
 				PRODUCT_NAME = MHMeal;
-				SUPPORTS_MACCATALYST = YES;
+				SUPPORTS_MACCATALYST = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -993,10 +993,10 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.2;
+				MARKETING_VERSION = 2.3;
 				PRODUCT_BUNDLE_IDENTIFIER = com.n30gu1.MHMeal;
 				PRODUCT_NAME = MHMeal;
-				SUPPORTS_MACCATALYST = YES;
+				SUPPORTS_MACCATALYST = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

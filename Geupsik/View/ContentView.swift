@@ -93,7 +93,6 @@ struct ContentView: View {
             .labelsHidden()
             .onChange(of: viewModel.date) { newDate in
                 viewModel.changeDate(newDate)
-                print("onchange")
             }
     }
     

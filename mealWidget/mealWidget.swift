@@ -154,7 +154,22 @@ struct MealEntry: TimelineEntry {
 
 struct mealWidgetEntryView : View {
     var entry: Provider.Entry
+    @Environment(\.widgetFamily) var widgetFamily
 
+    var body: some View {
+        if widgetFamily == .systemSmall {
+            SystemSmallWidgetView(entry: entry)
+        } else if widgetFamily == .systemMedium {
+            SystemMediumWidgetView(entry: entry)
+        } else {
+            Text("error")
+        }
+    }
+}
+
+struct SystemSmallWidgetView : View {
+    var entry: Provider.Entry
+    
     var body: some View {
         ZStack {
             VStack {
@@ -187,6 +202,34 @@ struct mealWidgetEntryView : View {
     }
 }
 
+struct SystemMediumWidgetView : View {
+    var entry: Provider.Entry
+    
+    var body: some View {
+        ZStack {
+            HStack(spacing: 16) {
+                VStack(alignment: .leading) {
+                    Text(entry.date.formatShort())
+                        .fontWeight(.light)
+                    Text(LocalizedStringKey(entry.mealType.rawValue))
+                        .font(.title)
+                        .fontWeight(.regular)
+                    Spacer()
+                }
+                VStack(alignment: .leading, spacing: 0) {
+                    ForEach(entry.meal, id: \.self) {
+                        Text($0)
+                            .font(.system(size: 16))
+                    }
+                    Spacer()
+                }
+            }
+            .padding(13)
+        }
+            .background(Color("WidgetBackground"))
+    }
+}
+
 // Widget
 
 @main
@@ -199,7 +242,7 @@ struct mealWidget: Widget {
         }
         .configurationDisplayName(LocalizedStringKey("Today's meal"))
         .description(LocalizedStringKey("Informs today's meal."))
-        .supportedFamilies([.systemSmall])
+        .supportedFamilies([.systemSmall, .systemMedium])
     }
 }
 
@@ -207,11 +250,22 @@ struct mealWidget: Widget {
 
 struct mealWidget_Previews: PreviewProvider {
     static var previews: some View {
-        mealWidgetEntryView(entry: MealEntry(date: Date(), meal: ["친환경차수수밥\n순댓국\n돈육고추장불고기\n상추겉절이\n메기순살강정\n배추김치"], mealType: MealType.lunch))
-            .preferredColorScheme(.light)
-            .previewContext(WidgetPreviewContext(family: .systemSmall))
-        mealWidgetEntryView(entry: MealEntry(date: Date(), meal: ["친환경차수수밥\n순댓국\n돈육고추장불고기\n상추겉절이\n메기순살강정\n배추김치"], mealType: MealType.dinner))
-            .preferredColorScheme(.dark)
-            .previewContext(WidgetPreviewContext(family: .systemSmall))
+        Group {
+            mealWidgetEntryView(entry: MealEntry(date: Date(), meal: ["친환경차수수밥\n순댓국\n돈육고추장불고기\n상추겉절이\n메기순살강정\n배추김치"], mealType: MealType.lunch))
+                .preferredColorScheme(.light)
+                .previewContext(WidgetPreviewContext(family: .systemSmall))
+            mealWidgetEntryView(entry: MealEntry(date: Date(), meal: ["친환경차수수밥\n순댓국\n돈육고추장불고기\n상추겉절이\n메기순살강정\n배추김치"], mealType: MealType.dinner))
+                .preferredColorScheme(.dark)
+                .previewContext(WidgetPreviewContext(family: .systemSmall))
+        }
+        
+        Group {
+            mealWidgetEntryView(entry: MealEntry(date: Date(), meal: ["친환경차수수밥\n순댓국\n돈육고추장불고기\n상추겉절이\n메기순살강정\n배추김치"], mealType: MealType.lunch))
+                .preferredColorScheme(.light)
+                .previewContext(WidgetPreviewContext(family: .systemMedium))
+            mealWidgetEntryView(entry: MealEntry(date: Date(), meal: ["친환경차수수밥\n순댓국\n돈육고추장불고기\n상추겉절이\n메기순살강정\n배추김치"], mealType: MealType.dinner))
+                .preferredColorScheme(.dark)
+                .previewContext(WidgetPreviewContext(family: .systemMedium))
+        }
     }
 }
