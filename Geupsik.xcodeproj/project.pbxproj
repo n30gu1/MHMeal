@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		B201C1DE24965B8400FC3EFA /* SwiftSoup in Frameworks */ = {isa = PBXBuildFile; productRef = B201C1DD24965B8400FC3EFA /* SwiftSoup */; };
+		B20FB650272D8E5500716945 /* MHMealTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B20FB64F272D8E5500716945 /* MHMealTests.swift */; };
 		B21615D42497879200F53167 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = B21615D62497879200F53167 /* Localizable.strings */; };
 		B21870FE253A8C51002F8FD2 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B21870BC253A8BF8002F8FD2 /* WidgetKit.framework */; };
 		B21870FF253A8C51002F8FD2 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B21870BE253A8BF8002F8FD2 /* SwiftUI.framework */; };
@@ -70,6 +71,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		B20FB651272D8E5500716945 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B24E5CB123A638380087B2F1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = B24E5CB823A638380087B2F1;
+			remoteInfo = Geupsik;
+		};
 		B2187106253A8C53002F8FD2 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = B24E5CB123A638380087B2F1 /* Project object */;
@@ -130,6 +138,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		B20FB64D272D8E5500716945 /* MHMealTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MHMealTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		B20FB64F272D8E5500716945 /* MHMealTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MHMealTests.swift; sourceTree = "<group>"; };
 		B21615D52497879200F53167 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		B21615D72497879800F53167 /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/Localizable.strings; sourceTree = "<group>"; };
 		B21870BC253A8BF8002F8FD2 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
@@ -188,6 +198,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		B20FB64A272D8E5500716945 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		B21870FA253A8C51002F8FD2 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -225,6 +242,14 @@
 				B21870BE253A8BF8002F8FD2 /* SwiftUI.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		B20FB64E272D8E5500716945 /* MHMealTests */ = {
+			isa = PBXGroup;
+			children = (
+				B20FB64F272D8E5500716945 /* MHMealTests.swift */,
+			);
+			path = MHMealTests;
 			sourceTree = "<group>";
 		};
 		B2187100253A8C51002F8FD2 /* mealWidget */ = {
@@ -280,6 +305,7 @@
 			isa = PBXGroup;
 			children = (
 				B24E5CBB23A638380087B2F1 /* Geupsik */,
+				B20FB64E272D8E5500716945 /* MHMealTests */,
 				B234402C2496574900F08716 /* watchMeal */,
 				B234403B2496574C00F08716 /* watchMeal Extension */,
 				B2187100253A8C51002F8FD2 /* mealWidget */,
@@ -295,6 +321,7 @@
 				B234402B2496574900F08716 /* watchMeal.app */,
 				B23440372496574C00F08716 /* watchMeal Extension.appex */,
 				B21870FD253A8C51002F8FD2 /* mealWidgetExtension.appex */,
+				B20FB64D272D8E5500716945 /* MHMealTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -374,6 +401,24 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		B20FB64C272D8E5500716945 /* MHMealTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B20FB655272D8E5500716945 /* Build configuration list for PBXNativeTarget "MHMealTests" */;
+			buildPhases = (
+				B20FB649272D8E5500716945 /* Sources */,
+				B20FB64A272D8E5500716945 /* Frameworks */,
+				B20FB64B272D8E5500716945 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				B20FB652272D8E5500716945 /* PBXTargetDependency */,
+			);
+			name = MHMealTests;
+			productName = MHMealTests;
+			productReference = B20FB64D272D8E5500716945 /* MHMealTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		B21870FC253A8C51002F8FD2 /* mealWidgetExtension */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = B2187109253A8C53002F8FD2 /* Build configuration list for PBXNativeTarget "mealWidgetExtension" */;
@@ -462,10 +507,14 @@
 		B24E5CB123A638380087B2F1 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 1220;
+				LastSwiftUpdateCheck = 1320;
 				LastUpgradeCheck = 1300;
 				ORGANIZATIONNAME = n30gu1;
 				TargetAttributes = {
+					B20FB64C272D8E5500716945 = {
+						CreatedOnToolsVersion = 13.2;
+						TestTargetID = B24E5CB823A638380087B2F1;
+					};
 					B21870FC253A8C51002F8FD2 = {
 						CreatedOnToolsVersion = 12.2;
 					};
@@ -502,11 +551,19 @@
 				B234402A2496574900F08716 /* watchMeal */,
 				B23440362496574C00F08716 /* watchMeal Extension */,
 				B21870FC253A8C51002F8FD2 /* mealWidgetExtension */,
+				B20FB64C272D8E5500716945 /* MHMealTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		B20FB64B272D8E5500716945 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		B21870FB253A8C51002F8FD2 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -552,6 +609,14 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		B20FB649272D8E5500716945 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B20FB650272D8E5500716945 /* MHMealTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		B21870F9253A8C51002F8FD2 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -613,6 +678,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		B20FB652272D8E5500716945 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = B24E5CB823A638380087B2F1 /* Geupsik */;
+			targetProxy = B20FB651272D8E5500716945 /* PBXContainerItemProxy */;
+		};
 		B2187107253A8C53002F8FD2 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			platformFilter = ios;
@@ -696,6 +766,46 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		B20FB653272D8E5500716945 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 98882K9P37;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.n30gu1.MHMealTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MHMeal.app/MHMeal";
+			};
+			name = Debug;
+		};
+		B20FB654272D8E5500716945 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 98882K9P37;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.n30gu1.MHMealTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MHMeal.app/MHMeal";
+			};
+			name = Release;
+		};
 		B218710A253A8C53002F8FD2 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -712,7 +822,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 2.3;
+				MARKETING_VERSION = 2.3.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.n30gu1.MHMeal.mealWidget;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -738,7 +848,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 2.3;
+				MARKETING_VERSION = 2.3.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.n30gu1.MHMeal.mealWidget;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -758,7 +868,7 @@
 				DEVELOPMENT_TEAM = 98882K9P37;
 				IBSC_MODULE = watchMeal_Extension;
 				INFOPLIST_FILE = watchMeal/Info.plist;
-				MARKETING_VERSION = 2.3;
+				MARKETING_VERSION = 2.3.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.n30gu1.MHMeal.watchkitapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = watchos;
@@ -779,7 +889,7 @@
 				DEVELOPMENT_TEAM = 98882K9P37;
 				IBSC_MODULE = watchMeal_Extension;
 				INFOPLIST_FILE = watchMeal/Info.plist;
-				MARKETING_VERSION = 2.3;
+				MARKETING_VERSION = 2.3.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.n30gu1.MHMeal.watchkitapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = watchos;
@@ -805,7 +915,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 2.3;
+				MARKETING_VERSION = 2.3.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.n30gu1.MHMeal.watchkitapp.watchkitextension;
 				PRODUCT_NAME = "${TARGET_NAME}";
 				SDKROOT = watchos;
@@ -831,7 +941,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 2.3;
+				MARKETING_VERSION = 2.3.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.n30gu1.MHMeal.watchkitapp.watchkitextension;
 				PRODUCT_NAME = "${TARGET_NAME}";
 				SDKROOT = watchos;
@@ -977,7 +1087,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.3;
+				MARKETING_VERSION = 2.3.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.n30gu1.MHMeal;
 				PRODUCT_NAME = MHMeal;
 				SUPPORTS_MACCATALYST = NO;
@@ -1003,7 +1113,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.3;
+				MARKETING_VERSION = 2.3.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.n30gu1.MHMeal;
 				PRODUCT_NAME = MHMeal;
 				SUPPORTS_MACCATALYST = NO;
@@ -1015,6 +1125,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		B20FB655272D8E5500716945 /* Build configuration list for PBXNativeTarget "MHMealTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B20FB653272D8E5500716945 /* Debug */,
+				B20FB654272D8E5500716945 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		B2187109253A8C53002F8FD2 /* Build configuration list for PBXNativeTarget "mealWidgetExtension" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

@@ -4,6 +4,8 @@
 <dict>
 	<key>StringsTable</key>
 	<string>Root</string>
+	<key>Title</key>
+	<string></string>
 	<key>PreferenceSpecifiers</key>
 	<array>
 		<dict>
@@ -18,7 +20,7 @@
 			<key>Title</key>
 			<string>Version</string>
 			<key>DefaultValue</key>
-			<string>2.3</string>
+			<string>2.3.1</string>
 			<key>Key</key>
 			<string>version</string>
 		</dict>

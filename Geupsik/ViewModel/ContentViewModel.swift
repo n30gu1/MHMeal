@@ -26,7 +26,9 @@ class ContentViewModel: ObservableObject {
     // Fetcher Function
     func fetch() {
         if mealType == .breakfast {
-            dateList = Date().autoWeekdayInBreakfast()
+            self.dateList = date.autoWeekdayInBreakfast()
+        } else {
+            self.dateList = date.autoWeekday()
         }
         // Reset Meal List and Declare Temporary List
         self.mealList = []
@@ -68,8 +70,17 @@ class ContentViewModel: ObservableObject {
         for date in self.dateList {
             loader.fetch(date: date).sink(receiveCompletion: { _ in
                 // Reorder by Date List
-                if tempMealList.count == 5 {
-                    self.mealList = tempMealList.reorder(by: self.dateList)
+                if self.mealType == .breakfast {
+                    if tempMealList.count == 6 {
+                        print(tempMealList.map {
+                            $0.date
+                        })
+                        self.mealList = tempMealList.reorder(by: self.dateList)
+                    }
+                } else {
+                    if tempMealList.count == 5 {
+                        self.mealList = tempMealList.reorder(by: self.dateList)
+                    }
                 }
             }, receiveValue: { data in
                 do {

@@ -42,6 +42,16 @@
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "B20FB64C272D8E5500716945"
+               BuildableName = "MHMealTests.xctest"
+               BlueprintName = "MHMealTests"
+               ReferencedContainer = "container:Geupsik.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
    </TestAction>
    <LaunchAction
@@ -56,8 +66,10 @@
       allowLocationSimulation = "YES"
       launchAutomaticallySubstyle = "8"
       notificationPayloadFile = "watchMeal Extension/PushNotificationPayload.apns">
-      <BuildableProductRunnable
-         runnableDebuggingMode = "0">
+      <RemoteRunnable
+         runnableDebuggingMode = "2"
+         BundleIdentifier = "com.apple.Carousel"
+         RemotePath = "/MuhakMeal">
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "B234402A2496574900F08716"
@@ -65,7 +77,7 @@
             BlueprintName = "watchMeal"
             ReferencedContainer = "container:Geupsik.xcodeproj">
          </BuildableReference>
-      </BuildableProductRunnable>
+      </RemoteRunnable>
    </LaunchAction>
    <ProfileAction
       buildConfiguration = "Release"
@@ -75,8 +87,10 @@
       debugDocumentVersioning = "YES"
       launchAutomaticallySubstyle = "8"
       notificationPayloadFile = "watchMeal Extension/PushNotificationPayload.apns">
-      <BuildableProductRunnable
-         runnableDebuggingMode = "0">
+      <RemoteRunnable
+         runnableDebuggingMode = "2"
+         BundleIdentifier = "com.apple.Carousel"
+         RemotePath = "/MuhakMeal">
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "B234402A2496574900F08716"
@@ -84,7 +98,16 @@
             BlueprintName = "watchMeal"
             ReferencedContainer = "container:Geupsik.xcodeproj">
          </BuildableReference>
-      </BuildableProductRunnable>
+      </RemoteRunnable>
+      <MacroExpansion>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "B234402A2496574900F08716"
+            BuildableName = "watchMeal.app"
+            BlueprintName = "watchMeal"
+            ReferencedContainer = "container:Geupsik.xcodeproj">
+         </BuildableReference>
+      </MacroExpansion>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Debug">

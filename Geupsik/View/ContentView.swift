@@ -30,7 +30,7 @@ struct ContentView: View {
                     if showCalendar {
                         calendarSelector
                     }
-                    if viewModel.mealList.count == 5 {
+                    if viewModel.mealList.count >= 5 {
                         ForEach(viewModel.mealList, id: \.date) { meal in
                             if viewModel.isNotiPhone {
                                 NavigationLink(destination: MealDetailViewiPad(meal: meal)) {

@@ -97,7 +97,7 @@ extension Date {
             return result
         case 7: // Saturday
             var dateList: [Date] = appendDates(date: self, start: 0, end: 6)
-            dateList.remove(at: 2)
+            dateList.remove(at: 1)
             return dateList
         default:
             return [Date()]
