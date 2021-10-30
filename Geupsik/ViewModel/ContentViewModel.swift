@@ -72,9 +72,9 @@ class ContentViewModel: ObservableObject {
                 // Reorder by Date List
                 if self.mealType == .breakfast {
                     if tempMealList.count == 6 {
-                        print(tempMealList.map {
-                            $0.date
-                        })
+//                        print(tempMealList.map {
+//                            $0.date
+//                        })
                         self.mealList = tempMealList.reorder(by: self.dateList)
                     }
                 } else {
