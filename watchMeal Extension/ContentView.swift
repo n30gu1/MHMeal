@@ -11,7 +11,7 @@ import SwiftUI
 struct ContentView: View {
     @ObservedObject var viewModel = ContentViewModel()
     var body: some View {
-        if viewModel.mealList.count == 5 {
+        if viewModel.mealList.count >= 5 {
             List(viewModel.mealList, id: \.self) { meal in
                 NavigationLink(destination: MealView(meal: meal)) {
                     Text(meal.date!.formatShort())

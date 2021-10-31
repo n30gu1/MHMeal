@@ -89,8 +89,17 @@ class ContentViewModel: ObservableObject {
         
         for date in dateList {
             loader.fetch(date: date).sink(receiveCompletion: { _ in
-                if tempMealList.count == 5 {
-                    self.mealList = tempMealList.reorder(by: dateList)
+                if self.mealType == .breakfast {
+                    if tempMealList.count == 6 {
+//                        print(tempMealList.map {
+//                            $0.date
+//                        })
+                        self.mealList = tempMealList.reorder(by: dateList)
+                    }
+                } else {
+                    if tempMealList.count == 5 {
+                        self.mealList = tempMealList.reorder(by: dateList)
+                    }
                 }
             }, receiveValue: { data in
                 do {
