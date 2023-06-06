@@ -38,7 +38,7 @@ struct DateSelBoxView: View {
     var body: some View {
         GeometryReader { geometry in
             let openedState = CGPoint(x: 0, y: geometry.size.height / 2)
-            var closedState = CGPoint(x: 0, y: geometry.size.height * 1.24)
+            let closedState = CGPoint(x: 0, y: geometry.size.height * 1.24)
             ZStack {
                 RoundedRectangle(cornerRadius: 10)
                     .foregroundColor(Color("BoxColor"))

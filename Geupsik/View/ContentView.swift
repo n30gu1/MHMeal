@@ -15,7 +15,7 @@ struct ContentView: View {
     
     var body: some View {
         ZStack {
-            NavigationView {
+            NavigationStack {
                 List {
                     Picker("", selection: $viewModel.mealType) {
                         Text("Breakfast").tag(MealType.breakfast)
@@ -23,20 +23,21 @@ struct ContentView: View {
                         Text("Dinner").tag(MealType.dinner)
                     }
                     .pickerStyle(SegmentedPickerStyle())
+                    .listRowSeparator(.hidden)
                     .onChange(of: viewModel.mealType) { _ in
                         viewModel.fetch()
                     }
-                    if showCalendar {
-                        calendarSelector
-                    }
+                    
                     if viewModel.mealList.count >= 5 {
                         ForEach(viewModel.mealList, id: \.date) { meal in
                             if viewModel.isNotiPhone {
                                 NavigationLink(destination: MealDetailViewiPad(meal: meal)) {
                                     MealListCelliPad(meal: meal)
                                 }
+                                .listRowSeparator(.hidden)
                             } else {
                                 MealListCell(meal: meal)
+                                    .listRowSeparator(.hidden)
                             }
                         }
                     } else {
@@ -46,24 +47,21 @@ struct ContentView: View {
                                 .progressViewStyle(CircularProgressViewStyle())
                             Spacer()
                         }
+                        .listRowSeparator(.hidden)
                     }
                     
                     if !viewModel.isNotiPhone {
                         Rectangle()
+                            .listRowSeparator(.hidden)
                             .foregroundColor(.clear)
                             .frame(height: 60)
                     }
                     
                 }
                 .listStyle(InsetListStyle())
-                .listSectionSeparator(.hidden)
-                .listRowSeparator(.hidden)
                 .refreshable {
                     viewModel.refresh()
                 }
-//                .pullToRefresh(isShowing: $viewModel.isRefreshing) {
-//                    viewModel.refresh()
-//                }
                 .navigationBarTitle("Meals")
                 .navigationBarItems(
                     leading: viewModel.isNotiPhone ? AnyView(showCalendarButton) : AnyView(EmptyView()),
@@ -106,6 +104,10 @@ struct ContentView: View {
         }) {
             Image(systemName: "calendar")
         }
+        .popover(isPresented: $showCalendar, content: {
+            calendarSelector
+                .frame(minWidth: 400)
+        })
     }
 }
 
