@@ -11,7 +11,6 @@ import UIKit
 
 struct ContentView: View {
     @ObservedObject var viewModel = ContentViewModel()
-    @EnvironmentObject var delegate: ExtensionDelegate
     
     var body: some View {
         if viewModel.mealList.count >= 5 {
@@ -22,13 +21,14 @@ struct ContentView: View {
             }
             .listStyle(CarouselListStyle())
             .navigationBarTitle("\(viewModel.mealType.localizedString)")
+            .onReceive(NotificationCenter.default.publisher(for: .watchAppDidBecomeActive)) { _ in
+                viewModel.determineMealType()
+                viewModel.determineIsNextDay()
+                viewModel.fetch()
+            }
         } else {
             ProgressView()
         }
-            .onReceive(delegate.willEnterForegroundPublisher) { _ in
-                
-                // Add your data refreshing logic here
-            }
     }
 }
 
