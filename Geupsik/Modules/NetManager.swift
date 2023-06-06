@@ -22,7 +22,7 @@ final class NetManager {
             return f
         }()
 
-        return URLSession.shared.dataTaskPublisher(for: URL(string: "https://school.gyo6.net/muhakgo/food/\(dateFormatter.string(from: date))/\(self.mealType.rawValue)")!)
+        return URLSession.shared.dataTaskPublisher(for: URL(string: "https://school.gyo6.net/muhakgo/food/\(dateFormatter.string(from: date))/\(self.mealType.id)")!)
             .receive(on: DispatchQueue.main)
             .map { String(data: $0.data, encoding: .utf8) ?? "nil" }
             .eraseToAnyPublisher()

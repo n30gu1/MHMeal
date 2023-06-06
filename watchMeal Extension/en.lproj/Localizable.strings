@@ -6,3 +6,8 @@
   Copyright © 2020 n30gu1. All rights reserved.
 */
 "Meals" = "Meals";
+
+"Breakfast" = "Breakfast";
+"Lunch" = "Lunch";
+"Dinner" = "Dinner";
+

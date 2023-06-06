@@ -14,4 +14,14 @@ enum MealType: String, Identifiable, CaseIterable {
     case dinner = "dinner"
     
     var id: String { self.rawValue }
+    var localizedString: String {
+        switch self {
+        case .breakfast:
+            return NSLocalizedString("Breakfast", comment: "Breakfast")
+        case .lunch:
+            return NSLocalizedString("Lunch", comment: "Lunch")
+        case .dinner:
+            return NSLocalizedString("Dinner", comment: "Dinner")
+        }
+    }
 }

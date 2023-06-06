@@ -8,7 +8,6 @@
 
 import SwiftUI
 import Combine
-import SwiftUIRefresh
 
 struct ContentView: View {
     @ObservedObject var viewModel = ContentViewModel()
@@ -54,14 +53,17 @@ struct ContentView: View {
                             .foregroundColor(.clear)
                             .frame(height: 60)
                     }
-                }
-                .introspectTableView { tableView in
-                    tableView.separatorStyle = .none
+                    
                 }
                 .listStyle(InsetListStyle())
-                .pullToRefresh(isShowing: $viewModel.isRefreshing) {
+                .listSectionSeparator(.hidden)
+                .listRowSeparator(.hidden)
+                .refreshable {
                     viewModel.refresh()
                 }
+//                .pullToRefresh(isShowing: $viewModel.isRefreshing) {
+//                    viewModel.refresh()
+//                }
                 .navigationBarTitle("Meals")
                 .navigationBarItems(
                     leading: viewModel.isNotiPhone ? AnyView(showCalendarButton) : AnyView(EmptyView()),

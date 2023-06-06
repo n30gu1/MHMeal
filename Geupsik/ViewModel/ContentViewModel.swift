@@ -14,7 +14,6 @@ import UIKit
 class ContentViewModel: ObservableObject {
     @Published var date = Date()
     @Published var showCalendar = false
-    @Published var isRefreshing = false
     @Published var dateList = Date().autoWeekday()
     @Published var mealList: [Meal] = []
     @Published var isNotiPhone = UIDevice.current.model != "iPhone"
@@ -42,7 +41,7 @@ class ContentViewModel: ObservableObject {
         var noMealString: String?
         var errorString: String?
         
-        switch Locale.current.languageCode {
+        switch Locale.current.language.languageCode?.identifier {
         case "ko":
             noMealString = "급식이 없습니다."
             errorString = "오류"
@@ -138,7 +137,6 @@ class ContentViewModel: ObservableObject {
     // Refresh Function
     func refresh() {
         self.fetch()
-        self.isRefreshing = false
     }
     
     // Date Changer Function

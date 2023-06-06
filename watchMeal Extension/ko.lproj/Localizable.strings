@@ -6,3 +6,7 @@
   Copyright © 2020 n30gu1. All rights reserved.
 */
 "Meals" = "급식";
+
+"Breakfast" = "조식";
+"Lunch" = "중식";
+"Dinner" = "석식";

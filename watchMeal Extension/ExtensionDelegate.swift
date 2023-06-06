@@ -7,8 +7,11 @@
 //
 
 import WatchKit
+import Combine
 
-class ExtensionDelegate: NSObject, WKExtensionDelegate {
+@main
+class ExtensionDelegate: NSObject, WKApplicationDelegate {
+    let willEnterForegroundPublisher = PassthroughSubject<Void, Never>()
 
     func applicationDidFinishLaunching() {
         // Perform any final initialization of your application.
@@ -16,6 +19,8 @@ class ExtensionDelegate: NSObject, WKExtensionDelegate {
 
     func applicationDidBecomeActive() {
         // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+        
+        willEnterForegroundPublisher.send(())
     }
 
     func applicationWillResignActive() {

@@ -11,7 +11,7 @@ import SwiftUI
 import Combine
 import SwiftSoup
 
-// Getter
+// MARK: Getter
 
 class MealGetter: ObservableObject {
     var meals: [Meal] = []
@@ -52,7 +52,7 @@ class MealGetter: ObservableObject {
         var noMealString: String?
         var errorString: String?
         
-        switch Locale.current.languageCode {
+        switch Locale.current.language.languageCode?.identifier {
         case "ko":
             noMealString = "급식이 없습니다."
             errorString = "오류"
@@ -120,7 +120,7 @@ class MealGetter: ObservableObject {
     }
 }
 
-// Timeline Provider
+// MARK: Timeline Provider
 
 struct Provider: TimelineProvider {
     func placeholder(in context: Context) -> MealEntry {
@@ -165,7 +165,7 @@ struct Provider: TimelineProvider {
     }
 }
 
-// Entry
+// MARK: Entry
 
 struct MealEntry: TimelineEntry {
     var date: Date
@@ -173,7 +173,7 @@ struct MealEntry: TimelineEntry {
     let mealType: [MealType]
 }
 
-// Entry View
+// MARK: Entry View
 
 struct mealWidgetEntryView : View {
     var entry: Provider.Entry
@@ -289,7 +289,7 @@ struct SystemMediumWidgetView : View {
     }
 }
 
-// Widget
+// MARK: Widget
 
 @main
 struct mealWidget: Widget {
@@ -305,7 +305,7 @@ struct mealWidget: Widget {
     }
 }
 
-// Entry View Preview
+// MARK: Entry View Preview
 
 struct mealWidget_Previews: PreviewProvider {
     static var previews: some View {

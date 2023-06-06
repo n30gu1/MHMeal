@@ -7,9 +7,12 @@
 //
 
 import SwiftUI
+import UIKit
 
 struct ContentView: View {
     @ObservedObject var viewModel = ContentViewModel()
+    @EnvironmentObject var delegate: ExtensionDelegate
+    
     var body: some View {
         if viewModel.mealList.count >= 5 {
             List(viewModel.mealList, id: \.self) { meal in
@@ -18,15 +21,19 @@ struct ContentView: View {
                 }
             }
             .listStyle(CarouselListStyle())
-            .navigationBarTitle("Meals")
+            .navigationBarTitle("\(viewModel.mealType.localizedString)")
         } else {
             ProgressView()
         }
+            .onReceive(delegate.willEnterForegroundPublisher) { _ in
+                
+                // Add your data refreshing logic here
+            }
     }
 }
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-            ContentView()
+        ContentView()
     }
 }

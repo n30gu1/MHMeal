@@ -10,7 +10,7 @@ import Foundation
 
 extension Date {
     func format() -> String {
-        let locale = Locale.current.languageCode
+        let locale = Locale.current.language.languageCode!.identifier
         
         let f: DateFormatter = DateFormatter()
         if locale == "ko" {
@@ -23,7 +23,7 @@ extension Date {
     }
     
     func formatShort() -> String {
-        let locale = Locale.current.languageCode
+        let locale = Locale.current.language.languageCode!.identifier
         
         let f: DateFormatter = DateFormatter()
         if locale == "ko" {

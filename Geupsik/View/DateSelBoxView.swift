@@ -38,7 +38,7 @@ struct DateSelBoxView: View {
     var body: some View {
         GeometryReader { geometry in
             let openedState = CGPoint(x: 0, y: geometry.size.height / 2)
-            let closedState = CGPoint(x: 0, y: geometry.size.height * 1.22)
+            var closedState = CGPoint(x: 0, y: geometry.size.height * 1.24)
             ZStack {
                 RoundedRectangle(cornerRadius: 10)
                     .foregroundColor(Color("BoxColor"))
@@ -51,12 +51,6 @@ struct DateSelBoxView: View {
                         .datePickerStyle(GraphicalDatePickerStyle())
                         .padding(.horizontal)
                         .opacity(isOpened ? 1 : 0)
-                    Button("Close") {
-                        withAnimation(.spring()) {
-                            isOpened = false
-                            location = closedState
-                        }
-                    }
                 }
             }
             .frame(width: isOpened ? geometry.size.width * 0.96 : geometry.size.width * 0.921, height: 400)
@@ -64,15 +58,29 @@ struct DateSelBoxView: View {
             .gesture(
                 simpleDrag.simultaneously(with: fingerDrag)
                     .onEnded{ _ in
-                    if location.y < geometry.size.height * 1.2 {
-                            withAnimation(.spring()) {
-                                location = openedState
-                                isOpened = true
+                        if isOpened {
+                            if location.y > geometry.size.height / 1.3 {
+                                withAnimation(.spring()) {
+                                    location = closedState
+                                    isOpened = false
+                                }
+                            } else {
+                                withAnimation(.spring()) {
+                                    location = openedState
+                                    isOpened = true
+                                }
                             }
                         } else {
-                            withAnimation(.spring()) {
-                                location = closedState
-                                isOpened = false
+                            if location.y < geometry.size.height * 1.2 {
+                                withAnimation(.spring()) {
+                                    location = openedState
+                                    isOpened = true
+                                }
+                            } else {
+                                withAnimation(.spring()) {
+                                    location = openedState
+                                    isOpened = true
+                                }
                             }
                         }
                     }

@@ -12,42 +12,51 @@ import SwiftSoup
 import UIKit
 
 class ContentViewModel: ObservableObject {
+    @Published var lastUpdated = Date()
     @Published var mealList: [Meal] = []
-    
-    let mealType: MealType = {
-        let zero = Calendar.current.date(bySettingHour: 0, minute: 0, second: 0, of: Date())!
-        let breakfast = Calendar.current.date(bySettingHour: 7, minute: 00, second: 00, of: Date())!
-        let lunch = Calendar.current.date(bySettingHour: 13, minute: 00, second: 00, of: Date())!
-        let dinner = Calendar.current.date(bySettingHour: 19, minute: 00, second: 00, of: Date())!
-        
-        switch Date() {
-        case zero...breakfast:
-            return MealType.breakfast
-        case breakfast...lunch:
-            return MealType.lunch
-        case lunch...dinner:
-            return MealType.dinner
-        default:
-            return MealType.breakfast
-        }
-    }()
-    
-    let isNextDay: Bool = {
-        let zero = Calendar.current.date(bySettingHour: 0, minute: 0, second: 0, of: Date())!
-        let dinner = Calendar.current.date(bySettingHour: 19, minute: 00, second: 00, of: Date())!
-        
-        switch Date() {
-        case zero...dinner:
-            return false
-        default:
-            return true
-        }
-    }()
+    @Published var mealType: MealType = .lunch
+    @Published var isNextDay: Bool = false
     
     private var cancellable = Set<AnyCancellable>()
     
     init() {
+        determineMealType()
+        determineIsNextDay()
         fetch()
+    }
+    
+    func determineMealType() {
+        self.mealType = {
+            let zero = Calendar.current.date(bySettingHour: 0, minute: 0, second: 0, of: Date())!
+            let breakfast = Calendar.current.date(bySettingHour: 7, minute: 00, second: 00, of: Date())!
+            let lunch = Calendar.current.date(bySettingHour: 13, minute: 00, second: 00, of: Date())!
+            let dinner = Calendar.current.date(bySettingHour: 19, minute: 00, second: 00, of: Date())!
+            
+            switch Date() {
+            case zero...breakfast:
+                return MealType.breakfast
+            case breakfast...lunch:
+                return MealType.lunch
+            case lunch...dinner:
+                return MealType.dinner
+            default:
+                return MealType.breakfast
+            }
+        }()
+    }
+    
+    func determineIsNextDay() {
+        self.isNextDay = {
+            let zero = Calendar.current.date(bySettingHour: 0, minute: 0, second: 0, of: Date())!
+            let dinner = Calendar.current.date(bySettingHour: 19, minute: 00, second: 00, of: Date())!
+            
+            switch Date() {
+            case zero...dinner:
+                return false
+            default:
+                return true
+            }
+        }()
     }
     
     func fetch() {
@@ -78,7 +87,7 @@ class ContentViewModel: ObservableObject {
         var noMealString: String?
         var errorString: String?
         
-        switch Locale.current.languageCode {
+        switch Locale.current.language.languageCode?.identifier {
         case "ko":
             noMealString = "급식이 없습니다."
             errorString = "오류"
