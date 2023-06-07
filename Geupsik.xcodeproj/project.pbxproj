@@ -10,6 +10,7 @@
 		B201C1DE24965B8400FC3EFA /* SwiftSoup in Frameworks */ = {isa = PBXBuildFile; productRef = B201C1DD24965B8400FC3EFA /* SwiftSoup */; };
 		B20A92C12A2EE70D00ED1481 /* SwiftSoup in Frameworks */ = {isa = PBXBuildFile; productRef = B27188622A2ED8E2003DF9F9 /* SwiftSoup */; };
 		B20FB650272D8E5500716945 /* MHMealTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B20FB64F272D8E5500716945 /* MHMealTests.swift */; };
+		B2108B282A30655A00CF2FCC /* MealType.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2108B262A30653600CF2FCC /* MealType.swift */; };
 		B21615D42497879200F53167 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = B21615D62497879200F53167 /* Localizable.strings */; };
 		B21870FE253A8C51002F8FD2 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B21870BC253A8BF8002F8FD2 /* WidgetKit.framework */; };
 		B21870FF253A8C51002F8FD2 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B21870BE253A8BF8002F8FD2 /* SwiftUI.framework */; };
@@ -63,7 +64,6 @@
 		B2D130F126B1265100886429 /* MealType.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2D130ED26B1254300886429 /* MealType.swift */; };
 		B2D130F226B1266000886429 /* Meal.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2D130EB26B124FC00886429 /* Meal.swift */; };
 		B2D130F426B1269500886429 /* ContentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2D130F326B1269500886429 /* ContentViewModel.swift */; };
-		B2D130F526B1359300886429 /* MealType.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2D130ED26B1254300886429 /* MealType.swift */; };
 		B2DB0D4626A798820056CC08 /* MealDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2DB0D4526A798820056CC08 /* MealDetailView.swift */; };
 		B2E65B922414A10A000C2D9A /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = B2E65B942414A10A000C2D9A /* Localizable.strings */; };
 		B2EE80CE26B6BF47009E8548 /* AllergyInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2EE80CD26B6BF47009E8548 /* AllergyInfoView.swift */; };
@@ -121,6 +121,7 @@
 /* Begin PBXFileReference section */
 		B20FB64D272D8E5500716945 /* MHMealTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MHMealTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B20FB64F272D8E5500716945 /* MHMealTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MHMealTests.swift; sourceTree = "<group>"; };
+		B2108B262A30653600CF2FCC /* MealType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealType.swift; sourceTree = "<group>"; };
 		B21615D52497879200F53167 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		B21615D72497879800F53167 /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/Localizable.strings; sourceTree = "<group>"; };
 		B21870BC253A8BF8002F8FD2 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
@@ -239,6 +240,7 @@
 				B2187103253A8C53002F8FD2 /* Assets.xcassets */,
 				B2187105253A8C53002F8FD2 /* Info.plist */,
 				B270F32526B2B30D00BD7171 /* Localizable.strings */,
+				B2108B262A30653600CF2FCC /* MealType.swift */,
 			);
 			path = mealWidget;
 			sourceTree = "<group>";
@@ -574,8 +576,8 @@
 				B22F84AE272AAE300057B543 /* Meal.swift in Sources */,
 				B2187102253A8C51002F8FD2 /* mealWidget.swift in Sources */,
 				B27A2CFA26B288120054E9D0 /* DateExtensions.swift in Sources */,
-				B2D130F526B1359300886429 /* MealType.swift in Sources */,
 				B2D130F026B125A800886429 /* NetManager.swift in Sources */,
+				B2108B282A30655A00CF2FCC /* MealType.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -757,7 +759,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 98882K9P37;
 				INFOPLIST_FILE = mealWidget/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
@@ -766,7 +768,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 2.4;
+				MARKETING_VERSION = 2.4.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.n30gu1.MHMeal.mealWidget;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -782,7 +784,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 98882K9P37;
 				INFOPLIST_FILE = mealWidget/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
@@ -791,7 +793,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 2.4;
+				MARKETING_VERSION = 2.4.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.n30gu1.MHMeal.mealWidget;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -808,14 +810,14 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 98882K9P37;
 				INFOPLIST_FILE = watchMeal/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 2.4;
+				MARKETING_VERSION = 2.4.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.n30gu1.MHMeal.watchkitapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = watchos;
@@ -833,14 +835,14 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 98882K9P37;
 				INFOPLIST_FILE = watchMeal/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 2.4;
+				MARKETING_VERSION = 2.4.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.n30gu1.MHMeal.watchkitapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = watchos;
@@ -981,7 +983,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Geupsik/Preview Content\"";
 				DEVELOPMENT_TEAM = 98882K9P37;
 				ENABLE_PREVIEWS = YES;
@@ -991,7 +993,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.4;
+				MARKETING_VERSION = 2.4.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.n30gu1.MHMeal;
 				PRODUCT_NAME = MHMeal;
 				SUPPORTS_MACCATALYST = NO;
@@ -1006,7 +1008,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Geupsik/Preview Content\"";
 				DEVELOPMENT_TEAM = 98882K9P37;
 				ENABLE_PREVIEWS = YES;
@@ -1016,7 +1018,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.4;
+				MARKETING_VERSION = 2.4.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.n30gu1.MHMeal;
 				PRODUCT_NAME = MHMeal;
 				SUPPORTS_MACCATALYST = NO;

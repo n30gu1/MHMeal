@@ -34,15 +34,18 @@ class MealGetter: ObservableObject {
         }
     }()
     
-    let isNextDay: Bool = {
+    let isNextDay: [Bool] = {
         let zero = Calendar.current.date(bySettingHour: 0, minute: 0, second: 0, of: Date())!
+        let lunch = Calendar.current.date(bySettingHour: 13, minute: 00, second: 00, of: Date())!
         let dinner = Calendar.current.date(bySettingHour: 19, minute: 00, second: 00, of: Date())!
         
         switch Date() {
-        case zero...dinner:
-            return false
+        case zero...lunch:
+            return [false, false]
+        case lunch...dinner:
+            return [false, true]
         default:
-            return true
+            return [true, true]
         }
     }()
     
@@ -77,7 +80,7 @@ class MealGetter: ObservableObject {
             
             var mealList: [String] = []
             
-            if let url = URL(string: "https://school.gyo6.net/muhakgo/food/\(dFormatter.string(from: isNextDay ? Date().addingTimeInterval(86400) : Date()))/\(self.mealType[i].rawValue)") {
+            if let url = URL(string: "https://school.gyo6.net/muhakgo/food/\(dFormatter.string(from: isNextDay[i] ? Date().addingTimeInterval(86400) : Date()))/\(self.mealType[i].rawValue)") {
                 do {
                     let getContents = try String(contentsOf: url)
                     contents = getContents
@@ -153,7 +156,7 @@ struct Provider: TimelineProvider {
         
         var date = Date()
         
-        if getter.isNextDay {
+        if getter.isNextDay[0] {
             date = date.addingTimeInterval(86400)
         }
             
