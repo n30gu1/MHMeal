@@ -38,18 +38,21 @@ struct DateSelBoxView: View {
     var body: some View {
         GeometryReader { geometry in
             let openedState = CGPoint(x: 0, y: geometry.size.height / 2)
-            let closedState = CGPoint(x: 0, y: geometry.size.height * 1.24)
+            let closedState = CGPoint(x: 0, y: geometry.size.height + 130)
             ZStack {
                 RoundedRectangle(cornerRadius: 10)
                     .foregroundColor(Color("BoxColor"))
                     .shadow(radius: 1)
-                VStack {
+                    .frame(height: 400)
+                VStack(spacing: 0) {
                     TopNavigator(date: $date)
-                        .padding()
+                        .frame(height: 42)
+                        .padding([.top, .horizontal], 16)
                     DatePicker("", selection: $date, displayedComponents: .date)
                         .labelsHidden()
                         .datePickerStyle(GraphicalDatePickerStyle())
                         .padding(.horizontal)
+                        .frame(width: geometry.size.width * 0.921, height: 342)
                         .opacity(isOpened ? 1 : 0)
                 }
             }

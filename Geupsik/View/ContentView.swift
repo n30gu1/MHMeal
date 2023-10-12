@@ -99,7 +99,6 @@ struct ContentView: View {
         }
         .popover(isPresented: $showCalendar, content: {
             calendarSelector
-                .frame(minWidth: 400)
         })
     }
 }
@@ -109,9 +108,24 @@ struct ContentView_Previews: PreviewProvider {
         Group {
             ContentView()
                 .environment(\.locale, Locale(identifier: "ko"))
-            ContentView()
-                .environment(\.colorScheme, .dark)
-                .previewDevice("iPhone SE (2nd generation)")
+//            ContentView()
+//                .environment(\.colorScheme, .dark)
+//                .previewDevice("iPhone SE (2nd generation)")
+//            ContentView()
+//                .environment(\.locale, Locale(identifier: "ko"))
+//                .previewDevice("iPhone 15 Pro")
+//            ContentView()
+//                .environment(\.locale, Locale(identifier: "ko"))
+//                .previewDevice("iPhone 15 Pro Max")
+//            ContentView()
+//                .environment(\.locale, Locale(identifier: "ko"))
+//                .previewDevice("iPhone 8 Plus")
+//            ContentView()
+//                .environment(\.locale, Locale(identifier: "ko"))
+//                .previewDevice("iPad Pro (12.9-inch) (6th generation)")
+//            ContentView()
+//                .environment(\.locale, Locale(identifier: "ko"))
+//                .previewDevice("iPad Pro (12.9-inch) (2nd generation)")
         }
     }
 }
