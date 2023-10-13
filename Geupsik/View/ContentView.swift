@@ -87,6 +87,8 @@ struct ContentView: View {
             .onChange(of: viewModel.date) { newDate in
                 viewModel.changeDate(newDate)
             }
+            .frame(width: 340)
+            .padding()
     }
     
     var showCalendarButton: some View {
@@ -106,8 +108,8 @@ struct ContentView: View {
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         Group {
-            ContentView()
-                .environment(\.locale, Locale(identifier: "ko"))
+//            ContentView()
+//                .environment(\.locale, Locale(identifier: "ko"))
 //            ContentView()
 //                .environment(\.colorScheme, .dark)
 //                .previewDevice("iPhone SE (2nd generation)")
@@ -120,9 +122,9 @@ struct ContentView_Previews: PreviewProvider {
 //            ContentView()
 //                .environment(\.locale, Locale(identifier: "ko"))
 //                .previewDevice("iPhone 8 Plus")
-//            ContentView()
-//                .environment(\.locale, Locale(identifier: "ko"))
-//                .previewDevice("iPad Pro (12.9-inch) (6th generation)")
+            ContentView()
+                .environment(\.locale, Locale(identifier: "ko"))
+                .previewDevice("iPad14,6")
 //            ContentView()
 //                .environment(\.locale, Locale(identifier: "ko"))
 //                .previewDevice("iPad Pro (12.9-inch) (2nd generation)")
