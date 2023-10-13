@@ -8,120 +8,6 @@
 
 import WidgetKit
 import SwiftUI
-import Combine
-import SwiftSoup
-
-// MARK: Getter
-
-class MealGetter: ObservableObject {
-    var meals: [Meal] = []
-    
-    let mealType: [MealType] = {
-        let zero = Calendar.current.date(bySettingHour: 0, minute: 0, second: 0, of: Date())!
-        let breakfast = Calendar.current.date(bySettingHour: 7, minute: 00, second: 00, of: Date())!
-        let lunch = Calendar.current.date(bySettingHour: 13, minute: 00, second: 00, of: Date())!
-        let dinner = Calendar.current.date(bySettingHour: 19, minute: 00, second: 00, of: Date())!
-        
-        switch Date() {
-        case zero...breakfast:
-            return [MealType.breakfast, MealType.lunch]
-        case breakfast...lunch:
-            return [MealType.lunch, MealType.dinner]
-        case lunch...dinner:
-            return [MealType.dinner, MealType.breakfast]
-        default:
-            return [MealType.breakfast, MealType.lunch]
-        }
-    }()
-    
-    let isNextDay: [Bool] = {
-        let zero = Calendar.current.date(bySettingHour: 0, minute: 0, second: 0, of: Date())!
-        let lunch = Calendar.current.date(bySettingHour: 13, minute: 00, second: 00, of: Date())!
-        let dinner = Calendar.current.date(bySettingHour: 19, minute: 00, second: 00, of: Date())!
-        
-        switch Date() {
-        case zero...lunch:
-            return [false, false]
-        case lunch...dinner:
-            return [false, true]
-        default:
-            return [true, true]
-        }
-    }()
-    
-    var cancellable: AnyCancellable? = nil
-    
-    private func fetch() {
-        var noMealString: String?
-        var errorString: String?
-        
-        switch Locale.current.language.languageCode?.identifier {
-        case "ko":
-            noMealString = "급식이 없습니다."
-            errorString = "오류"
-        default:
-            noMealString = "No meal today."
-            errorString = "Error"
-        }
-        
-        func clean(_ text: String) -> [String] {
-            let first = text.replacingOccurrences(of: "\n", with: "")
-            return first.components(separatedBy: "<br>")
-        }
-        
-        for i in 0...1 {
-            var contents: String = ""
-            
-            let dFormatter: DateFormatter = {
-                let f = DateFormatter()
-                f.dateFormat = "yyyy/MM/dd"
-                return f
-            }()
-            
-            var mealList: [String] = []
-            
-            if let url = URL(string: "https://school.gyo6.net/muhakgo/food/\(dFormatter.string(from: isNextDay[i] ? Date().addingTimeInterval(86400) : Date()))/\(self.mealType[i].rawValue)") {
-                do {
-                    let getContents = try String(contentsOf: url)
-                    contents = getContents
-                } catch {
-                    // contents could not be loaded
-                    mealList = [errorString!]
-                }
-            } else {
-                // Bad URL
-                mealList = [errorString!]
-            }
-            
-            do {
-                let doc: Document = try SwiftSoup.parse(contents)
-                
-                guard let meal: Element = try doc.select("td > div").first() else {
-                    mealList = [errorString!]
-                    return
-                }
-                let mealText = try meal.html()
-                let mealResult = clean(mealText)
-                
-                if mealResult.count == 1 && mealResult[0] == "" {
-                    mealList = [noMealString!]
-                } else {
-                    mealList = mealResult
-                }
-            } catch Exception.Error(_, _) {
-                return
-            } catch {
-                return
-            }
-            
-            self.meals.append(Meal(meal: mealList))
-        }
-    }
-
-    init() {
-        fetch()
-    }
-}
 
 // MARK: Timeline Provider
 
@@ -136,7 +22,7 @@ struct Provider: TimelineProvider {
             mealType: [MealType.lunch, MealType.breakfast]
         )
     }
-
+    
     func getSnapshot(in context: Context, completion: @escaping (MealEntry) -> ()) {
         let entry = MealEntry(
             date: Date(),
@@ -148,7 +34,7 @@ struct Provider: TimelineProvider {
         )
         completion(entry)
     }
-
+    
     func getTimeline(in context: Context, completion: @escaping (Timeline<Entry>) -> ()) {
         var entries: [MealEntry] = []
         
@@ -159,10 +45,10 @@ struct Provider: TimelineProvider {
         if getter.isNextDay[0] {
             date = date.addingTimeInterval(86400)
         }
-            
+        
         let entry = MealEntry(date: date, meal: getter.meals, mealType: getter.mealType)
         entries.append(entry)
-
+        
         let timeline = Timeline(entries: entries, policy: .after(Date().addingTimeInterval(3600)))
         completion(timeline)
     }
@@ -181,7 +67,7 @@ struct MealEntry: TimelineEntry {
 struct mealWidgetEntryView : View {
     var entry: Provider.Entry
     @Environment(\.widgetFamily) var widgetFamily
-
+    
     var body: some View {
         if widgetFamily == .systemSmall {
             SystemSmallWidgetView(entry: entry)
@@ -224,7 +110,7 @@ struct SystemSmallWidgetView : View {
             }
             .padding(13)
         }
-            .background(Color("WidgetBackground"))
+        .background(Color("WidgetBackground"))
     }
 }
 
@@ -243,52 +129,54 @@ struct SystemMediumWidgetView : View {
     }()
     
     var body: some View {
-        ZStack {
-            VStack {
-                Rectangle()
-                    .frame(height: 30)
-                    .foregroundColor(Color("BoxColor"))
-                    .shadow(radius: 2)
-                Spacer()
-            }
-            HStack(spacing: 8) {
-                VStack(alignment: .leading, spacing: 0) {
-                    Text(monthFormatter.string(from: entry.date))
-                        .font(.system(size: 14))
-                        .padding(.bottom, 4)
-                    Text(dayFormatter.string(from: entry.date))
-                        .font(.system(size: 50))
-                        .fontWeight(.semibold)
+        GeometryReader { geometry in
+            ZStack {
+                VStack {
+                    Rectangle()
+                        .frame(height: 30)
+                        .foregroundColor(Color("BoxColor"))
+                        .shadow(radius: 2)
                     Spacer()
                 }
-                Spacer()
-                VStack(alignment: .leading, spacing: 0) {
-                    Text(LocalizedStringKey(entry.mealType[0].rawValue))
-                        .font(.system(size: 14))
-                        .bold()
-                        .padding(.bottom, 12)
-                    ForEach(entry.meal[0].meal.prefix(6), id: \.self) {
-                        Text($0)
+                HStack(spacing: 8) {
+                    VStack(alignment: .leading, spacing: 0) {
+                        Text(monthFormatter.string(from: entry.date))
                             .font(.system(size: 14))
+                            .padding(.bottom, 4)
+                        Text(dayFormatter.string(from: entry.date))
+                            .font(.system(size: 50))
+                            .fontWeight(.semibold)
+                        Spacer()
                     }
                     Spacer()
-                }
-                VStack(alignment: .leading, spacing: 0) {
-                    Text(LocalizedStringKey(entry.mealType[1].rawValue))
-                        .font(.system(size: 14))
-                        .bold()
-                        .padding(.bottom, 12)
-                    ForEach(entry.meal[1].meal.prefix(6), id: \.self) {
-                        Text($0)
+                    VStack(alignment: .leading, spacing: 0) {
+                        Text(LocalizedStringKey(entry.mealType[0].rawValue))
                             .font(.system(size: 14))
+                            .bold()
+                            .padding(.bottom, 12)
+                        ForEach(entry.meal[0].meal.prefix(6), id: \.self) {
+                            Text($0)
+                                .font(.system(size: 14))
+                        }
+                        Spacer()
                     }
-                    Spacer()
+                    VStack(alignment: .leading, spacing: 0) {
+                        Text(LocalizedStringKey(entry.mealType[1].rawValue))
+                            .font(.system(size: 14))
+                            .bold()
+                            .padding(.bottom, 12)
+                        ForEach(entry.meal[1].meal.prefix(6), id: \.self) {
+                            Text($0)
+                                .font(.system(size: 14))
+                        }
+                        Spacer()
+                    }
                 }
+                .padding(8)
+                .padding(.horizontal, 8)
             }
-            .padding(8)
-            .padding(.horizontal, 8)
+            .frame(width: geometry.size.width, height: geometry.size.height)
         }
-            .background(Color("WidgetBackground"))
     }
 }
 
@@ -297,13 +185,22 @@ struct SystemMediumWidgetView : View {
 @main
 struct mealWidget: Widget {
     let kind: String = "mealWidget"
-
+    
     var body: some WidgetConfiguration {
         StaticConfiguration(kind: kind, provider: Provider()) { entry in
-            mealWidgetEntryView(entry: entry)
+            if #available(iOSApplicationExtension 17.0, *) {
+                mealWidgetEntryView(entry: entry)
+                    .containerBackground(for: .widget) {
+                        Color("WidgetBackground")
+                    }
+            } else {
+                mealWidgetEntryView(entry: entry)
+                    .background(Color("WidgetBackground"))
+            }
         }
+        .contentMarginsDisabledIfAvailable()
         .configurationDisplayName(LocalizedStringKey("Today's meal"))
-        .description(LocalizedStringKey("Informs today's meal."))
+        .description(LocalizedStringKey("Inform today's meal."))
         .supportedFamilies([.systemSmall, .systemMedium])
     }
 }
@@ -321,8 +218,8 @@ struct mealWidget_Previews: PreviewProvider {
                 ],
                 mealType: [MealType.lunch, MealType.breakfast]
             ))
-                .preferredColorScheme(.light)
-                .previewContext(WidgetPreviewContext(family: .systemSmall))
+            .preferredColorScheme(.light)
+            .previewContext(WidgetPreviewContext(family: .systemSmall))
             mealWidgetEntryView(entry: MealEntry(
                 date: Date(),
                 meal: [
@@ -331,8 +228,8 @@ struct mealWidget_Previews: PreviewProvider {
                 ],
                 mealType: [MealType.lunch, MealType.breakfast]
             ))
-                .preferredColorScheme(.dark)
-                .previewContext(WidgetPreviewContext(family: .systemSmall))
+            .preferredColorScheme(.dark)
+            .previewContext(WidgetPreviewContext(family: .systemSmall))
         }
         
         Group {
@@ -344,8 +241,8 @@ struct mealWidget_Previews: PreviewProvider {
                 ],
                 mealType: [MealType.lunch, MealType.breakfast]
             ))
-                .preferredColorScheme(.light)
-                .previewContext(WidgetPreviewContext(family: .systemMedium))
+            .preferredColorScheme(.light)
+            .previewContext(WidgetPreviewContext(family: .systemMedium))
             mealWidgetEntryView(entry: MealEntry(
                 date: Date(),
                 meal: [
@@ -354,8 +251,23 @@ struct mealWidget_Previews: PreviewProvider {
                 ],
                 mealType: [MealType.lunch, MealType.breakfast]
             ))
-                .preferredColorScheme(.dark)
-                .previewContext(WidgetPreviewContext(family: .systemMedium))
+            .preferredColorScheme(.dark)
+            .previewContext(WidgetPreviewContext(family: .systemMedium))
+        }
+    }
+}
+
+extension WidgetConfiguration
+{
+    func contentMarginsDisabledIfAvailable() -> some WidgetConfiguration
+    {
+        if #available(iOSApplicationExtension 17.0, *)
+        {
+            return self.contentMarginsDisabled()
+        }
+        else
+        {
+            return self
         }
     }
 }

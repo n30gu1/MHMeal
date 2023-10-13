@@ -65,6 +65,7 @@
 		B2DB0D4626A798820056CC08 /* MealDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2DB0D4526A798820056CC08 /* MealDetailView.swift */; };
 		B2E65B922414A10A000C2D9A /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = B2E65B942414A10A000C2D9A /* Localizable.strings */; };
 		B2EE80CE26B6BF47009E8548 /* AllergyInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2EE80CD26B6BF47009E8548 /* AllergyInfoView.swift */; };
+		B2F9EBCB2AD8C34700FE7F53 /* MealGetter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2F9EBCA2AD8C34700FE7F53 /* MealGetter.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -187,6 +188,7 @@
 		B2E65B932414A10A000C2D9A /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/Localizable.strings; sourceTree = "<group>"; };
 		B2E65B952414A10D000C2D9A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		B2EE80CD26B6BF47009E8548 /* AllergyInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllergyInfoView.swift; sourceTree = "<group>"; };
+		B2F9EBCA2AD8C34700FE7F53 /* MealGetter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MealGetter.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -261,6 +263,7 @@
 			isa = PBXGroup;
 			children = (
 				B2187101253A8C51002F8FD2 /* mealWidget.swift */,
+				B2F9EBCA2AD8C34700FE7F53 /* MealGetter.swift */,
 				B2187103253A8C53002F8FD2 /* Assets.xcassets */,
 				B2187105253A8C53002F8FD2 /* Info.plist */,
 				B270F32526B2B30D00BD7171 /* Localizable.strings */,
@@ -665,6 +668,7 @@
 				B22F84AE272AAE300057B543 /* Meal.swift in Sources */,
 				B2187102253A8C51002F8FD2 /* mealWidget.swift in Sources */,
 				B27A2CFA26B288120054E9D0 /* DateExtensions.swift in Sources */,
+				B2F9EBCB2AD8C34700FE7F53 /* MealGetter.swift in Sources */,
 				B2D130F026B125A800886429 /* NetManager.swift in Sources */,
 				B2108B282A30655A00CF2FCC /* MealType.swift in Sources */,
 			);
