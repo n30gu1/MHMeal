@@ -38,5 +38,11 @@ class MHMealTests: XCTestCase {
         viewModel.fetch()
         
     }
+    
+//    func testNetManager() throws {
+//        let netManager = NetManager()
+//        
+//        netManager.fetch(from: Date(), to: Date().addingTimeInterval(604800))
+//    }
 
 }

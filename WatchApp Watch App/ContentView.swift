@@ -23,19 +23,25 @@ struct ContentView: View {
             }
             .onDisappear {
                 viewModel.determineIsNextDay()
-                viewModel.fetch()
+//                viewModel.fetch()
             }
         } detail: {
-            if viewModel.mealList.count >= 5 {
+            if viewModel.didLoad {
                 TabView {
-                    MealView(meal: viewModel.mealList.first!)
+                    MealView(meal: viewModel.mealList.first {
+                            $0.MMEAL_SC_CODE == viewModel.mealType &&
+                            $0.MLSV_YMD == Calendar.current.date(bySettingHour: 0, minute: 0, second: 0, of: Date())
+                    } ?? viewModel.mealList.first!)
                         .background(Color("BackgroundColor").gradient)
                     List {
-                        ForEach(viewModel.mealList, id: \.self) { meal in
+                        ForEach(viewModel.mealList.filter {
+                            $0.MMEAL_SC_CODE == viewModel.mealType &&
+                            $0.MLSV_YMD != Calendar.current.date(bySettingHour: 0, minute: 0, second: 0, of: Date())
+                        }, id: \.self) { meal in
                             Button {
                                 self.present.toggle()
                             } label: {
-                                Text(meal.date!.formatShort())
+                                Text(meal.MLSV_YMD!.formatShort())
                             }
                             .sheet(isPresented: $present) {
                                 MealView(meal: meal)

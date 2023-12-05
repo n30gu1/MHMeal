@@ -8,6 +8,7 @@
 
 import WidgetKit
 import SwiftUI
+import ActivityKit
 
 // MARK: Timeline Provider
 
@@ -36,21 +37,53 @@ struct Provider: TimelineProvider {
     }
     
     func getTimeline(in context: Context, completion: @escaping (Timeline<Entry>) -> ()) {
-        var entries: [MealEntry] = []
+        let mealType: [MealType] = {
+            let zero = Calendar.current.date(bySettingHour: 0, minute: 0, second: 0, of: Date())!
+            let breakfast = Calendar.current.date(bySettingHour: 7, minute: 00, second: 00, of: Date())!
+            let lunch = Calendar.current.date(bySettingHour: 13, minute: 00, second: 00, of: Date())!
+            let dinner = Calendar.current.date(bySettingHour: 19, minute: 00, second: 00, of: Date())!
+            
+            switch Date() {
+            case zero...breakfast:
+                return [MealType.breakfast, MealType.lunch]
+            case breakfast...lunch:
+                return [MealType.lunch, MealType.dinner]
+            case lunch...dinner:
+                return [MealType.dinner, MealType.breakfast]
+            default:
+                return [MealType.breakfast, MealType.lunch]
+            }
+        }()
         
-        let getter = MealGetter()
+        let isNextDay: [Bool] = {
+            let zero = Calendar.current.date(bySettingHour: 0, minute: 0, second: 0, of: Date())!
+            let lunch = Calendar.current.date(bySettingHour: 13, minute: 00, second: 00, of: Date())!
+            let dinner = Calendar.current.date(bySettingHour: 19, minute: 00, second: 00, of: Date())!
+            
+            switch Date() {
+            case zero...lunch:
+                return [false, false]
+            case lunch...dinner:
+                return [false, true]
+            default:
+                return [true, true]
+            }
+        }()
         
-        var date = Date()
-        
-        if getter.isNextDay[0] {
-            date = date.addingTimeInterval(86400)
+        Task {
+            let meal = await fetchMeal(mealType: mealType, isNextDay: isNextDay)
+            
+            var date = Date()
+            
+            if isNextDay[0] {
+                date = date.addingTimeInterval(86400)
+            }
+            
+            let entry = MealEntry(date: date, meal: meal, mealType: mealType)
+            
+            let timeline = Timeline(entries: [entry], policy: .after(Date().addingTimeInterval(3600)))
+            completion(timeline)
         }
-        
-        let entry = MealEntry(date: date, meal: getter.meals, mealType: getter.mealType)
-        entries.append(entry)
-        
-        let timeline = Timeline(entries: entries, policy: .after(Date().addingTimeInterval(3600)))
-        completion(timeline)
     }
 }
 
@@ -102,9 +135,13 @@ struct SystemSmallWidgetView : View {
                     .fontWeight(.regular)
                 Spacer()
                 VStack(alignment: .leading, spacing: 0) {
-                    ForEach(entry.meal[0].meal.prefix(3), id: \.self) {
-                        Text($0)
-                            .font(.system(size: 16))
+                    if entry.meal.count != 0 {
+                        ForEach(entry.meal[0].DDISH_NM.prefix(3), id: \.self) {
+                            Text($0)
+                                .font(.system(size: 16))
+                        }
+                    } else {
+                        Text("Loading")
                     }
                 }
             }
@@ -154,7 +191,7 @@ struct SystemMediumWidgetView : View {
                             .font(.system(size: 14))
                             .bold()
                             .padding(.bottom, 12)
-                        ForEach(entry.meal[0].meal.prefix(6), id: \.self) {
+                        ForEach(entry.meal[0].DDISH_NM.prefix(6), id: \.self) {
                             Text($0)
                                 .font(.system(size: 14))
                         }
@@ -165,7 +202,7 @@ struct SystemMediumWidgetView : View {
                             .font(.system(size: 14))
                             .bold()
                             .padding(.bottom, 12)
-                        ForEach(entry.meal[1].meal.prefix(6), id: \.self) {
+                        ForEach(entry.meal[1].DDISH_NM.prefix(6), id: \.self) {
                             Text($0)
                                 .font(.system(size: 14))
                         }

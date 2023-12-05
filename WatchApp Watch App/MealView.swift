@@ -14,12 +14,12 @@ struct MealView: View {
     var body: some View {
         List {
             VStack(alignment: .leading, spacing: 0) {
-                ForEach(meal.meal, id: \.self) {
+                ForEach(meal.DDISH_NM, id: \.self) {
                     Text($0)
                 }
             }
             HStack(alignment: .bottom, spacing: 0) {
-                Text(meal.kcal ?? "???")
+                Text(meal.CAL_INFO)
                     .font(.system(size: 24))
                     .bold()
                 Text("kcal")
@@ -27,7 +27,7 @@ struct MealView: View {
             }
         }
         .listStyle(CarouselListStyle())
-        .navigationTitle("\(meal.date!.formatShort())")
+        .navigationTitle("\(meal.MLSV_YMD!.formatShort())")
     }
 }
 

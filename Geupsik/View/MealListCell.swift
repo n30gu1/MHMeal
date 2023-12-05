@@ -15,7 +15,7 @@ struct MealListCell: View {
     var body: some View {
         VStack(spacing: 3) {
             HStack {
-                Text(meal.date!.format())
+                Text(meal.MLSV_YMD!.format())
                     .font(.system(size: 12))
                     .fontWeight(.semibold)
                     .kerning(1.2)
@@ -33,16 +33,16 @@ struct MealListCell: View {
                     .shadow(radius: 1)
                     .foregroundColor(/*@START_MENU_TOKEN@*/Color("CellColor")/*@END_MENU_TOKEN@*/)
                 VStack(alignment: .leading) {
-                    ForEach(meal.meal.prefix(5), id: \.self) { meal in
+                    ForEach(meal.DDISH_NM.prefix(5), id: \.self) { meal in
                         Text(meal)
                     }
-                    if meal.meal.count > 5 {
+                    if meal.DDISH_NM.count > 5 {
                         Text("...")
                     }
                     Spacer()
                     HStack(alignment: .bottom, spacing: 0) {
                         Spacer()
-                        Text(meal.kcal!)
+                        Text(meal.CAL_INFO)
                             .font(.title2)
                             .fontWeight(.semibold)
                             .offset(y: 1)
@@ -65,7 +65,7 @@ struct MealListCell: View {
 
 struct MealListCell_Previews: PreviewProvider {
     static var previews: some View {
-        MealListCell(meal: Meal(date: Date(), imageLink: nil, meal: ["1", "2", "3", "4", "5", "6", "7", "8"], origins: ["1", "2", "3", "4", "5", "6", "7", "8"], kcal: "697.4"))
+        MealListCell(meal: Meal(date: Date(), meal: ["1", "2", "3", "4", "5", "6", "7", "8"], origins: ["1", "2", "3", "4", "5", "6", "7", "8"], kcal: "697.4"))
             .previewLayout(.fixed(width: 350, height: 220))
     }
 }

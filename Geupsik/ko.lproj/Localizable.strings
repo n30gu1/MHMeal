@@ -18,6 +18,8 @@
 
 "Calories" = "열량";
 
+"Nutrients" = "영양소 함량";
+
 "Loading" = "로드 중";
 
 "Breakfast" = "조식";
@@ -31,7 +33,6 @@
 "No meal today." = "오늘 급식이 없습니다.";
 
 "Close" = "닫기";
-
 
 "About Allergy Info" = "알레르기 정보";
 

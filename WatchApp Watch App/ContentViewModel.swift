@@ -8,7 +8,6 @@
 
 import Foundation
 import Combine
-import SwiftSoup
 import UIKit
 
 class ContentViewModel: ObservableObject {
@@ -16,6 +15,8 @@ class ContentViewModel: ObservableObject {
     @Published var mealList: [Meal] = []
     @Published var mealType: MealType? = .lunch
     @Published var isNextDay: Bool = false
+    
+    @Published var didLoad = false
     
     private var cancellable = Set<AnyCancellable>()
     
@@ -60,87 +61,37 @@ class ContentViewModel: ObservableObject {
     }
     
     func fetch() {
-        let dateList: [Date] = {
+        self.didLoad = false
+        
+        let date = {
             if isNextDay {
-                if mealType == .breakfast {
-                    return Date().addingTimeInterval(86400).autoWeekdayInBreakfast()
-                }
-                return Date().addingTimeInterval(86400).autoWeekday()
+                return Date().addingTimeInterval(86400)
             } else {
-                return Date().autoWeekday()
+                return Date()
             }
         }()
         
-        self.mealList = []
-        var tempMealList: [Meal] = []
-        
-        let loader = NetManager(self.mealType ?? .lunch)
+        let loader = NetManager()
         self.cancellable = Set<AnyCancellable>()
         
-        func clean(_ text: String) -> [String] {
-            let first = text.replacingOccurrences(of: "\n", with: "")
-            return first.components(separatedBy: "<br>")
-        }
+        // Fetcher
+        let dateRange = date.range()
+        let jsonDecoder = JSONDecoder()
         
-        func cleanKcal(text: String) -> String { return text.replacingOccurrences(of: "Kcal", with: "") }
-        
-        var noMealString: String?
-        var errorString: String?
-        
-        switch Locale.current.language.languageCode?.identifier {
-        case "ko":
-            noMealString = "급식이 없습니다."
-            errorString = "오류"
-        default:
-            noMealString = "No meal today."
-            errorString = "Error"
-        }
-        
-        for date in dateList {
-            loader.fetch(date: date).sink(receiveCompletion: { _ in
-                if self.mealType == .breakfast {
-                    if tempMealList.count == 6 {
-//                        print(tempMealList.map {
-//                            $0.date
-//                        })
-                        self.mealList = tempMealList.reorder(by: dateList)
-                    }
-                } else {
-                    if tempMealList.count == 5 {
-                        self.mealList = tempMealList.reorder(by: dateList)
-                    }
-                }
-            }, receiveValue: { data in
-                do {
-                    let document: Document = try SwiftSoup.parse(data)
-                    
-                    let meal: [String] = try {
-                        let mealOptional: Element? = try document.select("td > div").first()
-                        guard let mealElement = mealOptional else { return [errorString!] }
-                        let mealRawText = try mealElement.html()
-                        var meal = clean(mealRawText)
-                        if meal.count == 1 && meal[0] == "" {
-                            meal = [noMealString!]
-                        }
-                        return meal
-                    }()
-                    
-                    let kcal: String = try {
-                        let kcalOptional: Element? = try document.select("tr > td")[1]
-                        guard let kcalElement = kcalOptional else { return errorString! }
-                        let kcalRawText = try kcalElement.text()
-                        var kcal = cleanKcal(text: kcalRawText)
-                        if kcal == "" {
-                            kcal = "???"
-                        }
-                        return kcal
-                    }()
-                    
-                    tempMealList.append(Meal(date: date, meal: meal, origins: [], kcal: kcal))
-                } catch {
-                    print(error.localizedDescription)
-                }
-            }).store(in: &cancellable)
-        }
+        loader.fetch(from: dateRange.lowerBound, to: dateRange.upperBound).sink { _ in
+            self.didLoad = true
+        } receiveValue: { data in
+            do {
+                guard let data = data as? [String : Any] else { throw NSError() }
+                guard let data = data["mealServiceDietInfo"] as? [Any] else { throw NSError() }
+                guard let data = data[1] as? [String : Any] else { throw NSError() }
+                let serialized = try JSONSerialization.data(withJSONObject: (data["row"] as! [[String : Any]]), options: .prettyPrinted)
+                self.mealList = try jsonDecoder.decode([Meal].self, from: serialized)
+            } catch {
+#if DEBUG
+                print(String(describing: error))
+#endif
+            }
+        }.store(in: &cancellable)
     }
 }

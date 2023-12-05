@@ -16,20 +16,28 @@ struct ContentView: View {
     var body: some View {
         ZStack {
             NavigationStack {
-                List {
+                VStack {
                     Picker("", selection: $viewModel.mealType) {
                         Text("Breakfast").tag(MealType.breakfast)
                         Text("Lunch").tag(MealType.lunch)
                         Text("Dinner").tag(MealType.dinner)
                     }
                     .pickerStyle(SegmentedPickerStyle())
-                    .listRowSeparator(.hidden)
-                    .onChange(of: viewModel.mealType) { _ in
-                        viewModel.fetch()
-                    }
-                    
-                    if viewModel.mealList.count >= 5 {
-                        ForEach(viewModel.mealList, id: \.date) { meal in
+                    .padding(.horizontal)
+                    ForEach(viewModel.mealList.filter {
+                        $0.MMEAL_SC_CODE == viewModel.mealType &&
+                        $0.MLSV_YMD == Calendar.current.date(bySettingHour: 0, minute: 0, second: 0, of: viewModel.date)
+                    }, id: \.MLSV_YMD) { meal in
+                        MealListCell(meal: meal)
+                            .listRowSeparator(.hidden)
+                    }.padding()
+                }
+                List {
+                    if viewModel.didLoad {
+                        ForEach(viewModel.mealList.filter {
+                            $0.MMEAL_SC_CODE == viewModel.mealType &&
+                            $0.MLSV_YMD != Calendar.current.date(bySettingHour: 0, minute: 0, second: 0, of: viewModel.date)
+                        }, id: \.MLSV_YMD) { meal in
                             MealListCell(meal: meal)
                                 .listRowSeparator(.hidden)
                         }
@@ -64,6 +72,7 @@ struct ContentView: View {
                         Image(systemName: "info.circle")
                     }
                 )
+                .navigationBarTitleDisplayMode(.inline)
             }
             if !viewModel.isNotiPhone {
                 DateSelBoxView(date: $viewModel.date)
@@ -108,20 +117,20 @@ struct ContentView: View {
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         Group {
-//            ContentView()
-//                .environment(\.locale, Locale(identifier: "ko"))
-//            ContentView()
-//                .environment(\.colorScheme, .dark)
-//                .previewDevice("iPhone SE (2nd generation)")
-//            ContentView()
-//                .environment(\.locale, Locale(identifier: "ko"))
-//                .previewDevice("iPhone 15 Pro")
-//            ContentView()
-//                .environment(\.locale, Locale(identifier: "ko"))
-//                .previewDevice("iPhone 15 Pro Max")
-//            ContentView()
-//                .environment(\.locale, Locale(identifier: "ko"))
-//                .previewDevice("iPhone 8 Plus")
+            ContentView()
+                .environment(\.locale, Locale(identifier: "ko"))
+            ContentView()
+                .environment(\.colorScheme, .dark)
+                .previewDevice("iPhone SE (2nd generation)")
+            ContentView()
+                .environment(\.locale, Locale(identifier: "ko"))
+                .previewDevice("iPhone 15 Pro")
+            ContentView()
+                .environment(\.locale, Locale(identifier: "ko"))
+                .previewDevice("iPhone 15 Pro Max")
+            ContentView()
+                .environment(\.locale, Locale(identifier: "ko"))
+                .previewDevice("iPhone 8 Plus")
             ContentView()
                 .environment(\.locale, Locale(identifier: "ko"))
                 .previewDevice("iPad14,6")

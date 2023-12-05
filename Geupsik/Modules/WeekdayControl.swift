@@ -28,45 +28,6 @@ extension Date {
     func autoWeekday() -> [Date] {
         switch Calendar.current.component(.weekday, from: self) {
         case 1: // Sunday
-            return appendDates(date: self, start: 1, end: 5)
-        case 2: // Monday
-            return appendDates(date: self, start: 0, end: 4)
-        case 3: // Tuesday
-            let dateList: [Date] = appendDates(date: self, start: -1, end: 3)
-            var result = rearrange(array: dateList, fromIndex: 1, toIndex: 0)
-            result = rearrange(array: result, fromIndex: 1, toIndex: 4)
-            return result
-        case 4: // Wednesday
-            let dateList: [Date] = appendDates(date: self, start: -2, end: 2)
-            var result = rearrange(array: dateList, fromIndex: 2, toIndex: 0)
-            
-            for _ in 0..<2 {
-                result = rearrange(array: result, fromIndex: 1, toIndex: 4)
-            }
-            return result
-        case 5: // Thursday
-            let dateList: [Date] = appendDates(date: self, start: -3, end: 1)
-            var result = rearrange(array: dateList, fromIndex: 3, toIndex: 0)
-
-            for _ in 0..<3 {
-                result = rearrange(array: result, fromIndex: 1, toIndex: 4)
-            }
-            return result
-        case 6: // Friday
-            let dateList: [Date] = appendDates(date: self, start: -4, end: 0)
-            let result = rearrange(array: dateList, fromIndex: 4, toIndex: 0)
-            return result
-        case 7: // Saturday
-            let dateList: [Date] = appendDates(date: self, start: 2, end: 6)
-            return dateList
-        default:
-            return [Date()]
-        }
-    }
-    
-    func autoWeekdayInBreakfast() -> [Date] {
-        switch Calendar.current.component(.weekday, from: self) {
-        case 1: // Sunday
             return appendDates(date: self, start: 1, end: 6)
         case 2: // Monday
             return appendDates(date: self, start: 0, end: 5)
@@ -132,5 +93,31 @@ extension Date {
         }
     }
     
-    
+    func range() -> ClosedRange<Date> {
+        switch Calendar.current.component(.weekday, from: self) {
+        case 1:
+            let list = appendDates(date: self, start: 1, end: 6)
+            return list.first!...list.last!
+        case 2:
+            let list = appendDates(date: self, start: 0, end: 5)
+            return list.first!...list.last!
+        case 3:
+            let list = appendDates(date: self, start: -1, end: 4)
+            return list.first!...list.last!
+        case 4:
+            let list = appendDates(date: self, start: -2, end: 3)
+            return list.first!...list.last!
+        case 5:
+            let list = appendDates(date: self, start: -3, end: 2)
+            return list.first!...list.last!
+        case 6:
+            let list = appendDates(date: self, start: -4, end: 1)
+            return list.first!...list.last!
+        case 7:
+            let list = appendDates(date: self, start: 2, end: 7)
+            return list.first!...list.last!
+        default:
+            return Date()...Date()
+        }
+    }
 }

@@ -17,7 +17,7 @@ struct LegacyContentView: View {
             NavigationStack {
                 List(viewModel.mealList, id: \.self) { meal in
                     NavigationLink(destination: MealView(meal: meal)) {
-                        Text(meal.date!.formatShort())
+                        Text(meal.MLSV_YMD!.formatShort())
                     }
                 }
                 .listStyle(CarouselListStyle())

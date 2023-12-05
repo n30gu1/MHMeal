@@ -7,115 +7,52 @@
 //
 
 import Foundation
-import SwiftSoup
 import Combine
+import WidgetKit
 
-class MealGetter: ObservableObject {
+func fetchMeal(mealType: [MealType], isNextDay: [Bool]) async -> [Meal] {
     var meals: [Meal] = []
     
-    let mealType: [MealType] = {
-        let zero = Calendar.current.date(bySettingHour: 0, minute: 0, second: 0, of: Date())!
-        let breakfast = Calendar.current.date(bySettingHour: 7, minute: 00, second: 00, of: Date())!
-        let lunch = Calendar.current.date(bySettingHour: 13, minute: 00, second: 00, of: Date())!
-        let dinner = Calendar.current.date(bySettingHour: 19, minute: 00, second: 00, of: Date())!
-        
-        switch Date() {
-        case zero...breakfast:
-            return [MealType.breakfast, MealType.lunch]
-        case breakfast...lunch:
-            return [MealType.lunch, MealType.dinner]
-        case lunch...dinner:
-            return [MealType.dinner, MealType.breakfast]
-        default:
-            return [MealType.breakfast, MealType.lunch]
-        }
-    }()
+    // Fetcher
+    let jsonDecoder = JSONDecoder()
     
-    let isNextDay: [Bool] = {
-        let zero = Calendar.current.date(bySettingHour: 0, minute: 0, second: 0, of: Date())!
-        let lunch = Calendar.current.date(bySettingHour: 13, minute: 00, second: 00, of: Date())!
-        let dinner = Calendar.current.date(bySettingHour: 19, minute: 00, second: 00, of: Date())!
+    for i in 0...1 {
+        let dFormatter: DateFormatter = {
+            let f = DateFormatter()
+            f.dateFormat = "yyyyMMdd"
+            return f
+        }()
         
-        switch Date() {
-        case zero...lunch:
-            return [false, false]
-        case lunch...dinner:
-            return [false, true]
-        default:
-            return [true, true]
-        }
-    }()
-    
-    var cancellable: AnyCancellable? = nil
-    
-    private func fetch() {
-        var noMealString: String?
-        var errorString: String?
-        
-        switch Locale.current.language.languageCode?.identifier {
-        case "ko":
-            noMealString = "급식이 없습니다."
-            errorString = "오류"
-        default:
-            noMealString = "No meal today."
-            errorString = "Error"
-        }
-        
-        func clean(_ text: String) -> [String] {
-            let first = text.replacingOccurrences(of: "\n", with: "")
-            return first.components(separatedBy: "<br>")
-        }
-        
-        for i in 0...1 {
-            var contents: String = ""
-            
-            let dFormatter: DateFormatter = {
-                let f = DateFormatter()
-                f.dateFormat = "yyyy/MM/dd"
-                return f
-            }()
-            
-            var mealList: [String] = []
-            
-            if let url = URL(string: "https://school.gyo6.net/muhakgo/food/\(dFormatter.string(from: isNextDay[i] ? Date().addingTimeInterval(86400) : Date()))/\(self.mealType[i].rawValue)") {
-                do {
-                    let getContents = try String(contentsOf: url)
-                    contents = getContents
-                } catch {
-                    // contents could not be loaded
-                    mealList = [errorString!]
-                }
-            } else {
-                // Bad URL
-                mealList = [errorString!]
+        let mealCode = {
+            switch mealType[i] {
+            case .breakfast:
+                return "1"
+            case .lunch:
+                return "2"
+            case .dinner:
+                return "3"
+            default:
+                return "2"
             }
-            
+        }()
+        
+        if let url = URL(
+            string: "https://open.neis.go.kr/hub/mealServiceDietInfo?KEY=0c78f44ac03648f49ce553a199fc0389&Type=json&ATPT_OFCDC_SC_CODE=R10&SD_SCHUL_CODE=8750594&MLSV_YMD=\(dFormatter.string(from: isNextDay[i] ? Date().addingTimeInterval(86400) : Date()))&MMEAL_SC_CODE=\(mealCode)") {
             do {
-                let doc: Document = try SwiftSoup.parse(contents)
-                
-                guard let meal: Element = try doc.select("td > div").first() else {
-                    mealList = [errorString!]
-                    return
+                let data = try await URLSession.shared.data(from: url).0
+                guard let data = try JSONSerialization.jsonObject(with: data, options: []) as? [String : Any] else { throw NSError() }
+                guard let data = data["mealServiceDietInfo"] as? [Any] else { throw NSError() }
+                guard let data = data[1] as? [String : Any] else { throw NSError() }
+                let serialized = try JSONSerialization.data(withJSONObject: (data["row"] as! [[String : Any]]), options: .prettyPrinted)
+                let meal = try jsonDecoder.decode([Meal].self, from: serialized)
+                if let meal = meal.first {
+                    meals.append(meal)
                 }
-                let mealText = try meal.html()
-                let mealResult = clean(mealText)
-                
-                if mealResult.count == 1 && mealResult[0] == "" {
-                    mealList = [noMealString!]
-                } else {
-                    mealList = mealResult
-                }
-            } catch Exception.Error(_, _) {
-                return
             } catch {
-                return
+                print(error.localizedDescription)
             }
-            
-            self.meals.append(Meal(meal: mealList))
         }
     }
-
-    init() {
-        fetch()
-    }
+    
+    return meals
 }

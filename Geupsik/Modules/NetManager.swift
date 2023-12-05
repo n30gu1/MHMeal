@@ -10,21 +10,20 @@ import Foundation
 import Combine
 
 final class NetManager {
-    let mealType: MealType
+    let API_KEY = "0c78f44ac03648f49ce553a199fc0389"
     
-    init(_ mealType: MealType) {
-        self.mealType = mealType
-    }
-    func fetch(date: Date) -> AnyPublisher<String, URLError> {
+    func fetch(from: Date, to: Date) -> AnyPublisher<Any, URLError> {
         let dateFormatter: DateFormatter = {
             let f = DateFormatter()
-            f.dateFormat = "yyyy/MM/dd"
+            f.dateFormat = "yyyyMMdd"
             return f
         }()
+        
+        let uri = "https://open.neis.go.kr/hub/mealServiceDietInfo?KEY=\(API_KEY)&Type=json&ATPT_OFCDC_SC_CODE=R10&SD_SCHUL_CODE=8750594&MLSV_FROM_YMD=\(dateFormatter.string(from: from))&MLSV_TO_YMD=\(dateFormatter.string(from: to))"
 
-        return URLSession.shared.dataTaskPublisher(for: URL(string: "https://school.gyo6.net/muhakgo/food/\(dateFormatter.string(from: date))/\(self.mealType.id)")!)
+        return URLSession.shared.dataTaskPublisher(for: URL(string: uri)!)
             .receive(on: DispatchQueue.main)
-            .map { String(data: $0.data, encoding: .utf8) ?? "nil" }
+            .map { return try! JSONSerialization.jsonObject(with: $0.data, options: []) }
             .eraseToAnyPublisher()
     }
 }

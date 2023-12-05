@@ -10,16 +10,6 @@
 	<array>
 		<dict>
 			<key>Type</key>
-			<string>PSChildPaneSpecifier</string>
-			<key>Title</key>
-			<string>Open Source Licenses</string>
-			<key>Key</key>
-			<string>open_source_licenses</string>
-			<key>File</key>
-			<string>OpenSourceLicenses</string>
-		</dict>
-		<dict>
-			<key>Type</key>
 			<string>PSGroupSpecifier</string>
 			<key>Title</key>
 			<string>App Information</string>
@@ -30,7 +20,7 @@
 			<key>Title</key>
 			<string>Version</string>
 			<key>DefaultValue</key>
-			<string>2.5.1</string>
+			<string>2.6</string>
 			<key>Key</key>
 			<string>version</string>
 		</dict>

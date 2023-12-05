@@ -16,53 +16,46 @@ struct MealDetailView: View {
             Form {
                 Section(header: Text("Meal")) {
                     VStack(alignment: .leading) {
-                        ForEach(meal.meal, id: \.self) {
+                        ForEach(meal.DDISH_NM, id: \.self) {
                             Text($0)
                         }
                     }
                 }
                 Section(header: Text("Calories")) {
                     HStack(alignment: .bottom, spacing: 0) {
-                        Text(meal.kcal!)
+                        Text(meal.CAL_INFO)
                             .font(.title2)
                             .bold()
                         Text("kcal")
                             .padding(.bottom, 1)
                     }
                 }
-                Section(header: Text("Origins")) {
+                Section(header: Text("Nutrients")) {
                     VStack(alignment: .leading) {
-                        ForEach(meal.origins!, id: \.self) {
+                        ForEach(meal.NTR_INFO ?? [], id: \.self) {
                             Text($0)
                         }
                     }
                 }
-                if let url = self.meal.imageLink {
-                    Section(header: Text("Image")) {
-                        AsyncImage(url: URL(string: url)!, placeholder: {
-                            ProgressView("Loading")
-                                .progressViewStyle(CircularProgressViewStyle())
-                        }, image: {
-                            Image(uiImage: $0)
-                                .resizable()
-                        })
-                            .scaledToFit()
-                            .padding(.horizontal, -16)
-                            .padding(.vertical, -6)
+                Section(header: Text("Origins")) {
+                    VStack(alignment: .leading) {
+                        ForEach(meal.ORPLC_INFO ?? [], id: \.self) {
+                            Text($0)
+                        }
                     }
                 }
             }
             .listStyle(InsetGroupedListStyle())
-            .navigationBarTitle(meal.date!.format())
+            .navigationBarTitle(meal.MLSV_YMD!.format())
         }
     }
 }
 
-struct MealDetailView_Previews: PreviewProvider {
-    static var previews: some View {
-        MealDetailView(meal: Meal(date: Date(), meal: ["1", "2", "3", "4", "5", "6"], origins: ["1", "2", "3", "4", "5", "6"], kcal: "1911"))
-    }
-}
+//struct MealDetailView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        MealDetailView(meal: Meal(date: Date(), meal: ["1", "2", "3", "4", "5", "6"], origins: ["1", "2", "3", "4", "5", "6"], kcal: "1911"))
+//    }
+//}
 
 struct MealDetailViewiPad: View {
     let meal: Meal
@@ -71,43 +64,36 @@ struct MealDetailViewiPad: View {
         Form {
             Section(header: Text("Meal")) {
                 VStack(alignment: .leading) {
-                    ForEach(meal.meal, id: \.self) {
+                    ForEach(meal.DDISH_NM, id: \.self) {
                         Text($0)
                     }
                 }
             }
             Section(header: Text("Calories")) {
                 HStack(alignment: .bottom, spacing: 0) {
-                    Text(meal.kcal!)
+                    Text(meal.CAL_INFO)
                         .font(.title2)
                         .bold()
                     Text("kcal")
                         .padding(.bottom, 1)
                 }
             }
-            Section(header: Text("Origins")) {
+            Section(header: Text("Nutrients")) {
                 VStack(alignment: .leading) {
-                    ForEach(meal.origins!, id: \.self) {
+                    ForEach(meal.NTR_INFO ?? [], id: \.self) {
                         Text($0)
                     }
                 }
             }
-            if let url = self.meal.imageLink {
-                Section(header: Text("Image")) {
-                    AsyncImage(url: URL(string: url)!, placeholder: {
-                        ProgressView("Loading")
-                            .progressViewStyle(CircularProgressViewStyle())
-                    }, image: {
-                        Image(uiImage: $0)
-                            .resizable()
-                    })
-                        .scaledToFit()
-                        .padding(.horizontal, -16)
-                        .padding(.vertical, -6)
+            Section(header: Text("Origins")) {
+                VStack(alignment: .leading) {
+                    ForEach(meal.ORPLC_INFO ?? [], id: \.self) {
+                        Text($0)
+                    }
                 }
             }
         }
         .listStyle(InsetGroupedListStyle())
-        .navigationBarTitle(meal.date!.format())
+        .navigationBarTitle(meal.MLSV_YMD!.format())
     }
 }
